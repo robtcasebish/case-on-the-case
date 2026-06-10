@@ -69,18 +69,19 @@ const listSchema = itemListSchema(
     )}
   </section>
 
-  <!-- 2. REPORTED IN FULL, completed flagships get the weight -->
+  <!-- 2. EDITOR'S NOTE + completed flagships, the finished work carries the weight -->
   {flagships.length > 0 && (
     <section class="section section--alt">
       <div class="container">
-        <div class="section__head">
-          <div>
-            <p class="eyebrow">Reported in full</p>
-            <h2>The Case Files</h2>
-          </div>
+        <div class="editor-note">
+          <p class="editor-note__label">Editor's note</p>
+          <p class="editor-note__body">We publish fewer cases than we could. The ones we take on, we report all the way down, against the public record, sourced, and written end to end. This issue is anchored by two we keep coming back to: the only unsolved skyjacking in American history, and the poisoning that rewrote how every sealed product is sold.</p>
+          <p class="editor-note__sign">The Case on the Case editors</p>
+        </div>
+        <div class="section__head section__head--tight">
+          <div><h2>The Case Files</h2></div>
           <a class="section__more" href="/cases">The full archive →</a>
         </div>
-        <p class="section__intro">The cases we've taken all the way, researched against the public record, sourced, and written end to end.</p>
         <div class="grid grid--two">
           {flagships.slice(0, 2).map((c) => <CaseCard {...card(c)} />)}
         </div>
@@ -118,7 +119,7 @@ const listSchema = itemListSchema(
           </div>
           <a class="section__more" href="/cases">Open the archive →</a>
         </div>
-        <p class="section__intro">What's open on our desk right now, newly filed and actively in research.</p>
+        <p class="section__intro">What's open on the desk right now, some cases filed and finished, others still in research.</p>
         <div class="grid grid--list">
           {onDesk.map((c) => <CaseCard {...card(c, 'compact')} />)}
         </div>
@@ -131,7 +132,7 @@ const listSchema = itemListSchema(
     <section class="section evidence">
       <div class="container evidence__grid">
         <div class="evidence__lead">
-          <p class="eyebrow" style="color: var(--beige)">Section IV</p>
+          <p class="eyebrow" style="color: var(--beige)">A closer look</p>
           <h2>Inside the Evidence Room</h2>
           <p>A note left on a barn door. A ransom letter. A fiber, a phone record, a tie with no name. The cases here turn on the smallest things, and on the people patient enough to read them.</p>
           <a class="btn" href="/the-evidence-room">Enter the archive</a>
@@ -202,6 +203,30 @@ const listSchema = itemListSchema(
     color: var(--text-muted); font-size: clamp(1.05rem, 1rem + 0.5vw, 1.32rem);
   }
   .hero__featured { margin-top: clamp(2rem, 4vw, 3.25rem); }
+
+  /* Editor's note, a signed, hand-set aside so the page opens like a current
+     issue rather than a category module. */
+  .editor-note {
+    max-width: 64ch;
+    margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
+    padding-left: 1.15rem;
+    border-left: 2px solid var(--border-strong);
+  }
+  .editor-note__label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--beige); margin-bottom: 0.7rem;
+  }
+  .editor-note__body {
+    font-family: var(--font-serif);
+    font-size: clamp(1.12rem, 1.02rem + 0.55vw, 1.42rem);
+    line-height: 1.5; color: var(--text);
+  }
+  .editor-note__sign {
+    margin-top: 0.9rem;
+    font-size: 0.82rem; letter-spacing: 0.04em; color: var(--text-faint);
+  }
+  .section__head--tight { margin-bottom: 1.1rem; }
 
   .grid--two { grid-template-columns: 1fr; }
   @media (min-width: 760px) { .grid--two { grid-template-columns: 1fr 1fr; } }

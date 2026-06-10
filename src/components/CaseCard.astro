@@ -87,7 +87,7 @@ if (readingTime) meta.push(`${readingTime} min`);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+    transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
   }
   /* status hairline along the top edge, gives solved/cold/etc. their own read */
   .ccard::before {
@@ -99,7 +99,11 @@ if (readingTime) meta.push(`${readingTime} min`);
   .ccard.s-unsolved::before,
   .ccard.s-cold::before { background: var(--sepia); }
   .ccard.s-ongoing::before { background: var(--accent); }
-  .ccard.is-progress { border-style: dashed; }
+  /* In-progress files sit quieter than finished work, so completed cases read
+     as the premium ones. They wake to full strength on hover/focus. */
+  .ccard.is-progress { border-style: dashed; opacity: 0.7; }
+  .ccard.is-progress:hover,
+  .ccard.is-progress:focus-within { opacity: 1; }
 
   .ccard:hover {
     border-color: var(--border-strong);
@@ -153,10 +157,12 @@ if (readingTime) meta.push(`${readingTime} min`);
     border-radius: var(--radius);
     text-decoration: none;
     color: inherit;
-    transition: border-color 0.16s ease, background 0.16s ease, transform 0.16s ease;
+    transition: border-color 0.16s ease, background 0.16s ease, transform 0.16s ease, opacity 0.16s ease;
   }
   .compactcard:hover { border-color: var(--border-strong); background: var(--surface-2); color: inherit; transform: translateX(2px); }
-  .compactcard.is-progress { border-style: dashed; }
+  .compactcard.is-progress { border-style: dashed; opacity: 0.66; }
+  .compactcard.is-progress:hover,
+  .compactcard.is-progress:focus-visible { opacity: 1; }
   .compactcard__tick { flex: none; width: 3px; align-self: stretch; border-radius: 2px; background: var(--border-strong); }
   .compactcard.s-solved .compactcard__tick { background: #6fbf8e; }
   .compactcard.s-unsolved .compactcard__tick,
