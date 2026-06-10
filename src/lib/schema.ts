@@ -1,7 +1,7 @@
 /**
  * schema.org JSON-LD builders.
  * These objects are what search engines and AI/GEO crawlers parse to
- * understand and cite the site. Keep them accurate and minimal — every
+ * understand and cite the site. Keep them accurate and minimal, every
  * field should be true and resolvable.
  */
 import { SITE, AUTHOR, SOCIAL, absoluteUrl } from '../site.config';
@@ -131,7 +131,7 @@ export interface CollectionItem {
   name: string;
 }
 
-/** ItemList for hub pages (home, /stories, topic pages) — helps AI enumerate. */
+/** ItemList for hub pages (home, /stories, topic pages), helps AI enumerate. */
 export function itemListSchema(items: CollectionItem[], name: string) {
   return {
     '@type': 'ItemList',

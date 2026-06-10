@@ -1,7 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-/** Category titles — kept in sync with CATEGORY_TITLES in site.config.ts. */
+/** Category titles, kept in sync with CATEGORY_TITLES in site.config.ts. */
 const CATEGORY_ENUM = [
   'Solved Cold Cases',
   'Famous Cases',
@@ -12,7 +12,7 @@ const CATEGORY_ENUM = [
 ] as const;
 
 /**
- * "cases" — the true-crime case articles.
+ * "cases", the true-crime case articles.
  * Strict schema: every field powering SEO/GEO (structured data, OpenGraph,
  * sitemap, citations) is required or validated. A case follows the house
  * 8-part template; `oneSentence` is section 1 and `sources` is section 8.
@@ -24,7 +24,7 @@ const cases = defineCollection({
       title: z.string().max(120),
       // Meta description / OG description / citable abstract for AI engines.
       description: z.string().min(40).max(320),
-      // Section 1 of the template — "The Case in One Sentence."
+      // Section 1 of the template, "The Case in One Sentence."
       oneSentence: z.string().max(280).optional(),
       // Short serif lede shown under the hero title.
       dek: z.string().max(280).optional(),
@@ -39,7 +39,7 @@ const cases = defineCollection({
       // One or more categories; the first is the primary (drives the badge + URL grouping).
       categories: z.array(z.enum(CATEGORY_ENUM)).min(1).default(['Famous Cases']),
 
-      // Real-world case metadata — strong entity signals for search + AI.
+      // Real-world case metadata, strong entity signals for search + AI.
       location: z.string().optional(),
       caseYear: z.number().int().optional(),
       caseStatus: z.enum(['Solved', 'Unsolved', 'Cold', 'Ongoing']).optional(),

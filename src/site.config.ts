@@ -12,7 +12,7 @@ export const SITE = {
   tagline:
     'True crime stories, cold case breakthroughs, forgotten victims, and the clues that changed everything.',
   description:
-    'Case on the Case revisits true crime with curiosity, care, and respect — cold case breakthroughs, famous cases, missing persons, forensic evidence, and the cases that changed the law, told with rigor and credibility.',
+    'Case on the Case revisits true crime with curiosity, care, and respect, cold case breakthroughs, famous cases, missing persons, forensic evidence, and the cases that changed the law, told with rigor and credibility.',
   language: 'en',
   locale: 'en_US',
   publisher: 'Case on the Case',
@@ -23,7 +23,7 @@ export const SITE = {
 
 export const AUTHOR = {
   name: 'The Case on the Case Editorial Team',
-  bio: 'The Case on the Case editorial team researches and verifies every case against primary sources — court records, police filings, and contemporaneous reporting — and revisits each story with care and respect for the people involved.',
+  bio: 'The Case on the Case editorial team researches and verifies every case against primary sources, court records, police filings, and contemporaneous reporting, and revisits each story with care and respect for the people involved.',
   url: 'https://caseonthecase.com/about',
 } as const;
 
@@ -47,7 +47,7 @@ export const CATEGORIES = [
     code: 'I',
     cta: 'Review the file',
     tagline: 'The ones that refused to stay cold.',
-    blurb: "Files that sat untouched for years — sometimes decades — and the DNA, dogged detectives, or single overlooked detail that finally broke them open.",
+    blurb: "Files that sat untouched for years, sometimes decades, and the DNA, dogged detectives, or single overlooked detail that finally broke them open.",
   },
   {
     slug: 'famous-cases',
@@ -55,14 +55,14 @@ export const CATEGORIES = [
     code: 'II',
     cta: 'Read the records',
     tagline: 'The cases everyone thinks they know.',
-    blurb: "The cases that escaped the file and entered the culture — names you already half-remember, examined past the headlines and the myth.",
+    blurb: "The cases that escaped the file and entered the culture, names you already half-remember, examined past the headlines and the myth.",
   },
   {
     slug: 'missing-and-vanished',
     title: 'Missing & Vanished',
     code: 'III',
     cta: 'Follow the trail',
-    tagline: 'Gone — but not closed.',
+    tagline: 'Gone, but not closed.',
     blurb: 'People who stepped out of an ordinary day and never came back. Disappearances, unidentified remains, and the questions still left open.',
   },
   {
@@ -71,7 +71,7 @@ export const CATEGORIES = [
     code: 'IV',
     cta: 'Enter the archive',
     tagline: 'Where the small things decide everything.',
-    blurb: 'A note, a fiber, a phone record. These cases turn on the smallest details — what the evidence said, and what it took to finally read it.',
+    blurb: 'A note, a fiber, a phone record. These cases turn on the smallest details, what the evidence said, and what it took to finally read it.',
   },
   {
     slug: 'citizen-sleuths',
@@ -87,11 +87,11 @@ export const CATEGORIES = [
     code: 'VI',
     cta: 'Open the casebook',
     tagline: 'When one case rewrote the rules.',
-    blurb: 'Some crimes end in a verdict. These ended in new rules — for packaging, for policing, for safety, for the rest of us.',
+    blurb: 'Some crimes end in a verdict. These ended in new rules, for packaging, for policing, for safety, for the rest of us.',
   },
 ] as const;
 
-/** Tuple of category titles — used by the content schema enum. */
+/** Tuple of category titles, used by the content schema enum. */
 export const CATEGORY_TITLES = [
   'Solved Cold Cases',
   'Famous Cases',
@@ -122,7 +122,7 @@ export const NAV = [
   { label: 'Submit a Case', href: '/submit' },
 ] as const;
 
-/** Absolute URL helper — joins a path to the canonical site origin. */
+/** Absolute URL helper, joins a path to the canonical site origin. */
 export function absoluteUrl(path = '/'): string {
   const clean = path.startsWith('/') ? path : `/${path}`;
   return `${SITE.url}${clean}`;

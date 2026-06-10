@@ -4,7 +4,7 @@ import { SITE, AUTHOR, CATEGORIES } from '../site.config';
 import { caseSlug, isoDate } from '../lib/utils';
 
 /**
- * /llms.txt — curated map of the site for AI engines (llmstxt.org).
+ * /llms.txt, curated map of the site for AI engines (llmstxt.org).
  * Groups cases by category so engines can enumerate and cite cleanly.
  */
 export async function GET(context: APIContext) {

@@ -1,6 +1,6 @@
 ---
 /**
- * <CategoryCard /> — an archive "section" card. The file code is kept as a quiet
+ * <CategoryCard />, an archive "section" card. The file code is kept as a quiet
  * marginal numeral rather than a headline, and each section uses its own call to
  * action so the grid doesn't read as one repeated label.
  */
@@ -15,7 +15,7 @@ interface Props {
 const { title, slug, blurb, code, cta = 'Explore the cases', count } = Astro.props;
 ---
 
-<a href={`/${slug}`} class="catcard" aria-label={`${title} — ${cta}`}>
+<a href={`/${slug}`} class="catcard" aria-label={`${title}, ${cta}`}>
   {code && <span class="catcard__num" aria-hidden="true">{code}</span>}
   <div class="catcard__head">
     <h3 class="catcard__title">{title}</h3>

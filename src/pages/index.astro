@@ -38,7 +38,7 @@ const card = (c, variant = 'default') => ({
 
 const listSchema = itemListSchema(
   all.slice(0, 10).map((s) => ({ url: absoluteUrl(slug(s)), name: s.data.title })),
-  'Case on the Case — true crime case files',
+  'Case on the Case, true crime case files',
 );
 ---
 
@@ -69,7 +69,7 @@ const listSchema = itemListSchema(
     )}
   </section>
 
-  <!-- 2. REPORTED IN FULL — completed flagships get the weight -->
+  <!-- 2. REPORTED IN FULL, completed flagships get the weight -->
   {flagships.length > 0 && (
     <section class="section section--alt">
       <div class="container">
@@ -80,7 +80,7 @@ const listSchema = itemListSchema(
           </div>
           <a class="section__more" href="/cases">The full archive →</a>
         </div>
-        <p class="section__intro">The cases we've taken all the way — researched against the public record, sourced, and written end to end.</p>
+        <p class="section__intro">The cases we've taken all the way, researched against the public record, sourced, and written end to end.</p>
         <div class="grid grid--two">
           {flagships.slice(0, 2).map((c) => <CaseCard {...card(c)} />)}
         </div>
@@ -107,7 +107,7 @@ const listSchema = itemListSchema(
     </div>
   </section>
 
-  <!-- 4. FROM THE CASE DESK — compact archive list -->
+  <!-- 4. FROM THE CASE DESK, compact archive list -->
   {onDesk.length > 0 && (
     <section class="section section--alt">
       <div class="container">
@@ -118,7 +118,7 @@ const listSchema = itemListSchema(
           </div>
           <a class="section__more" href="/cases">Open the archive →</a>
         </div>
-        <p class="section__intro">What's open on our desk right now — newly filed and actively in research.</p>
+        <p class="section__intro">What's open on our desk right now, newly filed and actively in research.</p>
         <div class="grid grid--list">
           {onDesk.map((c) => <CaseCard {...card(c, 'compact')} />)}
         </div>
@@ -126,14 +126,14 @@ const listSchema = itemListSchema(
     </section>
   )}
 
-  <!-- 5. THE EVIDENCE ROOM — editorial callout -->
+  <!-- 5. THE EVIDENCE ROOM, editorial callout -->
   {evidence.length > 0 && (
     <section class="section evidence">
       <div class="container evidence__grid">
         <div class="evidence__lead">
           <p class="eyebrow" style="color: var(--beige)">Section IV</p>
           <h2>Inside the Evidence Room</h2>
-          <p>A note left on a barn door. A ransom letter. A fiber, a phone record, a tie with no name. The cases here turn on the smallest things — and on the people patient enough to read them.</p>
+          <p>A note left on a barn door. A ransom letter. A fiber, a phone record, a tie with no name. The cases here turn on the smallest things, and on the people patient enough to read them.</p>
           <a class="btn" href="/the-evidence-room">Enter the archive</a>
         </div>
         <div class="evidence__cases">
@@ -154,7 +154,7 @@ const listSchema = itemListSchema(
           </div>
           <a class="section__more" href="/solved-cold-cases">All solved cases →</a>
         </div>
-        <p class="section__intro">Cold for years. Then a database hit, a discarded cup, a name — and an answer that arrived a generation too late, but arrived.</p>
+        <p class="section__intro">Cold for years. Then a database hit, a discarded cup, a name, and an answer that arrived a generation too late, but arrived.</p>
         <div class="grid grid--cards">
           {solved.map((c) => <CaseCard {...card(c)} />)}
         </div>
@@ -162,12 +162,12 @@ const listSchema = itemListSchema(
     </section>
   )}
 
-  <!-- 7. ABOUT — warm paper panel -->
+  <!-- 7. ABOUT, warm paper panel -->
   <section class="section section--alt">
     <div class="container">
       <div class="panel-paper about-panel">
         <p class="eyebrow">Our standard</p>
-        <h2>We tell these stories like they happened to real people — because they did.</h2>
+        <h2>We tell these stories like they happened to real people, because they did.</h2>
         <p>Every case here is built from the public record and primary sources, written with care and without shock for its own sake. Where a case is unsolved, we say so. Where someone wasn't convicted, we say that too.</p>
         <a class="btn" href="/about">How we report</a>
       </div>
@@ -179,7 +179,7 @@ const listSchema = itemListSchema(
     <div class="container submit-cta__inner">
       <div>
         <h2>Sitting on a case we should cover?</h2>
-        <p>A cold case, a local mystery, a name that deserves another look — send it to the desk.</p>
+        <p>A cold case, a local mystery, a name that deserves another look, send it to the desk.</p>
       </div>
       <a class="btn btn--accent" href="/submit">Submit a Case</a>
     </div>

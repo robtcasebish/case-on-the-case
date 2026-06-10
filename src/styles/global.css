@@ -1,5 +1,5 @@
 /* =========================================================================
-   Case on the Case — global design system
+   Case on the Case, global design system
    Dark & moody true-crime aesthetic. Zero external requests (system fonts)
    for top-tier Core Web Vitals and instant first paint.
    ========================================================================= */
@@ -17,14 +17,14 @@
   --text-muted:    #a7a39b;
   --text-faint:    #76726b;
 
-  --accent:        #c1121f; /* crime-scene red — used sparingly */
+  --accent:        #c1121f; /* crime-scene red, used sparingly */
   --accent-hover:  #e01e2b;
   --accent-soft:   rgba(193, 18, 31, 0.12);
   --accent-line:   rgba(193, 18, 31, 0.35);
   --sepia:         #c9a96a; /* aged-paper highlight for kickers/labels */
   --beige:         #b8ad97; /* muted archival beige */
 
-  /* Archival "paper" panels — warm off-white to break the dark sameness */
+  /* Archival "paper" panels, warm off-white to break the dark sameness */
   --paper:         #e7e1d3;
   --paper-2:       #ddd5c3;
   --paper-ink:     #211f1b;
@@ -94,7 +94,7 @@ body {
   position: relative;
 }
 
-/* Faint film-grain overlay — adds analog texture, no extra request.
+/* Faint film-grain overlay, adds analog texture, no extra request.
    Fixed, non-interactive, very low opacity so it never harms readability. */
 body::before {
   content: '';
@@ -194,7 +194,7 @@ code {
   text-decoration: underline;
 }
 
-/* Eyebrow / kicker label — "case file" tone */
+/* Eyebrow / kicker label, "case file" tone */
 .kicker {
   font-family: var(--font-sans);
   font-size: 0.78rem;
@@ -337,7 +337,7 @@ code {
    Editorial refinement layer
    ========================================================================= */
 
-/* Eyebrow — a quieter, mixed-case alternative to the all-caps kicker, for
+/* Eyebrow, a quieter, mixed-case alternative to the all-caps kicker, for
    places where uppercase would feel too systematized. */
 .eyebrow {
   font-family: var(--font-sans);
@@ -357,7 +357,7 @@ code {
   flex: none;
 }
 
-/* Dateline — small place/date/status metadata row, editorial spacing. */
+/* Dateline, small place/date/status metadata row, editorial spacing. */
 .dateline {
   display: flex;
   flex-wrap: wrap;
@@ -376,7 +376,7 @@ code {
   margin: 0;
 }
 
-/* Section intro — an editor's note above a block of cases. */
+/* Section intro, an editor's note above a block of cases. */
 .section__intro {
   color: var(--text-muted);
   max-width: 62ch;

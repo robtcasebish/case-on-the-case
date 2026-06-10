@@ -146,7 +146,7 @@ const related = all
               {data.sources.map((s) => (
                 <li>
                   {s.url ? <a href={s.url} rel="nofollow noopener" target="_blank">{s.title}</a> : s.title}
-                  {s.publisher && <span class="sources__pub"> — {s.publisher}</span>}
+                  {s.publisher && <span class="sources__pub">, {s.publisher}</span>}
                 </li>
               ))}
             </ol>

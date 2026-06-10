@@ -37,7 +37,7 @@ const crumbs = breadcrumbSchema([
 
 <BaseLayout
   title={cat.title}
-  description={`${cat.blurb} — true crime case files from ${SITE.name}.`}
+  description={`${cat.blurb}, true crime case files from ${SITE.name}.`}
   path={path}
   schemaNodes={[listSchema, crumbs]}
 >
@@ -80,7 +80,7 @@ const crumbs = breadcrumbSchema([
           ))}
         </div>
       ) : (
-        <p class="empty">No cases filed here yet — new stories are added regularly.</p>
+        <p class="empty">No cases filed here yet, new stories are added regularly.</p>
       )}
     </div>
   </section>

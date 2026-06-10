@@ -2,7 +2,7 @@ import type { APIContext } from 'astro';
 import { SITE } from '../site.config';
 
 /**
- * robots.txt — explicitly welcomes search AND generative-engine (GEO) crawlers.
+ * robots.txt, explicitly welcomes search AND generative-engine (GEO) crawlers.
  * Listing the AI user-agents with `Allow: /` makes our consent unambiguous,
  * which is what lets engines like ChatGPT, Perplexity, Gemini, and Claude
  * crawl and cite the site.

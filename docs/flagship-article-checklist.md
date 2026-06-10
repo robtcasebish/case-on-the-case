@@ -2,14 +2,14 @@
 
 The standard every Case on the Case case page should meet before it goes live.
 The **D. B. Cooper** article (`src/content/cases/db-cooper.md`) is the reference
-example — when in doubt, match its structure, voice, and sourcing.
+example, when in doubt, match its structure, voice, and sourcing.
 
 > A case is ready to publish when every box below is honestly checked and
 > `placeholder: false` is set.
 
 ---
 
-## 1. Structure — the 8-part template (in order)
+## 1. Structure, the 8-part template (in order)
 
 The template is enforced by the page layout. Section 1 and section 8 live in
 frontmatter; sections 2–7 are `##` headings in the body, in this exact order:
@@ -30,25 +30,25 @@ frontmatter; sections 2–7 are `##` headings in the body, in this exact order:
 
 ## 2. Brand voice
 
-- [ ] **Investigative** — leads with facts and the chain of what's known.
-- [ ] **Cinematic but restrained** — atmosphere comes from real detail, never
+- [ ] **Investigative**, leads with facts and the chain of what's known.
+- [ ] **Cinematic but restrained**, atmosphere comes from real detail, never
       from adjectives, dread, or melodrama.
-- [ ] **Respectful** — victims and families are treated as real people. No gore,
+- [ ] **Respectful**, victims and families are treated as real people. No gore,
       no shock, no exploitation.
-- [ ] **Clear & factual** — plain language; readable for a general audience.
-- [ ] **Not sensationalized** — no hype, no "you won't believe," no true-crime clichés.
+- [ ] **Clear & factual**, plain language; readable for a general audience.
+- [ ] **Not sensationalized**, no hype, no "you won't believe," no true-crime clichés.
 - [ ] Headings are the house wording; body is serious, not lurid.
 
 ## 3. Factual integrity (non-negotiable)
 
-- [ ] **No invented facts.** Every concrete claim — names, dates, places,
-      figures — is supported by a real, citable source.
+- [ ] **No invented facts.** Every concrete claim, names, dates, places,
+      figures, is supported by a real, citable source.
 - [ ] **Cautious language where details are disputed.** Use "by most accounts,"
       "reportedly," "the evidence does not settle it," "remains disputed." Label
       theories as theories.
 - [ ] **Presumption of innocence.** Name a person as a suspect/person of interest
       only with sourcing, and never imply guilt absent a conviction.
-- [ ] **Status is accurate** — `caseStatus` (Solved / Unsolved / Cold / Ongoing)
+- [ ] **Status is accurate**, `caseStatus` (Solved / Unsolved / Cold / Ongoing)
       matches reality, and the body doesn't overstate certainty.
 - [ ] Distinguish what is *known* from what is *believed* or *alleged*.
 
@@ -66,13 +66,13 @@ frontmatter; sections 2–7 are `##` headings in the body, in this exact order:
 - [ ] Key figures and turning points are easy to scan (a **bold** term where it
       genuinely helps, used sparingly).
 - [ ] No horror fonts, all-caps shouting, or gratuitous emphasis.
-- [ ] Polished but **not overly long** — roughly 700–1,400 words is the target
+- [ ] Polished but **not overly long**, roughly 700–1,400 words is the target
       for a flagship case. Tighten ruthlessly.
 
 ## 6. Frontmatter & SEO/GEO
 
 - [ ] `title` is the case name (≤ 120 chars).
-- [ ] `description` is a true, citable 1–2 sentence summary (40–320 chars) — this
+- [ ] `description` is a true, citable 1–2 sentence summary (40–320 chars), this
       feeds search snippets and AI engines.
 - [ ] `categories` lists every category the case belongs to; the **first** is the
       primary (drives the badge and grouping). Cross-list where it genuinely fits.

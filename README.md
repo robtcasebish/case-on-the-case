@@ -9,7 +9,7 @@ A fast, static, SEO/GEO-optimized website built with [Astro](https://astro.build
 
 ## Why this stack
 
-Every page ships complete, server-rendered HTML on the first request — ideal for
+Every page ships complete, server-rendered HTML on the first request, ideal for
 being crawled and **cited by search engines and AI/generative engines (GEO)**.
 Built in: schema.org JSON-LD (`NewsArticle`, `Organization`, `WebSite`,
 `BreadcrumbList`, `ItemList`), canonical URLs, OpenGraph/Twitter cards, an

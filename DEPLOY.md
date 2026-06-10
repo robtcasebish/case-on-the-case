@@ -5,7 +5,7 @@ The site is a **static** Astro build. The source of truth lives on GitHub
 hosting environment** that serves files from a `public/` web root.
 
 > Note on the environment: this is a Kinsta *WordPress* hosting plan, but no
-> WordPress is actually used — we serve the built static site directly out of
+> WordPress is actually used, we serve the built static site directly out of
 > `public/`. The original placeholder was saved to
 > `/www/caseonthecase_753/index.html.kinsta-placeholder.bak`.
 
@@ -35,7 +35,7 @@ That script:
 | Temp URL | https://caseonthecase.kinsta.cloud/ |
 
 Because deploys use the SSH **key**, the SFTP/SSH **password** can be rotated in
-MyKinsta at any time without breaking deployment. (It should be rotated — it was
+MyKinsta at any time without breaking deployment. (It should be rotated, it was
 shared during setup.)
 
 ## Typical workflow
@@ -67,8 +67,8 @@ Canonical URLs are already hard-coded to `https://caseonthecase.com` in
 
 ## Post-launch SEO/GEO checklist
 
-- [ ] **Google Search Console** — verify domain, submit `/sitemap-index.xml`
-- [ ] **Bing Webmaster Tools** — verify + submit the same sitemap
+- [ ] **Google Search Console**, verify domain, submit `/sitemap-index.xml`
+- [ ] **Bing Webmaster Tools**, verify + submit the same sitemap
 - [ ] Validate a story with Google's
       [Rich Results Test](https://search.google.com/test/rich-results)
 - [ ] [PageSpeed Insights](https://pagespeed.web.dev/) sanity check

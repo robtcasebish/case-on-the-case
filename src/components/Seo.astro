@@ -1,6 +1,6 @@
 ---
 /**
- * <Seo /> — renders the SEO/GEO-critical <head> tags for a page.
+ * <Seo />, renders the SEO/GEO-critical <head> tags for a page.
  * Canonical URL, robots directives (explicitly welcoming AI crawlers),
  * OpenGraph, and Twitter cards. JSON-LD is handled separately by <JsonLd />.
  */
@@ -11,7 +11,7 @@ interface Props {
   description: string;
   /** Site-root-relative path, e.g. "/stories/foo". Becomes the canonical URL. */
   path: string;
-  /** og:type — 'website' for hubs, 'article' for stories. */
+  /** og:type, 'website' for hubs, 'article' for stories. */
   type?: 'website' | 'article';
   /** Absolute image URL for social/article cards. */
   image?: string;
@@ -42,7 +42,7 @@ const {
 const canonical = absoluteUrl(path);
 const ogImage = image ?? absoluteUrl('/og-default.png');
 const fullTitle =
-  title === SITE.name ? SITE.name : `${title} — ${SITE.name}`;
+  title === SITE.name ? SITE.name : `${title}, ${SITE.name}`;
 const robots = noindex
   ? 'noindex, nofollow'
   : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
