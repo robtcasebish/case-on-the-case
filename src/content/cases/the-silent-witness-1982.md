@@ -1,6 +1,6 @@
 ---
 title: "The Silent Witness, 1982"
-description: "A single overlooked piece of evidence that waited decades to speak. Full story coming soon."
+description: "A single overlooked piece of evidence that waited decades to speak."
 oneSentence: "A single overlooked piece of evidence that waited decades to tell its story."
 pubDate: 2026-04-16
 categories: ["The Evidence Room"]

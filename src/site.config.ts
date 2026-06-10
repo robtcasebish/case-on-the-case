@@ -37,50 +37,57 @@ export const SOCIAL = {
 
 /**
  * The six editorial categories. Order here drives nav + homepage order.
- * `code` is the case-file "archive tab" motif shown on category surfaces.
+ * `code` is a quiet archival reference; `cta` is the per-section call to action
+ * (varied on purpose, so the site doesn't read as one repeated label).
  */
 export const CATEGORIES = [
   {
     slug: 'solved-cold-cases',
     title: 'Solved Cold Cases',
-    code: 'CCF-01',
-    blurb: 'Stories where justice or answers finally came — years, sometimes decades, later.',
-    tagline: 'The cases that refused to stay cold.',
+    code: 'I',
+    cta: 'Review the file',
+    tagline: 'The ones that refused to stay cold.',
+    blurb: "Files that sat untouched for years — sometimes decades — and the DNA, dogged detectives, or single overlooked detail that finally broke them open.",
   },
   {
     slug: 'famous-cases',
     title: 'Famous Cases',
-    code: 'CCF-02',
-    blurb: 'The recognizable cases that shaped public awareness of true crime.',
+    code: 'II',
+    cta: 'Read the records',
     tagline: 'The cases everyone thinks they know.',
+    blurb: "The cases that escaped the file and entered the culture — names you already half-remember, examined past the headlines and the myth.",
   },
   {
     slug: 'missing-and-vanished',
     title: 'Missing & Vanished',
-    code: 'CCF-03',
-    blurb: 'Disappearances, unidentified people, and the mysteries still without an ending.',
-    tagline: 'Gone — but never forgotten.',
+    code: 'III',
+    cta: 'Follow the trail',
+    tagline: 'Gone — but not closed.',
+    blurb: 'People who stepped out of an ordinary day and never came back. Disappearances, unidentified remains, and the questions still left open.',
   },
   {
     slug: 'the-evidence-room',
     title: 'The Evidence Room',
-    code: 'CCF-04',
-    blurb: 'Forensic clues, documents, DNA, ransom notes, and digital trails — the details that crack cases open.',
-    tagline: 'Where the clues are kept.',
+    code: 'IV',
+    cta: 'Enter the archive',
+    tagline: 'Where the small things decide everything.',
+    blurb: 'A note, a fiber, a phone record. These cases turn on the smallest details — what the evidence said, and what it took to finally read it.',
   },
   {
     slug: 'citizen-sleuths',
     title: 'Citizen Sleuths',
-    code: 'CCF-05',
-    blurb: 'Public tips, online sleuthing, and community investigation that moved real cases forward.',
-    tagline: 'When the public became the investigation.',
+    code: 'V',
+    cta: 'Explore the cases',
+    tagline: 'When the public got there first.',
+    blurb: 'Before investigators closed in, ordinary people were already looking. The tips, forums, and quiet obsessions that moved real cases forward.',
   },
   {
     slug: 'cases-that-changed-the-law',
     title: 'Cases That Changed the Law',
-    code: 'CCF-06',
-    blurb: 'Cases whose legal, cultural, or safety-system consequences outlived the headlines.',
+    code: 'VI',
+    cta: 'Open the casebook',
     tagline: 'When one case rewrote the rules.',
+    blurb: 'Some crimes end in a verdict. These ended in new rules — for packaging, for policing, for safety, for the rest of us.',
   },
 ] as const;
 

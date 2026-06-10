@@ -1,6 +1,6 @@
 ---
 title: "Case File Cold"
-description: "Inside a case that went cold — and the evidence that could still break it. Full story coming soon."
+description: "Inside a case that went cold — and the evidence that could still break it."
 oneSentence: "Inside a case that went cold — and the evidence still waiting to break it open."
 pubDate: 2026-04-04
 categories: ["The Evidence Room"]

@@ -4,17 +4,20 @@ const year = SITE.foundingYear;
 ---
 
 <footer class="site-footer">
-  <div class="container site-footer__top">
-    <div class="site-footer__brand">
-      <a href="/" class="brand">
-        <span class="brand__mark" aria-hidden="true">⌖</span>
-        <span>{SITE.name}</span>
-      </a>
-      <p class="site-footer__tag">{SITE.tagline}</p>
-    </div>
+  <div class="container site-footer__mission">
+    <a href="/" class="brand">
+      <span class="brand__word">Case on the Case<span class="brand__dot">.</span></span>
+    </a>
+    <p class="site-footer__statement">
+      An independent true-crime archive. We revisit cold cases, famous crimes,
+      and the disappearances that never closed — reported from the public record,
+      told with care, and never for shock alone.
+    </p>
+  </div>
 
-    <nav class="site-footer__col" aria-label="Case Files">
-      <h2 class="site-footer__h">Case Files</h2>
+  <div class="container site-footer__top">
+    <nav class="site-footer__col" aria-label="The Index">
+      <h2 class="site-footer__h">The Index</h2>
       <ul>
         {CATEGORIES.map((c) => (
           <li><a href={`/${c.slug}`}>{c.title}</a></li>
@@ -22,24 +25,30 @@ const year = SITE.foundingYear;
       </ul>
     </nav>
 
-    <nav class="site-footer__col" aria-label="More">
-      <h2 class="site-footer__h">More</h2>
+    <nav class="site-footer__col" aria-label="The Desk">
+      <h2 class="site-footer__h">The Desk</h2>
       <ul>
         <li><a href="/cases">All Cases</a></li>
-        <li><a href="/about">About</a></li>
+        <li><a href="/about">About &amp; Standards</a></li>
         <li><a href="/submit">Submit a Case</a></li>
         <li><a href="/rss.xml">RSS Feed</a></li>
       </ul>
     </nav>
+
+    <div class="site-footer__col site-footer__contact">
+      <h2 class="site-footer__h">Contact</h2>
+      <p>Tips, corrections, and case suggestions:</p>
+      <a class="site-footer__email" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+    </div>
   </div>
 
   <div class="container site-footer__legal">
-    <p>© {year} {SITE.name}. All rights reserved.</p>
+    <p class="site-footer__copy">© {year} {SITE.name}. Independent &amp; reader-supported.</p>
     <p class="site-footer__note">
-      Stories are reported from public records and primary sources for
-      informational purposes. Individuals are presumed innocent unless convicted
-      in a court of law. We cover these cases with care and respect for victims
-      and their families.
+      Reported from public records and primary sources. Where a case is unresolved
+      or a person has not been convicted, we say so. Everyone is presumed innocent
+      unless and until convicted in a court of law. We write about these cases out
+      of respect for the victims and the people who never stopped looking.
     </p>
   </div>
 </footer>
@@ -48,44 +57,62 @@ const year = SITE.foundingYear;
   .site-footer {
     margin-top: 4rem;
     border-top: 1px solid var(--border);
-    background: var(--bg-elevated);
+    background: linear-gradient(180deg, var(--bg-elevated) 0%, #100f12 100%);
     padding: 3rem 0 2rem;
   }
+  .brand { text-decoration: none; color: var(--text); }
+  .brand__word {
+    font-family: var(--font-serif); font-weight: 700; font-size: 1.4rem;
+    letter-spacing: -0.015em;
+  }
+  .brand__dot { color: var(--accent); }
+
+  .site-footer__mission {
+    padding-bottom: 2.25rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.25rem;
+  }
+  .site-footer__statement {
+    margin-top: 1rem;
+    color: var(--text-muted);
+    max-width: 62ch;
+    font-size: 1.02rem;
+    line-height: 1.65;
+  }
+
   .site-footer__top {
     display: grid;
-    grid-template-columns: 1.6fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1.4fr;
     gap: 2rem;
   }
-  .brand {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-family: var(--font-serif); font-weight: 700; font-size: 1.15rem;
-    color: var(--text); text-decoration: none;
-  }
-  .brand__mark { color: var(--accent); }
-  .site-footer__tag {
-    margin-top: 0.7rem; color: var(--text-muted);
-    max-width: 38ch; font-size: 0.95rem;
-  }
   .site-footer__h {
-    font-family: var(--font-sans);
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+    font-family: var(--font-mono);
+    font-size: 0.66rem; font-weight: 600; letter-spacing: 0.2em;
     text-transform: uppercase; color: var(--text-faint);
-    margin-bottom: 0.9rem;
+    margin-bottom: 1rem;
   }
-  .site-footer__col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
-  .site-footer__col a { color: var(--text-muted); text-decoration: none; font-size: 0.93rem; }
+  .site-footer__col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.55rem; }
+  .site-footer__col a { color: var(--text-muted); text-decoration: none; font-size: 0.94rem; }
   .site-footer__col a:hover { color: var(--accent-hover); }
+  .site-footer__contact p { color: var(--text-muted); font-size: 0.94rem; margin-bottom: 0.4rem; }
+  .site-footer__email {
+    color: var(--beige); text-decoration: none; font-weight: 600;
+    border-bottom: 1px solid color-mix(in srgb, var(--beige) 40%, transparent);
+    padding-bottom: 1px;
+  }
+  .site-footer__email:hover { color: var(--text); }
 
   .site-footer__legal {
     margin-top: 2.5rem; padding-top: 1.5rem;
     border-top: 1px solid var(--border);
     color: var(--text-faint); font-size: 0.82rem;
-    display: grid; gap: 0.5rem;
+    display: grid; gap: 0.6rem;
   }
-  .site-footer__note { max-width: 80ch; }
+  .site-footer__copy { color: var(--text-muted); font-weight: 600; }
+  .site-footer__note { max-width: 82ch; line-height: 1.6; }
 
   @media (max-width: 680px) {
     .site-footer__top { grid-template-columns: 1fr 1fr; }
-    .site-footer__brand { grid-column: 1 / -1; }
+    .site-footer__contact { grid-column: 1 / -1; }
   }
 </style>

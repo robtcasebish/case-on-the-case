@@ -11,6 +11,8 @@ const all = (await getCollection('cases', (c) => !c.data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
+const rt = (c) => readingTimeFromText(c.body ?? '', c.data.readingTime);
+const code = (c) => categoryByTitle(c.data.categories[0])?.code;
 const counts = Object.fromEntries(
   CATEGORIES.map((c) => [c.title, all.filter((s) => s.data.categories.includes(c.title)).length]),
 );
@@ -27,27 +29,27 @@ const crumbs = breadcrumbSchema([
 
 <BaseLayout
   title="All Cases"
-  description={`Every case file from ${SITE.name} — solved cold cases, famous cases, missing persons, forensic evidence, citizen sleuthing, and cases that changed the law.`}
+  description={`The complete Case on the Case archive — solved cold cases, famous crimes, missing persons, forensic evidence, citizen sleuthing, and the cases that changed the law.`}
   path="/cases"
   schemaNodes={[listSchema, crumbs]}
 >
   <div class="container page">
     <header class="page__head">
-      <p class="kicker">The Archive</p>
-      <h1>All Cases</h1>
-      <p class="page__lede">Every case file we've opened, newest first — or jump straight to a section.</p>
+      <p class="eyebrow">The complete archive</p>
+      <h1>Every Case on File</h1>
+      <p class="page__lede">Browse the whole archive below, or start with a section.</p>
     </header>
 
     <div class="grid grid--cats cases__cats">
       {CATEGORIES.map((c) => (
-        <CategoryCard title={c.title} slug={c.slug} blurb={c.blurb} code={c.code} count={counts[c.title]} />
+        <CategoryCard title={c.title} slug={c.slug} blurb={c.blurb} code={c.code} cta={c.cta} count={counts[c.title]} />
       ))}
     </div>
   </div>
 
   <section class="section section--alt">
     <div class="container">
-      <div class="section__head"><h2>All cases</h2><span class="section__more">{all.length} files</span></div>
+      <div class="section__head"><h2>All Cases</h2><span class="section__more">{all.length} files</span></div>
       {all.length > 0 ? (
         <div class="grid grid--cards">
           {all.map((s) => (
@@ -57,12 +59,13 @@ const crumbs = breadcrumbSchema([
               description={s.data.description}
               category={s.data.categories[0]}
               status={s.data.caseStatus}
-              pubDate={s.data.pubDate}
               location={s.data.location}
-              readingTime={readingTimeFromText(s.body ?? '', s.data.readingTime)}
+              year={s.data.caseYear}
+              readingTime={rt(s)}
               cover={s.data.cover}
               coverAlt={s.data.coverAlt}
-              fileCode={categoryByTitle(s.data.categories[0])?.code}
+              placeholder={s.data.placeholder}
+              fileCode={code(s)}
             />
           ))}
         </div>

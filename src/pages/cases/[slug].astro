@@ -122,7 +122,10 @@ const related = all
 
       <div class="case__main">
         {data.placeholder && (
-          <p class="notice">Placeholder case file — the full story is being written. Structure and details below are scaffolding to be replaced.</p>
+          <aside class="notice" role="note">
+            <span class="progress-chip">Research in progress</span>
+            <p>This case file is still being assembled. We're working through the records and sources; the outline below marks where the full account will go.</p>
+          </aside>
         )}
 
         {data.oneSentence && (
@@ -169,11 +172,12 @@ const related = all
                 description={c.data.description}
                 category={c.data.categories[0]}
                 status={c.data.caseStatus}
-                pubDate={c.data.pubDate}
                 location={c.data.location}
+                year={c.data.caseYear}
                 readingTime={readingTimeFromText(c.body ?? '', c.data.readingTime)}
                 cover={c.data.cover}
                 coverAlt={c.data.coverAlt}
+                placeholder={c.data.placeholder}
                 fileCode={categoryByTitle(c.data.categories[0])?.code}
               />
             ))}
@@ -236,10 +240,14 @@ const related = all
   .casefile dd { margin: 0.15rem 0 0; font-weight: 600; font-size: 0.95rem; }
 
   .notice {
-    background: var(--accent-soft); border: 1px solid var(--accent-line);
-    border-radius: var(--radius); padding: 0.8rem 1rem;
-    font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.75rem;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem;
+    background: rgba(184, 173, 151, 0.06);
+    border: 1px solid color-mix(in srgb, var(--beige) 26%, transparent);
+    border-left: 3px solid var(--beige);
+    border-radius: var(--radius); padding: 1rem 1.1rem;
+    font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.9rem;
   }
+  .notice p { margin: 0; }
 
   .onesentence {
     border-left: 3px solid var(--accent);

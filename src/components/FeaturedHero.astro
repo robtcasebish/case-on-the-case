@@ -1,11 +1,11 @@
 ---
 import { Image } from 'astro:assets';
 import Badge from './Badge.astro';
-import { formatDate, isoDate } from '../lib/utils';
 
 /**
- * <FeaturedHero /> — the marquee case on the homepage. Large editorial treatment
- * with an image (or moody fallback), category, status, title, and summary.
+ * <FeaturedHero /> — the homepage cover story. Magazine-style treatment with an
+ * "Featured Case File" kicker, a strong serif excerpt, archival texture on the
+ * text panel, and a premium call to action.
  */
 interface Props {
   href: string;
@@ -13,121 +13,120 @@ interface Props {
   summary: string;
   category: string;
   status?: string;
-  pubDate: Date;
   location?: string;
+  year?: number;
   readingTime?: number;
   cover?: ImageMetadata;
   coverAlt?: string;
 }
-const { href, title, summary, category, status, pubDate, location, readingTime, cover, coverAlt } =
+const { href, title, summary, category, status, location, year, readingTime, cover, coverAlt } =
   Astro.props;
+const meta = [year ? String(year) : null, location, readingTime ? `${readingTime} min read` : null].filter(Boolean);
 ---
 
 <article class="fhero">
   <a href={href} class="fhero__link" aria-label={title}>
     <div class="fhero__media">
       {cover ? (
-        <Image src={cover} alt={coverAlt ?? ''} widths={[600, 1000, 1600]} sizes="(max-width: 900px) 100vw, 60vw" loading="eager" class="fhero__img" />
+        <Image src={cover} alt={coverAlt ?? ''} widths={[600, 1000, 1600]} sizes="(max-width: 940px) 100vw, 58vw" loading="eager" class="fhero__img" />
       ) : (
-        <div class="fhero__placeholder" aria-hidden="true"><span>CASE FILE</span></div>
+        <div class="fhero__placeholder" aria-hidden="true">
+          <span class="fhero__stamp">Case on the Case</span>
+          <span class="fhero__filelabel">Featured Case File</span>
+        </div>
       )}
       <div class="fhero__scrim"></div>
     </div>
+
     <div class="fhero__body">
+      <p class="fhero__kicker">Featured Case File</p>
       <div class="fhero__badges">
-        <Badge label="Featured Case" variant="accent" />
         <Badge label={category} variant="category" />
         {status && <Badge label={status} variant="status" status={status} />}
       </div>
       <h2 class="fhero__title">{title}</h2>
       <p class="fhero__summary">{summary}</p>
-      <div class="fhero__meta">
-        <time datetime={isoDate(pubDate)}>{formatDate(pubDate)}</time>
-        {location && <><span class="dot">·</span><span>{location}</span></>}
-        {readingTime && <><span class="dot">·</span><span>{readingTime} min read</span></>}
+      <div class="dateline fhero__meta">
+        {meta.map((m, i) => (<>{i > 0 && <span class="sep">·</span>}<span class={i === 1 ? 'place' : ''}>{m}</span></>))}
       </div>
-      <span class="fhero__cta">Read the case <span aria-hidden="true">→</span></span>
+      <span class="fhero__cta">Read the case file <span aria-hidden="true">→</span></span>
     </div>
   </a>
 </article>
 
 <style>
   .fhero {
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-strong);
     border-radius: var(--radius-lg);
     overflow: hidden;
     background: var(--surface);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   }
-  .fhero__link {
-    display: grid;
-    grid-template-columns: 1fr;
-    text-decoration: none;
-    color: inherit;
-  }
+  .fhero__link { display: grid; grid-template-columns: 1fr; text-decoration: none; color: inherit; }
   .fhero__link:hover { color: inherit; }
 
-  .fhero__media {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    background: var(--surface-2);
-  }
+  .fhero__media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #0e0e11; }
   .fhero__img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    filter: saturate(0.82) contrast(1.06) brightness(0.9);
+    width: 100%; height: 100%; object-fit: cover;
+    filter: saturate(0.8) contrast(1.07) brightness(0.88);
     transition: transform 0.5s ease;
   }
   .fhero:hover .fhero__img { transform: scale(1.03); }
   .fhero__placeholder {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 0.6rem;
     background:
-      repeating-linear-gradient(135deg, rgba(255,255,255,0.012) 0 2px, transparent 2px 10px),
-      radial-gradient(120% 120% at 30% 0%, #1d1d23 0%, #0f0f12 70%);
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.012) 0 2px, transparent 2px 11px),
+      radial-gradient(130% 130% at 28% 0%, #20202a 0%, #0e0e12 72%);
   }
-  .fhero__placeholder span {
-    font-family: var(--font-mono);
-    letter-spacing: 0.4em;
-    color: var(--text-faint);
-    font-size: 1.1rem;
+  .fhero__stamp {
+    font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700;
+    color: rgba(233,230,225,0.18); letter-spacing: 0.02em;
   }
-  .fhero__scrim {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(8,8,10,0.65), transparent 50%);
+  .fhero__filelabel {
+    font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--text-faint);
+    border: 1px solid var(--border); padding: 0.3rem 0.7rem; border-radius: 3px;
   }
+  .fhero__scrim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,10,0.7), transparent 52%); }
 
   .fhero__body {
-    padding: clamp(1.5rem, 3vw, 2.5rem);
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
+    position: relative;
+    padding: clamp(1.6rem, 3vw, 2.75rem);
+    display: flex; flex-direction: column; gap: 0.95rem;
+    background:
+      radial-gradient(120% 100% at 100% 0%, rgba(184,173,151,0.05), transparent 55%),
+      linear-gradient(180deg, rgba(255,255,255,0.015), transparent 30%);
   }
+  .fhero__kicker {
+    font-family: var(--font-sans); font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-hover);
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .fhero__kicker::before { content: ''; width: 1.8rem; height: 1px; background: var(--accent); }
   .fhero__badges { display: flex; gap: 0.45rem; flex-wrap: wrap; }
-  .fhero__title {
-    font-size: clamp(1.8rem, 1.3rem + 2.4vw, 3rem);
-    line-height: 1.1;
-  }
+  .fhero__title { font-size: clamp(1.9rem, 1.3rem + 2.8vw, 3.2rem); line-height: 1.06; }
   .fhero__summary {
     color: var(--text-muted);
-    font-size: clamp(1rem, 0.96rem + 0.3vw, 1.2rem);
-    max-width: 60ch;
+    font-family: var(--font-serif);
+    font-size: clamp(1.08rem, 1rem + 0.45vw, 1.32rem);
+    line-height: 1.5; max-width: 58ch;
   }
-  .fhero__meta {
-    display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
-    color: var(--text-faint); font-size: 0.85rem;
-  }
-  .dot { opacity: 0.5; }
+  .fhero__meta { margin-top: 0.1rem; }
   .fhero__cta {
-    margin-top: 0.3rem;
-    font-weight: 700;
-    color: var(--accent-hover);
-    letter-spacing: 0.02em;
+    margin-top: 0.5rem;
+    align-self: flex-start;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-weight: 700; font-size: 0.92rem; letter-spacing: 0.01em;
+    color: #fff; background: var(--accent);
+    padding: 0.65rem 1.1rem; border-radius: var(--radius);
+    transition: background 0.16s ease, transform 0.16s ease;
   }
+  .fhero:hover .fhero__cta { background: var(--accent-hover); }
 
-  @media (min-width: 900px) {
-    .fhero__link { grid-template-columns: 1.15fr 1fr; }
-    .fhero__media { aspect-ratio: auto; height: 100%; min-height: 420px; }
+  @media (min-width: 940px) {
+    .fhero__link { grid-template-columns: 1.2fr 1fr; }
+    .fhero__media { aspect-ratio: auto; height: 100%; min-height: 460px; }
     .fhero__body { justify-content: center; }
   }
 </style>

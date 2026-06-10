@@ -1,6 +1,6 @@
 ---
 title: "Sheri Jo Elliott"
-description: "A long-unsolved case revisited and ultimately resolved years later. Full story coming soon."
+description: "A long-unsolved case revisited and ultimately resolved years later."
 oneSentence: "A cold case that stayed open for years until investigators finally found the answer."
 pubDate: 2026-06-09
 categories: ["Solved Cold Cases"]

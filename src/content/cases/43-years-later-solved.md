@@ -1,6 +1,6 @@
 ---
 title: "43 Years Later: Solved"
-description: "A case that stayed cold for forty-three years before it was finally closed. Full story coming soon."
+description: "A case that stayed cold for forty-three years before it was finally closed."
 oneSentence: "A case that stayed cold for 43 years before investigators finally closed it."
 pubDate: 2026-05-22
 categories: ["Solved Cold Cases"]

@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import Badge from './Badge.astro';
-import { formatDate, isoDate } from '../lib/utils';
 import { categorySlug } from '../site.config';
 
 interface Props {
@@ -9,188 +8,173 @@ interface Props {
   title: string;
   description: string;
   category: string; // primary category title
-  pubDate: Date;
   status?: string;
   location?: string;
+  year?: number;
   readingTime?: number;
   cover?: ImageMetadata;
   coverAlt?: string;
-  featured?: boolean;
-  /** Short code shown on the image-less placeholder (e.g. CCF-04). */
+  variant?: 'default' | 'compact' | 'featured';
+  placeholder?: boolean;
   fileCode?: string;
 }
 
 const {
-  href,
-  title,
-  description,
-  category,
-  pubDate,
-  status,
-  location,
-  readingTime,
-  cover,
-  coverAlt,
-  featured = false,
-  fileCode,
+  href, title, description, category, status, location, year, readingTime,
+  cover, coverAlt, variant = 'default', placeholder = false, fileCode,
 } = Astro.props;
 
-const catSlug = categorySlug(category);
+const statusKey = (status ?? '').toLowerCase();
+// Deterministic, varied in-progress wording so placeholders don't read identically.
+const progressLabels = ['Research in progress', 'Case file pending', 'File in preparation'];
+const pIdx = [...title].reduce((a, c) => a + c.charCodeAt(0), 0) % progressLabels.length;
+const progressLabel = progressLabels[pIdx];
+
+const meta: string[] = [];
+if (year) meta.push(String(year));
+if (location) meta.push(location);
+if (readingTime) meta.push(`${readingTime} min`);
 ---
 
-<article class:list={['ccard', { 'ccard--featured': featured }]}>
-  <a href={href} class="ccard__link" aria-label={title}>
-    <div class="ccard__media">
-      {cover ? (
-        <Image
-          src={cover}
-          alt={coverAlt ?? ''}
-          widths={[400, 800, 1200]}
-          sizes={featured ? '(max-width: 800px) 100vw, 720px' : '(max-width: 600px) 100vw, 400px'}
-          loading="lazy"
-          class="ccard__img"
-        />
-      ) : (
-        <div class="ccard__placeholder" aria-hidden="true">
-          <span class="ccard__filecode">{fileCode ?? 'CASE FILE'}</span>
-          <span class="ccard__redact"></span>
-        </div>
-      )}
-      <div class="ccard__overlay"></div>
-      <div class="ccard__badges">
-        <Badge label={category} variant="category" />
-        {status && <Badge label={status} variant="status" status={status} />}
-      </div>
-    </div>
-    <div class="ccard__body">
-      <h3 class="ccard__title">{title}</h3>
-      <p class="ccard__desc">{description}</p>
-      <div class="ccard__foot">
-        <time datetime={isoDate(pubDate)}>{formatDate(pubDate)}</time>
-        {location && <><span class="ccard__dot">·</span><span>{location}</span></>}
-        {readingTime && <><span class="ccard__dot">·</span><span>{readingTime} min</span></>}
-      </div>
-    </div>
+{variant === 'compact' ? (
+  <a href={href} class:list={['compactcard', `s-${statusKey}`, { 'is-progress': placeholder }]} aria-label={title}>
+    <span class="compactcard__tick" aria-hidden="true"></span>
+    <span class="compactcard__body">
+      <span class="compactcard__cat">{category}</span>
+      <span class="compactcard__title">{title}</span>
+      <span class="dateline">
+        {meta.map((m, i) => (<>{i > 0 && <span class="sep">·</span>}<span>{m}</span></>))}
+        {placeholder && <><span class="sep">·</span><span class="compactcard__prog">{progressLabel}</span></>}
+      </span>
+    </span>
+    {status && !placeholder && <span class={`compactcard__status s-${statusKey}`}>{status}</span>}
   </a>
-</article>
+) : (
+  <article class:list={['ccard', `s-${statusKey}`, { 'ccard--featured': variant === 'featured', 'is-progress': placeholder }]}>
+    <a href={href} class="ccard__link" aria-label={title}>
+      <div class="ccard__media">
+        {cover ? (
+          <Image src={cover} alt={coverAlt ?? ''} widths={[400, 800, 1200]} sizes={variant === 'featured' ? '(max-width: 800px) 100vw, 720px' : '(max-width: 600px) 100vw, 400px'} loading="lazy" class="ccard__img" />
+        ) : (
+          <div class="ccard__placeholder" aria-hidden="true">
+            <span class="ccard__filecode">{fileCode ?? 'CASE FILE'}</span>
+          </div>
+        )}
+        <div class="ccard__overlay"></div>
+        <div class="ccard__badges">
+          <Badge label={category} variant="category" />
+          {placeholder
+            ? <span class="progress-chip">{progressLabel}</span>
+            : status && <Badge label={status} variant="status" status={status} />}
+        </div>
+      </div>
+      <div class="ccard__body">
+        <h3 class="ccard__title">{title}</h3>
+        <p class="ccard__desc">{description}</p>
+        <div class="dateline ccard__foot">
+          {meta.map((m, i) => (<>{i > 0 && <span class="sep">·</span>}<span class={i === 1 ? 'place' : ''}>{m}</span></>))}
+        </div>
+      </div>
+    </a>
+  </article>
+)}
 
 <style>
+  /* ---- Default / featured card -------------------------------------------- */
   .ccard {
+    position: relative;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     overflow: hidden;
     transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
   }
+  /* status hairline along the top edge — gives solved/cold/etc. their own read */
+  .ccard::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--border-strong); z-index: 2;
+  }
+  .ccard.s-solved::before { background: #6fbf8e; }
+  .ccard.s-unsolved::before,
+  .ccard.s-cold::before { background: var(--sepia); }
+  .ccard.s-ongoing::before { background: var(--accent); }
+  .ccard.is-progress { border-style: dashed; }
+
   .ccard:hover {
     border-color: var(--border-strong);
     transform: translateY(-3px);
     box-shadow: var(--shadow);
   }
-  .ccard__link {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    text-decoration: none;
-    color: inherit;
-  }
+  .ccard__link { display: flex; flex-direction: column; height: 100%; text-decoration: none; color: inherit; }
   .ccard__link:hover { color: inherit; }
 
-  .ccard__media {
-    position: relative;
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-    background: var(--surface-2);
-  }
+  .ccard__media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--surface-2); }
   .ccard__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100%; height: 100%; object-fit: cover;
     filter: saturate(0.82) contrast(1.06) brightness(0.92);
     transition: transform 0.4s ease;
   }
   .ccard:hover .ccard__img { transform: scale(1.04); }
-
-  /* Image-less "case file" placeholder */
   .ccard__placeholder {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
     background:
       repeating-linear-gradient(135deg, rgba(255,255,255,0.012) 0 2px, transparent 2px 9px),
       radial-gradient(120% 120% at 30% 10%, #1c1c21 0%, #101012 70%);
   }
   .ccard__filecode {
-    font-family: var(--font-mono);
-    font-size: 1.05rem;
-    letter-spacing: 0.3em;
-    color: var(--text-faint);
-    border: 1px solid var(--border);
-    padding: 0.4rem 0.8rem;
-    border-radius: 3px;
+    font-family: var(--font-mono); font-size: 0.95rem; letter-spacing: 0.28em;
+    color: var(--text-faint); border: 1px solid var(--border); padding: 0.4rem 0.8rem; border-radius: 3px;
   }
-  .ccard__redact {
-    position: absolute;
-    left: 14%;
-    bottom: 22%;
-    width: 42%;
-    height: 9px;
-    background: #000;
-    opacity: 0.85;
-  }
+  .ccard__overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,10,0.55) 0%, transparent 45%); pointer-events: none; }
+  .ccard__badges { position: absolute; top: 0.8rem; left: 0.8rem; display: flex; gap: 0.4rem; flex-wrap: wrap; }
 
-  .ccard__overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(8,8,10,0.55) 0%, transparent 45%);
-    pointer-events: none;
-  }
-  .ccard__badges {
-    position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
-    display: flex;
-    gap: 0.4rem;
-    flex-wrap: wrap;
-  }
-
-  .ccard__body {
-    padding: 1.15rem 1.3rem 1.35rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    flex: 1;
-  }
-  .ccard__title {
-    font-size: 1.28rem;
-    line-height: 1.2;
-  }
-  .ccard--featured .ccard__title {
-    font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2.2rem);
-  }
-  .ccard__desc {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-  .ccard__foot {
-    margin-top: auto;
-    padding-top: 0.4rem;
-    color: var(--text-faint);
-    font-size: 0.8rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    align-items: center;
-  }
-  .ccard__dot { opacity: 0.55; }
+  .ccard__body { padding: 1.15rem 1.3rem 1.35rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+  .ccard__title { font-size: 1.28rem; line-height: 1.2; }
+  .ccard--featured .ccard__title { font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2.2rem); }
+  .ccard__desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+  .ccard__foot { margin-top: auto; padding-top: 0.4rem; }
 
   .ccard--featured { grid-column: 1 / -1; }
   @media (min-width: 760px) {
     .ccard--featured .ccard__link { flex-direction: row; }
-    .ccard--featured .ccard__media { flex: 1 1 56%; aspect-ratio: auto; min-height: 340px; }
+    .ccard--featured .ccard__media { flex: 1 1 56%; aspect-ratio: auto; min-height: 320px; }
     .ccard--featured .ccard__body { flex: 1 1 44%; justify-content: center; padding: 2rem 2.25rem; }
   }
+
+  /* ---- Compact archive card ----------------------------------------------- */
+  .compactcard {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 1rem 1.1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.16s ease, background 0.16s ease, transform 0.16s ease;
+  }
+  .compactcard:hover { border-color: var(--border-strong); background: var(--surface-2); color: inherit; transform: translateX(2px); }
+  .compactcard.is-progress { border-style: dashed; }
+  .compactcard__tick { flex: none; width: 3px; align-self: stretch; border-radius: 2px; background: var(--border-strong); }
+  .compactcard.s-solved .compactcard__tick { background: #6fbf8e; }
+  .compactcard.s-unsolved .compactcard__tick,
+  .compactcard.s-cold .compactcard__tick { background: var(--sepia); }
+  .compactcard.s-ongoing .compactcard__tick { background: var(--accent); }
+  .compactcard__body { display: grid; gap: 0.25rem; min-width: 0; }
+  .compactcard__cat {
+    font-family: var(--font-sans); font-size: 0.66rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--beige);
+  }
+  .compactcard__title { font-family: var(--font-serif); font-weight: 700; font-size: 1.12rem; line-height: 1.2; color: var(--text); }
+  .compactcard:hover .compactcard__title { color: var(--text); }
+  .compactcard__prog { color: var(--beige); }
+  .compactcard__status {
+    flex: none; align-self: center; font-size: 0.64rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text-faint); white-space: nowrap;
+  }
+  .compactcard__status.s-solved { color: #7bdca0; }
+  .compactcard__status.s-unsolved, .compactcard__status.s-cold { color: var(--sepia); }
+  .compactcard__status.s-ongoing { color: var(--accent-hover); }
 </style>

@@ -1,6 +1,6 @@
 ---
 title: "1996: The Ransom Note"
-description: "A ransom note at the heart of a case still debated decades later. Full story coming soon."
+description: "A ransom note at the heart of a case still debated decades later."
 oneSentence: "A ransom note at the center of a case investigators and the public have analyzed for decades."
 pubDate: 2026-04-13
 categories: ["The Evidence Room"]

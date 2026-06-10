@@ -1,6 +1,6 @@
 ---
 title: "The Impossible Exit"
-description: "A disappearance from a place with no apparent way out. Full story coming soon."
+description: "A disappearance from a place with no apparent way out."
 oneSentence: "Someone disappeared from a place with no apparent way out — and no explanation has ever fit."
 pubDate: 2026-04-19
 categories: ["Missing & Vanished"]

@@ -1,6 +1,6 @@
 ---
 title: "Citizen Justice"
-description: "When ordinary people refused to let a case be forgotten. Full story coming soon."
+description: "When ordinary people refused to let a case be forgotten."
 oneSentence: "When ordinary people refused to let a case be forgotten."
 pubDate: 2026-03-29
 categories: ["Citizen Sleuths"]

@@ -1,6 +1,6 @@
 ---
 title: "The Man with Two Lives"
-description: "A man whose hidden double life unraveled a long-cold case. Full story coming soon."
+description: "A man whose hidden double life unraveled a long-cold case."
 oneSentence: "A hidden double life that, once exposed, unraveled a long-cold case."
 pubDate: 2026-05-28
 categories: ["Solved Cold Cases"]

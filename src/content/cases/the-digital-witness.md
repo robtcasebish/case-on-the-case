@@ -1,6 +1,6 @@
 ---
 title: "The Digital Witness"
-description: "When digital evidence became the case's most reliable witness. Full story coming soon."
+description: "When digital evidence became the case's most reliable witness."
 oneSentence: "When phones, metadata, and digital trails became the most reliable witness in the room."
 pubDate: 2026-04-07
 categories: ["The Evidence Room"]

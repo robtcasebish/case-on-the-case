@@ -1,6 +1,6 @@
 ---
 title: "Vanished in the Night, 1945"
-description: "A 1945 disappearance that was never explained. Full story coming soon."
+description: "A 1945 disappearance that was never explained."
 oneSentence: "A wartime-era disappearance that was never explained."
 pubDate: 2026-04-22
 categories: ["Missing & Vanished"]

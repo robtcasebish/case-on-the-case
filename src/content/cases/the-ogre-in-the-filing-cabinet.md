@@ -1,6 +1,6 @@
 ---
 title: "The Ogre in the Filing Cabinet"
-description: "The answer sat in an old case file, overlooked for years. Full story coming soon."
+description: "The answer sat in an old case file, overlooked for years."
 oneSentence: "The answer was sitting in an old case file the whole time — overlooked for years."
 pubDate: 2026-04-10
 categories: ["The Evidence Room"]

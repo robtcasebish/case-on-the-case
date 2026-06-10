@@ -11,13 +11,18 @@ export async function getStaticPaths() {
   return CATEGORIES.map((cat) => {
     const items = all
       .filter((s) => s.data.categories.includes(cat.title))
-      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+      .sort((a, b) => {
+        // Completed, fully-reported cases first; then newest.
+        const p = Number(a.data.placeholder) - Number(b.data.placeholder);
+        return p !== 0 ? p : b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+      });
     return { params: { category: cat.slug }, props: { cat, items } };
   });
 }
 
 const { cat, items } = Astro.props;
 const path = `/${cat.slug}`;
+const reported = items.filter((i) => !i.data.placeholder).length;
 
 const listSchema = itemListSchema(
   items.map((s) => ({ url: absoluteUrl(`/cases/${caseSlug(s.id)}`), name: s.data.title })),
@@ -43,10 +48,13 @@ const crumbs = breadcrumbSchema([
         <a href="/cases">Cases</a> <span aria-hidden="true">/</span>
         <span aria-current="page">{cat.title}</span>
       </nav>
-      <p class="cathero__code">{cat.code}</p>
+      <p class="cathero__file">Section {cat.code} · The Index</p>
       <h1>{cat.title}</h1>
       <p class="cathero__tagline">{cat.tagline}</p>
       <p class="cathero__blurb">{cat.blurb}</p>
+      <p class="cathero__count">
+        {items.length} {items.length === 1 ? 'case' : 'cases'} on file{reported > 0 ? ` · ${reported} reported in full` : ''}
+      </p>
     </div>
   </section>
 
@@ -61,11 +69,12 @@ const crumbs = breadcrumbSchema([
               description={s.data.description}
               category={s.data.categories[0]}
               status={s.data.caseStatus}
-              pubDate={s.data.pubDate}
               location={s.data.location}
+              year={s.data.caseYear}
               readingTime={readingTimeFromText(s.body ?? '', s.data.readingTime)}
               cover={s.data.cover}
               coverAlt={s.data.coverAlt}
+              placeholder={s.data.placeholder}
               fileCode={categoryByTitle(s.data.categories[0])?.code}
             />
           ))}
@@ -79,26 +88,21 @@ const crumbs = breadcrumbSchema([
 
 <style>
   .cathero {
-    padding-block: clamp(2.5rem, 5vw, 4rem) 1rem;
+    padding-block: clamp(2.5rem, 5vw, 4rem) 1.5rem;
     border-bottom: 1px solid var(--border);
     background:
-      radial-gradient(120% 80% at 0% -20%, rgba(193,18,31,0.10) 0%, transparent 55%),
+      radial-gradient(110% 80% at 0% -20%, rgba(193,18,31,0.09) 0%, transparent 55%),
       var(--bg-elevated);
   }
-  .crumbs {
-    font-size: 0.8rem; color: var(--text-faint);
-    margin-bottom: 1.4rem; display: flex; gap: 0.5rem; flex-wrap: wrap;
-  }
+  .crumbs { font-size: 0.8rem; color: var(--text-faint); margin-bottom: 1.4rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
   .crumbs a { color: var(--text-muted); text-decoration: none; }
   .crumbs a:hover { color: var(--accent-hover); }
-  .cathero__code {
-    font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.25em;
-    color: var(--beige); margin-bottom: 0.6rem;
+  .cathero__file {
+    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--beige); margin-bottom: 0.7rem;
   }
   .cathero h1 { font-size: clamp(2.2rem, 1.6rem + 3vw, 3.6rem); }
-  .cathero__tagline {
-    margin-top: 0.75rem; font-family: var(--font-serif); font-style: italic;
-    font-size: 1.3rem; color: var(--text-muted);
-  }
+  .cathero__tagline { margin-top: 0.75rem; font-family: var(--font-serif); font-style: italic; font-size: 1.3rem; color: var(--text-muted); }
   .cathero__blurb { margin-top: 1rem; color: var(--text-muted); max-width: 64ch; }
+  .cathero__count { margin-top: 1.1rem; font-size: 0.82rem; color: var(--text-faint); }
 </style>

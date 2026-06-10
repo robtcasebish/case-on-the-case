@@ -1,6 +1,6 @@
 ---
 title: "The Case That Changed the Law, 1981"
-description: "One 1981 case whose aftermath rewrote the rules. Full story coming soon."
+description: "One 1981 case whose aftermath rewrote the rules."
 oneSentence: "One case whose aftermath rewrote the rules and made everyone safer."
 pubDate: 2026-03-17
 categories: ["Cases That Changed the Law"]

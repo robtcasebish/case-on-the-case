@@ -1,6 +1,6 @@
 ---
 title: "East LA 1985: Community Justice"
-description: "A neighborhood that came together to push a stalled case forward. Full story coming soon."
+description: "A neighborhood that came together to push a stalled case forward."
 oneSentence: "A neighborhood that came together to push a stalled case forward."
 pubDate: 2026-03-26
 categories: ["Citizen Sleuths"]

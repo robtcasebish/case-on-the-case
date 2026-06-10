@@ -1,6 +1,6 @@
 ---
 title: "Hiding in Plain Sight: The Unseen Suspect"
-description: "A suspect who lived openly for years, unnoticed. Full story coming soon."
+description: "A suspect who lived openly for years, unnoticed."
 oneSentence: "A suspect who lived openly for years, unnoticed in plain sight."
 pubDate: 2026-03-20
 categories: ["Citizen Sleuths"]

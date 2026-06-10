@@ -1,6 +1,6 @@
 ---
 title: "The Richmond Crown"
-description: "A cold case revisited and resolved years later. Full write-up in progress."
+description: "A cold case revisited and resolved years later."
 oneSentence: "A cold case revisited and finally resolved years after it began."
 pubDate: 2026-05-25
 categories: ["Solved Cold Cases"]

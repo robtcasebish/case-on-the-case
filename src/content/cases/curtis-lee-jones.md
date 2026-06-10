@@ -1,6 +1,6 @@
 ---
 title: "Curtis Lee Jones"
-description: "A cold case revisited and resolved years later. Full write-up in progress."
+description: "A cold case revisited and resolved years later."
 oneSentence: "A name that stayed in an open file for years before the case finally closed."
 pubDate: 2026-06-03
 categories: ["Solved Cold Cases"]

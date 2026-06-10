@@ -1,81 +1,106 @@
 ---
 /**
- * <CategoryCard /> — archive-tab style card linking to a category landing page.
+ * <CategoryCard /> — an archive "section" card. The file code is kept as a quiet
+ * marginal numeral rather than a headline, and each section uses its own call to
+ * action so the grid doesn't read as one repeated label.
  */
 interface Props {
   title: string;
   slug: string;
   blurb: string;
   code?: string;
+  cta?: string;
   count?: number;
 }
-const { title, slug, blurb, code, count } = Astro.props;
+const { title, slug, blurb, code, cta = 'Explore the cases', count } = Astro.props;
 ---
 
-<a href={`/${slug}`} class="catcard" aria-label={`${title} — browse cases`}>
-  <div class="catcard__tab">
-    <span class="catcard__code">{code}</span>
-    {count !== undefined && <span class="catcard__count">{count} {count === 1 ? 'case' : 'cases'}</span>}
+<a href={`/${slug}`} class="catcard" aria-label={`${title} — ${cta}`}>
+  {code && <span class="catcard__num" aria-hidden="true">{code}</span>}
+  <div class="catcard__head">
+    <h3 class="catcard__title">{title}</h3>
+    {count !== undefined && (
+      <span class="catcard__count">{count} {count === 1 ? 'file' : 'files'}</span>
+    )}
   </div>
-  <h3 class="catcard__title">{title}</h3>
   <p class="catcard__blurb">{blurb}</p>
-  <span class="catcard__cta">Open file <span aria-hidden="true">→</span></span>
+  <span class="catcard__cta">{cta} <span aria-hidden="true">→</span></span>
 </a>
 
 <style>
   .catcard {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-    padding: 1.4rem 1.45rem 1.5rem;
-    background: var(--surface);
+    gap: 0.65rem;
+    padding: 1.5rem 1.5rem 1.5rem;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.015), transparent 40%),
+      var(--surface);
     border: 1px solid var(--border);
-    border-top: 3px solid var(--accent-line);
     border-radius: var(--radius-lg);
     text-decoration: none;
     color: inherit;
+    overflow: hidden;
     transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
     height: 100%;
   }
+  .catcard::after {
+    /* a thin accent that wakes up on hover */
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.18s ease;
+  }
   .catcard:hover {
     transform: translateY(-3px);
-    border-top-color: var(--accent);
     border-color: var(--border-strong);
-    background: var(--surface-2);
     color: inherit;
   }
-  .catcard__tab {
+  .catcard:hover::after { opacity: 1; }
+
+  .catcard__num {
+    position: absolute;
+    top: 0.7rem;
+    right: 0.95rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+    opacity: 0.6;
+  }
+  .catcard__head {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
     gap: 0.75rem;
+    padding-right: 1.75rem;
   }
-  .catcard__code {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    color: var(--beige);
+  .catcard__title {
+    font-size: 1.42rem;
+    line-height: 1.12;
   }
   .catcard__count {
     font-size: 0.72rem;
     color: var(--text-faint);
-  }
-  .catcard__title {
-    font-size: 1.4rem;
-    line-height: 1.15;
+    white-space: nowrap;
   }
   .catcard__blurb {
     color: var(--text-muted);
-    font-size: 0.94rem;
-    line-height: 1.55;
+    font-size: 0.95rem;
+    line-height: 1.58;
     flex: 1;
   }
   .catcard__cta {
-    margin-top: 0.4rem;
-    font-size: 0.85rem;
+    margin-top: 0.3rem;
+    font-size: 0.86rem;
     font-weight: 600;
-    color: var(--accent-hover);
-    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    letter-spacing: 0.01em;
+    transition: color 0.18s ease;
   }
   .catcard:hover .catcard__cta { color: var(--accent-hover); }
 </style>

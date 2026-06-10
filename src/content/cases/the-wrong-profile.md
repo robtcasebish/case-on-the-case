@@ -1,6 +1,6 @@
 ---
 title: "The Wrong Profile"
-description: "How a flawed profile derailed an investigation — and what it changed. Full story coming soon."
+description: "How a flawed profile derailed an investigation — and what it changed."
 oneSentence: "How a flawed profile sent an investigation down the wrong path — and what it changed."
 pubDate: 2026-04-01
 categories: ["The Evidence Room","Cases That Changed the Law"]

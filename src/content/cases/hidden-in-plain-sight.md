@@ -1,6 +1,6 @@
 ---
 title: "Hidden in Plain Sight"
-description: "The clue everyone walked past — until someone finally looked. Full story coming soon."
+description: "The clue everyone walked past — until someone finally looked."
 oneSentence: "The clue everyone walked past — until someone finally looked."
 pubDate: 2026-03-23
 categories: ["Citizen Sleuths"]

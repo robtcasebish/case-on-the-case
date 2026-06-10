@@ -1,6 +1,6 @@
 ---
 title: "The 50-Year Secret"
-description: "A secret kept for fifty years that finally cracked a cold case open. Full story coming soon."
+description: "A secret kept for fifty years that finally cracked a cold case open."
 oneSentence: "A secret kept for half a century — and the cold case it finally cracked open."
 pubDate: 2026-05-31
 categories: ["Solved Cold Cases"]

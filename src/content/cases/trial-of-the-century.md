@@ -1,6 +1,6 @@
 ---
 title: "Trial of the Century"
-description: "A landmark, heavily publicized trial that influenced public perception of the justice system. Full story coming soon."
+description: "A landmark, heavily publicized trial that influenced public perception of the justice system."
 oneSentence: "A courtroom drama so closely watched it reshaped how the public sees criminal justice."
 pubDate: 2026-04-28
 categories: ["Famous Cases","Cases That Changed the Law"]
