@@ -1,24 +1,34 @@
 ---
-import { SITE, NAV } from '../site.config';
+import { SITE, CATEGORIES } from '../site.config';
 const year = SITE.foundingYear;
 ---
 
 <footer class="site-footer">
-  <div class="container site-footer__inner">
+  <div class="container site-footer__top">
     <div class="site-footer__brand">
       <a href="/" class="brand">
-        <span class="brand__mark" aria-hidden="true">⚖</span>
+        <span class="brand__mark" aria-hidden="true">⌖</span>
         <span>{SITE.name}</span>
       </a>
       <p class="site-footer__tag">{SITE.tagline}</p>
     </div>
 
-    <nav class="site-footer__nav" aria-label="Footer">
+    <nav class="site-footer__col" aria-label="Case Files">
+      <h2 class="site-footer__h">Case Files</h2>
       <ul>
-        {NAV.map((item) => (
-          <li><a href={item.href}>{item.label}</a></li>
+        {CATEGORIES.map((c) => (
+          <li><a href={`/${c.slug}`}>{c.title}</a></li>
         ))}
-        <li><a href="/rss.xml">RSS</a></li>
+      </ul>
+    </nav>
+
+    <nav class="site-footer__col" aria-label="More">
+      <h2 class="site-footer__h">More</h2>
+      <ul>
+        <li><a href="/cases">All Cases</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/submit">Submit a Case</a></li>
+        <li><a href="/rss.xml">RSS Feed</a></li>
       </ul>
     </nav>
   </div>
@@ -26,66 +36,56 @@ const year = SITE.foundingYear;
   <div class="container site-footer__legal">
     <p>© {year} {SITE.name}. All rights reserved.</p>
     <p class="site-footer__note">
-      Reported from public records and primary sources. Stories are presented
-      for informational purposes; individuals are presumed innocent unless
-      convicted in a court of law.
+      Stories are reported from public records and primary sources for
+      informational purposes. Individuals are presumed innocent unless convicted
+      in a court of law. We cover these cases with care and respect for victims
+      and their families.
     </p>
   </div>
 </footer>
 
 <style>
   .site-footer {
-    margin-top: 5rem;
+    margin-top: 4rem;
     border-top: 1px solid var(--border);
     background: var(--bg-elevated);
     padding: 3rem 0 2rem;
   }
-  .site-footer__inner {
-    display: flex;
-    flex-wrap: wrap;
+  .site-footer__top {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
     gap: 2rem;
-    justify-content: space-between;
-    align-items: flex-start;
   }
   .brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--font-serif);
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--text);
-    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: var(--font-serif); font-weight: 700; font-size: 1.15rem;
+    color: var(--text); text-decoration: none;
   }
   .brand__mark { color: var(--accent); }
   .site-footer__tag {
-    margin-top: 0.6rem;
-    color: var(--text-muted);
-    max-width: 34ch;
-    font-size: 0.95rem;
+    margin-top: 0.7rem; color: var(--text-muted);
+    max-width: 38ch; font-size: 0.95rem;
   }
-  .site-footer__nav ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.25rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .site-footer__h {
+    font-family: var(--font-sans);
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--text-faint);
+    margin-bottom: 0.9rem;
   }
-  .site-footer__nav a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.95rem;
-  }
-  .site-footer__nav a:hover { color: var(--accent-hover); }
+  .site-footer__col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
+  .site-footer__col a { color: var(--text-muted); text-decoration: none; font-size: 0.93rem; }
+  .site-footer__col a:hover { color: var(--accent-hover); }
+
   .site-footer__legal {
-    margin-top: 2.5rem;
-    padding-top: 1.5rem;
+    margin-top: 2.5rem; padding-top: 1.5rem;
     border-top: 1px solid var(--border);
-    color: var(--text-faint);
-    font-size: 0.82rem;
-    display: grid;
-    gap: 0.5rem;
+    color: var(--text-faint); font-size: 0.82rem;
+    display: grid; gap: 0.5rem;
   }
-  .site-footer__note { max-width: 75ch; }
+  .site-footer__note { max-width: 80ch; }
+
+  @media (max-width: 680px) {
+    .site-footer__top { grid-template-columns: 1fr 1fr; }
+    .site-footer__brand { grid-column: 1 / -1; }
+  }
 </style>

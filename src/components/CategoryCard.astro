@@ -1,0 +1,81 @@
+---
+/**
+ * <CategoryCard /> — archive-tab style card linking to a category landing page.
+ */
+interface Props {
+  title: string;
+  slug: string;
+  blurb: string;
+  code?: string;
+  count?: number;
+}
+const { title, slug, blurb, code, count } = Astro.props;
+---
+
+<a href={`/${slug}`} class="catcard" aria-label={`${title} — browse cases`}>
+  <div class="catcard__tab">
+    <span class="catcard__code">{code}</span>
+    {count !== undefined && <span class="catcard__count">{count} {count === 1 ? 'case' : 'cases'}</span>}
+  </div>
+  <h3 class="catcard__title">{title}</h3>
+  <p class="catcard__blurb">{blurb}</p>
+  <span class="catcard__cta">Open file <span aria-hidden="true">→</span></span>
+</a>
+
+<style>
+  .catcard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.4rem 1.45rem 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent-line);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
+    height: 100%;
+  }
+  .catcard:hover {
+    transform: translateY(-3px);
+    border-top-color: var(--accent);
+    border-color: var(--border-strong);
+    background: var(--surface-2);
+    color: inherit;
+  }
+  .catcard__tab {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+  .catcard__code {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--beige);
+  }
+  .catcard__count {
+    font-size: 0.72rem;
+    color: var(--text-faint);
+  }
+  .catcard__title {
+    font-size: 1.4rem;
+    line-height: 1.15;
+  }
+  .catcard__blurb {
+    color: var(--text-muted);
+    font-size: 0.94rem;
+    line-height: 1.55;
+    flex: 1;
+  }
+  .catcard__cta {
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-hover);
+    letter-spacing: 0.02em;
+  }
+  .catcard:hover .catcard__cta { color: var(--accent-hover); }
+</style>

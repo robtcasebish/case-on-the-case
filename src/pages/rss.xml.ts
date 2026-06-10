@@ -2,10 +2,10 @@ import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
 import { SITE } from '../site.config';
-import { storySlug } from '../lib/utils';
+import { caseSlug } from '../lib/utils';
 
 export async function GET(context: APIContext) {
-  const stories = (await getCollection('stories', (s) => !s.data.draft)).sort(
+  const cases = (await getCollection('cases', (c) => !c.data.draft)).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
   );
 
@@ -13,13 +13,13 @@ export async function GET(context: APIContext) {
     title: SITE.name,
     description: SITE.description,
     site: context.site ?? SITE.url,
-    items: stories.map((s) => ({
-      title: s.data.title,
-      description: s.data.description,
-      pubDate: s.data.pubDate,
-      link: `/stories/${storySlug(s.id)}/`,
-      categories: [s.data.category, ...s.data.tags],
-      author: s.data.author,
+    items: cases.map((c) => ({
+      title: c.data.title,
+      description: c.data.description,
+      pubDate: c.data.pubDate,
+      link: `/cases/${caseSlug(c.id)}/`,
+      categories: c.data.categories,
+      author: c.data.author,
     })),
     customData: `<language>${SITE.language}</language>`,
   });

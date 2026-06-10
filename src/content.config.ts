@@ -1,45 +1,50 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
+/** Category titles — kept in sync with CATEGORY_TITLES in site.config.ts. */
+const CATEGORY_ENUM = [
+  'Solved Cold Cases',
+  'Famous Cases',
+  'Missing & Vanished',
+  'The Evidence Room',
+  'Citizen Sleuths',
+  'Cases That Changed the Law',
+] as const;
+
 /**
- * "stories" — the true-crime articles.
- * The schema is intentionally strict: every field that powers SEO/GEO
- * (structured data, OpenGraph, sitemap, citations) is required or validated,
- * so a story can't ship without the signals AI engines and search rely on.
+ * "cases" — the true-crime case articles.
+ * Strict schema: every field powering SEO/GEO (structured data, OpenGraph,
+ * sitemap, citations) is required or validated. A case follows the house
+ * 8-part template; `oneSentence` is section 1 and `sources` is section 8.
  */
-const stories = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/stories' }),
+const cases = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/cases' }),
   schema: ({ image }) =>
     z.object({
-      title: z.string().max(110),
-      // One- to two-sentence factual summary. Used for meta description,
-      // OG description, and as the citable abstract for AI engines.
-      description: z.string().min(50).max(320),
-      // Short, declarative lede shown on the page and used in schema "abstract".
+      title: z.string().max(120),
+      // Meta description / OG description / citable abstract for AI engines.
+      description: z.string().min(40).max(320),
+      // Section 1 of the template — "The Case in One Sentence."
+      oneSentence: z.string().max(280).optional(),
+      // Short serif lede shown under the hero title.
       dek: z.string().max(280).optional(),
 
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
-
       author: z.string().default('The Case on the Case Editorial Team'),
 
-      // Hero image (optional). When present, feeds OG + Article image schema.
       cover: image().optional(),
       coverAlt: z.string().optional(),
 
-      // Taxonomy — powers topic hubs + internal linking (a GEO ranking aid).
-      category: z
-        .enum(['Cold Case', 'Trial', 'Investigation', 'Missing Persons', 'Forensics', 'Profile'])
-        .default('Investigation'),
-      tags: z.array(z.string()).default([]),
+      // One or more categories; the first is the primary (drives the badge + URL grouping).
+      categories: z.array(z.enum(CATEGORY_ENUM)).min(1).default(['Famous Cases']),
 
-      // Geography & time of the real case — strong entity signals for AI.
+      // Real-world case metadata — strong entity signals for search + AI.
       location: z.string().optional(),
       caseYear: z.number().int().optional(),
-      // Case status helps engines answer "is this solved?" precisely.
       caseStatus: z.enum(['Solved', 'Unsolved', 'Cold', 'Ongoing']).optional(),
 
-      // Sources/citations. Well-sourced content is favored by AI engines.
+      // Sources / further reading (section 8). Well-sourced content is favored by AI engines.
       sources: z
         .array(
           z.object({
@@ -50,12 +55,13 @@ const stories = defineCollection({
         )
         .default([]),
 
-      // Editorial controls.
+      tags: z.array(z.string()).default([]),
       featured: z.boolean().default(false),
       draft: z.boolean().default(false),
-      // Estimated read time override (otherwise computed).
+      // Marks scaffold content awaiting a full write-up (shows a subtle notice).
+      placeholder: z.boolean().default(false),
       readingTime: z.number().optional(),
     }),
 });
 
-export const collections = { stories };
+export const collections = { cases };

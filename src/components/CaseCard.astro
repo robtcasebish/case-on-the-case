@@ -1,0 +1,196 @@
+---
+import { Image } from 'astro:assets';
+import Badge from './Badge.astro';
+import { formatDate, isoDate } from '../lib/utils';
+import { categorySlug } from '../site.config';
+
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  category: string; // primary category title
+  pubDate: Date;
+  status?: string;
+  location?: string;
+  readingTime?: number;
+  cover?: ImageMetadata;
+  coverAlt?: string;
+  featured?: boolean;
+  /** Short code shown on the image-less placeholder (e.g. CCF-04). */
+  fileCode?: string;
+}
+
+const {
+  href,
+  title,
+  description,
+  category,
+  pubDate,
+  status,
+  location,
+  readingTime,
+  cover,
+  coverAlt,
+  featured = false,
+  fileCode,
+} = Astro.props;
+
+const catSlug = categorySlug(category);
+---
+
+<article class:list={['ccard', { 'ccard--featured': featured }]}>
+  <a href={href} class="ccard__link" aria-label={title}>
+    <div class="ccard__media">
+      {cover ? (
+        <Image
+          src={cover}
+          alt={coverAlt ?? ''}
+          widths={[400, 800, 1200]}
+          sizes={featured ? '(max-width: 800px) 100vw, 720px' : '(max-width: 600px) 100vw, 400px'}
+          loading="lazy"
+          class="ccard__img"
+        />
+      ) : (
+        <div class="ccard__placeholder" aria-hidden="true">
+          <span class="ccard__filecode">{fileCode ?? 'CASE FILE'}</span>
+          <span class="ccard__redact"></span>
+        </div>
+      )}
+      <div class="ccard__overlay"></div>
+      <div class="ccard__badges">
+        <Badge label={category} variant="category" />
+        {status && <Badge label={status} variant="status" status={status} />}
+      </div>
+    </div>
+    <div class="ccard__body">
+      <h3 class="ccard__title">{title}</h3>
+      <p class="ccard__desc">{description}</p>
+      <div class="ccard__foot">
+        <time datetime={isoDate(pubDate)}>{formatDate(pubDate)}</time>
+        {location && <><span class="ccard__dot">·</span><span>{location}</span></>}
+        {readingTime && <><span class="ccard__dot">·</span><span>{readingTime} min</span></>}
+      </div>
+    </div>
+  </a>
+</article>
+
+<style>
+  .ccard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .ccard:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+  }
+  .ccard__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+  .ccard__link:hover { color: inherit; }
+
+  .ccard__media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--surface-2);
+  }
+  .ccard__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.82) contrast(1.06) brightness(0.92);
+    transition: transform 0.4s ease;
+  }
+  .ccard:hover .ccard__img { transform: scale(1.04); }
+
+  /* Image-less "case file" placeholder */
+  .ccard__placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.012) 0 2px, transparent 2px 9px),
+      radial-gradient(120% 120% at 30% 10%, #1c1c21 0%, #101012 70%);
+  }
+  .ccard__filecode {
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    letter-spacing: 0.3em;
+    color: var(--text-faint);
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.8rem;
+    border-radius: 3px;
+  }
+  .ccard__redact {
+    position: absolute;
+    left: 14%;
+    bottom: 22%;
+    width: 42%;
+    height: 9px;
+    background: #000;
+    opacity: 0.85;
+  }
+
+  .ccard__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(8,8,10,0.55) 0%, transparent 45%);
+    pointer-events: none;
+  }
+  .ccard__badges {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .ccard__body {
+    padding: 1.15rem 1.3rem 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+  }
+  .ccard__title {
+    font-size: 1.28rem;
+    line-height: 1.2;
+  }
+  .ccard--featured .ccard__title {
+    font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2.2rem);
+  }
+  .ccard__desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .ccard__foot {
+    margin-top: auto;
+    padding-top: 0.4rem;
+    color: var(--text-faint);
+    font-size: 0.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: center;
+  }
+  .ccard__dot { opacity: 0.55; }
+
+  .ccard--featured { grid-column: 1 / -1; }
+  @media (min-width: 760px) {
+    .ccard--featured .ccard__link { flex-direction: row; }
+    .ccard--featured .ccard__media { flex: 1 1 56%; aspect-ratio: auto; min-height: 340px; }
+    .ccard--featured .ccard__body { flex: 1 1 44%; justify-content: center; padding: 2rem 2.25rem; }
+  }
+</style>

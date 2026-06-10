@@ -7,62 +7,56 @@ const crumbs = breadcrumbSchema([
   { name: 'Home', url: SITE.url },
   { name: 'About', url: absoluteUrl('/about') },
 ]);
-
-// AboutPage + Person/Org schema reinforces E-E-A-T for search + AI engines.
 const aboutSchema = {
   '@type': 'AboutPage',
   name: `About ${SITE.name}`,
   url: absoluteUrl('/about'),
   description: `Editorial standards, sourcing methodology, and corrections policy for ${SITE.name}.`,
-  mainEntity: {
-    '@type': 'Organization',
-    name: SITE.publisher,
-    url: SITE.url,
-    description: AUTHOR.bio,
-  },
+  mainEntity: { '@type': 'Organization', name: SITE.publisher, url: SITE.url, description: AUTHOR.bio },
 };
 ---
 
 <BaseLayout
   title="About & Editorial Standards"
-  description={`How ${SITE.name} researches, verifies, and sources every true crime story — our methodology, ethics, and corrections policy.`}
+  description={`How ${SITE.name} researches, verifies, and tells true crime stories — our methodology, ethics, and corrections policy.`}
   path="/about"
   schemaNodes={[aboutSchema, crumbs]}
 >
-  <div class="container page prose">
+  <div class="container page prose about">
     <p class="kicker">About</p>
-    <h1>How we report</h1>
+    <h1>About Case on the Case</h1>
     <p class="lede">{SITE.tagline}</p>
 
     <p>
-      <strong>{SITE.name}</strong> covers true crime the way it deserves to be
-      covered: carefully, accurately, and with respect for the people whose lives
-      these cases touched. We are not in the business of speculation. Every story
-      we publish is built from the public record and contemporaneous reporting,
-      and every claim of fact is traceable to a source.
+      <strong>Case on the Case</strong> began as a place to share short true crime
+      stories — cold cases, solved mysteries, famous cases, missing persons,
+      forensic breakthroughs, and the work of citizen sleuths. This site turns
+      those stories into something you can read, browse, and follow: a true crime
+      publication built to be investigative, cinematic, and respectful.
     </p>
 
-    <h2>Our sourcing standard</h2>
+    <h2>How we report</h2>
     <p>
-      We prioritize primary sources — court filings, police reports, official
-      records, and verified contemporaneous journalism. Each article ends with a
-      complete <strong>Sources</strong> list so any reader, researcher, or search
-      engine can verify what we report and where it came from.
+      We revisit cases with curiosity and care. Every story is built from the
+      public record and contemporaneous reporting, and every claim of fact is
+      traceable to a source. We prioritize primary sources — court filings, police
+      reports, official records, and verified journalism — and each case ends with
+      a <strong>Sources &amp; Further Reading</strong> list.
     </p>
 
-    <h2>Accuracy &amp; presumption of innocence</h2>
-    <p>
-      Where a case is unresolved or a person has not been convicted, we say so
-      plainly. Individuals are presumed innocent unless and until convicted in a
-      court of law, and we label case status — <em>solved</em>, <em>unsolved</em>,
-      <em>cold</em>, or <em>ongoing</em> — on every story.
-    </p>
+    <h2>Our standards</h2>
+    <ul>
+      <li><strong>Accuracy first.</strong> Where a case is unresolved or a person hasn't been convicted, we say so plainly and label case status.</li>
+      <li><strong>Respect for victims.</strong> We avoid gore, exploitation, and shock imagery. These were real people, and we write like it.</li>
+      <li><strong>No speculation as fact.</strong> Theories are labeled as theories. Presumption of innocence is the rule.</li>
+    </ul>
 
     <h2>Corrections</h2>
     <p>
-      If we get something wrong, we fix it and note the change. To report an
-      error or share information about a case, contact us at
-      <a href={`mailto:editor@${SITE.domain}`}>editor@{SITE.domain}</a>.
+      If we get something wrong, we fix it and note the change. To report an error
+      or share information about a case, email
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a>, or
+      <a href="/submit">submit a case</a> for future coverage.
     </p>
 
     <h2>Who writes these stories</h2>
@@ -77,12 +71,8 @@ const aboutSchema = {
 </BaseLayout>
 
 <style>
-  .page { padding-block: 2.5rem 1rem; max-width: 760px; }
-  .page h1 { margin-top: 0.5rem; }
-  .lede {
-    font-family: var(--font-serif);
-    font-size: 1.3rem;
-    color: var(--text-muted);
-  }
+  .about { max-width: 760px; padding-block: 2.5rem 1rem; }
+  .about h1 { margin-top: 0.5rem; }
+  .lede { font-family: var(--font-serif); font-size: 1.3rem; color: var(--text-muted); }
   .fineprint { color: var(--text-faint); font-size: 0.88rem; }
 </style>

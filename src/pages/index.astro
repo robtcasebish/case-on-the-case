@@ -1,142 +1,206 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import StoryCard from '../components/StoryCard.astro';
-import { SITE, absoluteUrl } from '../site.config';
+import FeaturedHero from '../components/FeaturedHero.astro';
+import CaseCard from '../components/CaseCard.astro';
+import CategoryCard from '../components/CategoryCard.astro';
+import { SITE, CATEGORIES, absoluteUrl, categoryByTitle } from '../site.config';
 import { itemListSchema } from '../lib/schema';
-import { readingTimeFromText, storySlug } from '../lib/utils';
+import { readingTimeFromText, caseSlug } from '../lib/utils';
 
-const stories = (await getCollection('stories', (s) => !s.data.draft)).sort(
+const all = (await getCollection('cases', (c) => !c.data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
-const featured = stories.find((s) => s.data.featured) ?? stories[0];
-const rest = stories.filter((s) => s.id !== featured?.id).slice(0, 6);
+const rt = (c) => readingTimeFromText(c.body ?? '', c.data.readingTime);
+const code = (c) => categoryByTitle(c.data.categories[0])?.code;
+
+const featured = all.find((c) => c.data.featured) ?? all[0];
+const latest = all.filter((c) => c.id !== featured?.id);
+const counts = Object.fromEntries(
+  CATEGORIES.map((c) => [c.title, all.filter((s) => s.data.categories.includes(c.title)).length]),
+);
+
+const evidence = all.filter((c) => c.data.categories.includes('The Evidence Room')).slice(0, 3);
+const solved = all
+  .filter((c) => c.data.categories.includes('Solved Cold Cases') || c.data.caseStatus === 'Solved')
+  .slice(0, 3);
+
+const newestHref = all[0] ? `/cases/${caseSlug(all[0].id)}` : '/cases';
 
 const listSchema = itemListSchema(
-  stories.slice(0, 10).map((s) => ({
-    url: absoluteUrl(`/stories/${storySlug(s.id)}`),
-    name: s.data.title,
-  })),
-  'Latest true crime stories',
+  all.slice(0, 10).map((s) => ({ url: absoluteUrl(`/cases/${caseSlug(s.id)}`), name: s.data.title })),
+  'Latest true crime cases',
 );
 ---
 
-<BaseLayout
-  title={SITE.name}
-  description={SITE.description}
-  path="/"
-  schemaNodes={[listSchema]}
->
-  <section class="hero container">
-    <p class="kicker">Investigative True Crime</p>
-    <h1 class="hero__title">Every case has a thread.<br />We follow it to the end.</h1>
-    <p class="hero__lede">{SITE.tagline}</p>
-    <div class="hero__actions">
-      <a class="btn btn--accent" href="/stories">Read the latest</a>
-      <a class="btn" href="/about">How we report</a>
+<BaseLayout title={SITE.name} description={SITE.description} path="/" schemaNodes={[listSchema]}>
+  <!-- 1. HERO -->
+  <section class="hero">
+    <div class="container">
+      <p class="kicker hero__kicker">Investigative True Crime</p>
+      <h1 class="hero__title">Case on the Case</h1>
+      <p class="hero__sub">{SITE.tagline}</p>
+      <div class="hero__actions">
+        <a class="btn btn--accent" href={newestHref}>Read the Latest Case</a>
+        <a class="btn" href="/cases">Browse All Cases</a>
+      </div>
     </div>
-  </section>
 
-  {featured && (
-    <section class="container section">
-      <div class="grid">
-        <StoryCard
-          featured
-          href={`/stories/${storySlug(featured.id)}`}
+    {featured && (
+      <div class="container hero__featured">
+        <FeaturedHero
+          href={`/cases/${caseSlug(featured.id)}`}
           title={featured.data.title}
-          description={featured.data.dek ?? featured.data.description}
-          category={featured.data.category}
+          summary={featured.data.oneSentence ?? featured.data.dek ?? featured.data.description}
+          category={featured.data.categories[0]}
+          status={featured.data.caseStatus}
           pubDate={featured.data.pubDate}
           location={featured.data.location}
-          caseStatus={featured.data.caseStatus}
-          readingTime={readingTimeFromText(featured.body ?? '', featured.data.readingTime)}
+          readingTime={rt(featured)}
           cover={featured.data.cover}
           coverAlt={featured.data.coverAlt}
         />
       </div>
-    </section>
-  )}
+    )}
+  </section>
 
-  {rest.length > 0 && (
-    <section class="container section">
-      <div class="section__head">
-        <h2>Latest stories</h2>
-        <a class="section__more" href="/stories">All stories →</a>
-      </div>
-      <div class="grid grid--cards">
-        {rest.map((s) => (
-          <StoryCard
-            href={`/stories/${storySlug(s.id)}`}
-            title={s.data.title}
-            description={s.data.description}
-            category={s.data.category}
-            pubDate={s.data.pubDate}
-            location={s.data.location}
-            caseStatus={s.data.caseStatus}
-            readingTime={readingTimeFromText(s.body ?? '', s.data.readingTime)}
-            cover={s.data.cover}
-            coverAlt={s.data.coverAlt}
-          />
+  <!-- 2. FEATURED CATEGORIES -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head"><h2>Browse the Case Files</h2><a class="section__more" href="/cases">All cases →</a></div>
+      <div class="grid grid--cats">
+        {CATEGORIES.map((c) => (
+          <CategoryCard title={c.title} slug={c.slug} blurb={c.blurb} code={c.code} count={counts[c.title]} />
         ))}
       </div>
+    </div>
+  </section>
+
+  <!-- 3. LATEST CASES -->
+  {latest.length > 0 && (
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__head"><h2>Latest Cases</h2><a class="section__more" href="/cases">View all →</a></div>
+        <div class="grid grid--cards">
+          {latest.slice(0, 6).map((c) => (
+            <CaseCard href={`/cases/${caseSlug(c.id)}`} title={c.data.title} description={c.data.description} category={c.data.categories[0]} status={c.data.caseStatus} pubDate={c.data.pubDate} location={c.data.location} readingTime={rt(c)} cover={c.data.cover} coverAlt={c.data.coverAlt} fileCode={code(c)} />
+          ))}
+        </div>
+      </div>
     </section>
   )}
 
-  {stories.length === 0 && (
-    <section class="container section">
-      <p class="empty">No stories published yet — the first case file is being prepared.</p>
+  <!-- 4. THE EVIDENCE ROOM -->
+  {evidence.length > 0 && (
+    <section class="section evidence">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <p class="kicker" style="color: var(--beige)">CCF-04 · Forensics & Files</p>
+            <h2>The Evidence Room</h2>
+          </div>
+          <a class="section__more" href="/the-evidence-room">Enter the room →</a>
+        </div>
+        <p class="evidence__intro">Ransom notes, DNA, overlooked files, and digital trails — the clues that crack cases open.</p>
+        <div class="grid grid--cards">
+          {evidence.map((c) => (
+            <CaseCard href={`/cases/${caseSlug(c.id)}`} title={c.data.title} description={c.data.description} category={c.data.categories[0]} status={c.data.caseStatus} pubDate={c.data.pubDate} location={c.data.location} readingTime={rt(c)} cover={c.data.cover} coverAlt={c.data.coverAlt} fileCode={code(c)} />
+          ))}
+        </div>
+      </div>
     </section>
   )}
+
+  <!-- 5. SOLVED AFTER DECADES -->
+  {solved.length > 0 && (
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <p class="kicker">Cold → Closed</p>
+            <h2>Solved After Decades</h2>
+          </div>
+          <a class="section__more" href="/solved-cold-cases">All solved cases →</a>
+        </div>
+        <div class="grid grid--cards">
+          {solved.map((c) => (
+            <CaseCard href={`/cases/${caseSlug(c.id)}`} title={c.data.title} description={c.data.description} category={c.data.categories[0]} status={c.data.caseStatus} pubDate={c.data.pubDate} location={c.data.location} readingTime={rt(c)} cover={c.data.cover} coverAlt={c.data.coverAlt} fileCode={code(c)} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- 6. ABOUT -->
+  <section class="section">
+    <div class="container about-strip">
+      <div>
+        <p class="kicker">About</p>
+        <h2>About Case on the Case</h2>
+        <p class="about-strip__text">
+          We revisit true crime stories with curiosity, care, and respect for the
+          people involved. Every case is built from public records and primary
+          sources — and told without exploitation or shock for its own sake.
+        </p>
+        <a class="btn" href="/about">How we report</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. SUBMIT A CASE -->
+  <section class="submit-cta">
+    <div class="container submit-cta__inner">
+      <div>
+        <h2>Have a case we should cover?</h2>
+        <p>Cold case, local mystery, or a story that deserves another look — tell us about it.</p>
+      </div>
+      <a class="btn btn--accent" href="/submit">Submit a Case</a>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
-  .hero {
-    padding-block: clamp(3rem, 8vw, 6rem) 2rem;
-    text-align: center;
-  }
+  .hero { padding-block: clamp(2.5rem, 6vw, 4.5rem) 0; }
+  .hero__kicker { color: var(--accent-hover); }
   .hero__title {
-    margin-top: 0.75rem;
+    margin-top: 0.6rem;
+    font-size: clamp(2.6rem, 1.8rem + 5vw, 5.5rem);
+    letter-spacing: -0.02em;
   }
-  .hero__lede {
-    margin: 1.25rem auto 0;
-    max-width: 52ch;
-    color: var(--text-muted);
-    font-size: 1.15rem;
+  .hero__sub {
+    margin-top: 1.1rem; max-width: 60ch;
+    color: var(--text-muted); font-size: clamp(1.05rem, 1rem + 0.5vw, 1.3rem);
   }
-  .hero__actions {
-    margin-top: 2rem;
-    display: flex;
-    gap: 0.75rem;
-    justify-content: center;
-    flex-wrap: wrap;
+  .hero__actions { margin-top: 1.75rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .hero__featured { margin-top: clamp(2rem, 4vw, 3rem); }
+
+  .evidence {
+    background:
+      radial-gradient(100% 100% at 100% 0%, rgba(184,173,151,0.06) 0%, transparent 50%),
+      var(--bg);
+    border-block: 1px solid var(--border);
   }
-  .section { padding-block: 1.5rem; }
-  .section__head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+  .evidence__intro { color: var(--text-muted); margin: -0.5rem 0 1.75rem; max-width: 60ch; }
+
+  .about-strip {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent); border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
   }
-  .section__more {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.95rem;
-    white-space: nowrap;
+  .about-strip__text { color: var(--text-muted); margin: 1rem 0 1.5rem; max-width: 70ch; }
+
+  .submit-cta {
+    background:
+      radial-gradient(120% 120% at 0% 0%, rgba(193,18,31,0.12) 0%, transparent 55%),
+      var(--bg-elevated);
+    border-top: 1px solid var(--border);
+    padding-block: clamp(2.5rem, 5vw, 3.5rem);
   }
-  .section__more:hover { color: var(--accent-hover); }
-  .grid {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: 1fr;
+  .submit-cta__inner {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1.5rem; flex-wrap: wrap;
   }
-  .grid--cards {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  }
-  .empty {
-    color: var(--text-muted);
-    text-align: center;
-    padding: 3rem 0;
-  }
+  .submit-cta h2 { font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.1rem); }
+  .submit-cta p { color: var(--text-muted); margin-top: 0.5rem; max-width: 52ch; }
 </style>

@@ -1,0 +1,273 @@
+---
+import { getCollection, render } from 'astro:content';
+import { getImage } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Badge from '../../components/Badge.astro';
+import CaseCard from '../../components/CaseCard.astro';
+import { SITE, absoluteUrl, categorySlug, categoryByTitle } from '../../site.config';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+import { formatDate, isoDate, readingTimeFromText, caseSlug } from '../../lib/utils';
+
+export async function getStaticPaths() {
+  const all = await getCollection('cases', (c) => !c.data.draft);
+  return all.map((entry) => ({
+    params: { slug: caseSlug(entry.id) },
+    props: { entry, all },
+  }));
+}
+
+const { entry, all } = Astro.props;
+const { data, body } = entry;
+const { Content } = await render(entry);
+
+const slug = caseSlug(entry.id);
+const path = `/cases/${slug}`;
+const url = absoluteUrl(path);
+const minutes = readingTimeFromText(body ?? '', data.readingTime);
+const primary = data.categories[0];
+
+let ogImage: string | undefined;
+if (data.cover) {
+  const img = await getImage({ src: data.cover, width: 1200, height: 630, format: 'jpg' });
+  ogImage = absoluteUrl(img.src);
+}
+
+const article = articleSchema({
+  headline: data.title,
+  description: data.description,
+  url,
+  datePublished: data.pubDate,
+  dateModified: data.updatedDate,
+  authorName: data.author,
+  image: ogImage,
+  section: primary,
+  keywords: [...data.categories, ...data.tags],
+  citations: data.sources,
+  locationName: data.location,
+});
+const breadcrumbs = breadcrumbSchema([
+  { name: 'Home', url: SITE.url },
+  { name: 'Cases', url: absoluteUrl('/cases') },
+  { name: primary, url: absoluteUrl(`/${categorySlug(primary)}`) },
+  { name: data.title, url },
+]);
+
+// Related: other cases sharing the primary category.
+const related = all
+  .filter((c) => caseSlug(c.id) !== slug && c.data.categories.includes(primary))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.description}
+  path={path}
+  type="article"
+  image={ogImage}
+  imageAlt={data.coverAlt}
+  publishedTime={data.pubDate.toISOString()}
+  modifiedTime={(data.updatedDate ?? data.pubDate).toISOString()}
+  author={data.author}
+  section={primary}
+  tags={[...data.categories, ...data.tags]}
+  schemaNodes={[article, breadcrumbs]}
+>
+  <article class="case">
+    <div class="container case__head-wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">/</span>
+        <a href="/cases">Cases</a> <span aria-hidden="true">/</span>
+        <a href={`/${categorySlug(primary)}`}>{primary}</a>
+      </nav>
+
+      <header class="case__head">
+        <div class="case__badges">
+          {data.categories.map((c) => (
+            <Badge label={c} variant="category" href={`/${categorySlug(c)}`} />
+          ))}
+          {data.caseStatus && <Badge label={data.caseStatus} variant="status" status={data.caseStatus} />}
+        </div>
+        <h1>{data.title}</h1>
+        {data.dek && <p class="case__dek">{data.dek}</p>}
+        <div class="case__byline">
+          <span>By {data.author}</span>
+          <span class="dot">·</span>
+          <time datetime={isoDate(data.pubDate)}>{formatDate(data.pubDate)}</time>
+          {data.updatedDate && (<><span class="dot">·</span><span>Updated <time datetime={isoDate(data.updatedDate)}>{formatDate(data.updatedDate)}</time></span></>)}
+          <span class="dot">·</span>
+          <span>{minutes} min read</span>
+        </div>
+      </header>
+    </div>
+
+    {data.cover && (
+      <figure class="case__cover container">
+        <img src={data.cover.src} width={data.cover.width} height={data.cover.height} alt={data.coverAlt ?? ''} />
+      </figure>
+    )}
+
+    <div class="container case__layout">
+      {(data.location || data.caseYear || data.caseStatus) && (
+        <aside class="casefile" aria-label="Case file">
+          <p class="casefile__tab">Case File</p>
+          <dl>
+            {data.location && (<div><dt>Location</dt><dd>{data.location}</dd></div>)}
+            {data.caseYear && (<div><dt>Year</dt><dd>{data.caseYear}</dd></div>)}
+            {data.caseStatus && (<div><dt>Status</dt><dd>{data.caseStatus}</dd></div>)}
+            <div><dt>Filed under</dt><dd>{data.categories.join(', ')}</dd></div>
+          </dl>
+        </aside>
+      )}
+
+      <div class="case__main">
+        {data.placeholder && (
+          <p class="notice">Placeholder case file — the full story is being written. Structure and details below are scaffolding to be replaced.</p>
+        )}
+
+        {data.oneSentence && (
+          <section class="onesentence" aria-label="The case in one sentence">
+            <p class="onesentence__label">The Case in One Sentence</p>
+            <p class="onesentence__text">{data.oneSentence}</p>
+          </section>
+        )}
+
+        <div class="prose case__body">
+          <Content />
+        </div>
+
+        <section class="sources" aria-labelledby="sources-h">
+          <h2 id="sources-h">Sources &amp; Further Reading</h2>
+          {data.sources.length > 0 ? (
+            <ol>
+              {data.sources.map((s) => (
+                <li>
+                  {s.url ? <a href={s.url} rel="nofollow noopener" target="_blank">{s.title}</a> : s.title}
+                  {s.publisher && <span class="sources__pub"> — {s.publisher}</span>}
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <p class="sources__empty">Sources will be added with the full write-up.</p>
+          )}
+        </section>
+      </div>
+    </div>
+
+    {related.length > 0 && (
+      <section class="related section--alt">
+        <div class="container">
+          <div class="section__head">
+            <h2>More in {primary}</h2>
+            <a class="section__more" href={`/${categorySlug(primary)}`}>View all →</a>
+          </div>
+          <div class="grid grid--cards">
+            {related.map((c) => (
+              <CaseCard
+                href={`/cases/${caseSlug(c.id)}`}
+                title={c.data.title}
+                description={c.data.description}
+                category={c.data.categories[0]}
+                status={c.data.caseStatus}
+                pubDate={c.data.pubDate}
+                location={c.data.location}
+                readingTime={readingTimeFromText(c.body ?? '', c.data.readingTime)}
+                cover={c.data.cover}
+                coverAlt={c.data.coverAlt}
+                fileCode={categoryByTitle(c.data.categories[0])?.code}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+  .case__head-wrap { max-width: 820px; padding-block: 2.5rem 0; }
+  .crumbs {
+    font-size: 0.8rem; color: var(--text-faint);
+    margin-bottom: 1.4rem; display: flex; gap: 0.5rem; flex-wrap: wrap;
+  }
+  .crumbs a { color: var(--text-muted); text-decoration: none; }
+  .crumbs a:hover { color: var(--accent-hover); }
+
+  .case__badges { display: flex; gap: 0.45rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .case__head h1 { font-size: clamp(2rem, 1.5rem + 2.6vw, 3.4rem); }
+  .case__dek {
+    margin-top: 1rem; font-family: var(--font-serif);
+    font-size: clamp(1.15rem, 1rem + 0.6vw, 1.4rem);
+    line-height: 1.5; color: var(--text-muted);
+  }
+  .case__byline {
+    margin-top: 1.4rem; display: flex; flex-wrap: wrap; align-items: center;
+    gap: 0.5rem; font-size: 0.85rem; color: var(--text-faint);
+  }
+  .dot { opacity: 0.5; }
+
+  .case__cover { max-width: 980px; margin-block: 2rem; }
+  .case__cover img {
+    width: 100%; border-radius: var(--radius-lg);
+    border: 1px solid var(--border); filter: saturate(0.9) contrast(1.04);
+  }
+
+  .case__layout {
+    display: grid; grid-template-columns: 1fr; gap: 2rem;
+    padding-block: 2rem 1rem;
+  }
+  .case__main { max-width: 760px; }
+
+  .casefile {
+    align-self: start;
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--sepia); border-radius: var(--radius);
+    padding: 1.1rem 1.25rem;
+  }
+  .casefile__tab {
+    font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--beige); margin-bottom: 0.75rem;
+  }
+  .casefile dl { display: grid; gap: 0.8rem; margin: 0; }
+  .casefile dt {
+    font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .casefile dd { margin: 0.15rem 0 0; font-weight: 600; font-size: 0.95rem; }
+
+  .notice {
+    background: var(--accent-soft); border: 1px solid var(--accent-line);
+    border-radius: var(--radius); padding: 0.8rem 1rem;
+    font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.75rem;
+  }
+
+  .onesentence {
+    border-left: 3px solid var(--accent);
+    padding: 0.4rem 0 0.4rem 1.4rem; margin-bottom: 2rem;
+  }
+  .onesentence__label {
+    font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-hover);
+    margin-bottom: 0.5rem;
+  }
+  .onesentence__text {
+    font-family: var(--font-serif); font-size: 1.45rem; line-height: 1.4;
+    color: var(--text);
+  }
+
+  .sources { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+  .sources h2 { font-size: 1.35rem; }
+  .sources ol {
+    margin-top: 1rem; padding-left: 1.25rem; display: grid; gap: 0.6rem;
+    color: var(--text-muted); font-size: 0.95rem;
+  }
+  .sources__pub { color: var(--text-faint); }
+  .sources__empty { margin-top: 0.75rem; color: var(--text-faint); font-style: italic; }
+
+  .related { margin-top: 3.5rem; }
+
+  @media (min-width: 1000px) {
+    .case__layout { grid-template-columns: 230px 1fr; gap: 3rem; }
+    .casefile { position: sticky; top: 130px; }
+  }
+</style>

@@ -1,0 +1,80 @@
+---
+/**
+ * <Badge /> — small uppercase label used for categories and case status.
+ * variant: 'category' (default), 'status', 'accent', 'plain'.
+ * When `href` is set it renders as a link.
+ */
+interface Props {
+  label: string;
+  variant?: 'category' | 'status' | 'accent' | 'plain';
+  href?: string;
+  status?: string; // raw status used for status colour mapping
+}
+const { label, variant = 'category', href, status } = Astro.props;
+const statusClass = status ? `is-${status.toLowerCase()}` : '';
+const Tag = href ? 'a' : 'span';
+---
+
+<Tag
+  class:list={['badge', `badge--${variant}`, statusClass]}
+  {...href ? { href } : {}}
+>
+  {label}
+</Tag>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1;
+    padding: 0.4em 0.7em;
+    border-radius: 3px;
+    border: 1px solid var(--border-strong);
+    color: var(--text-muted);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  a.badge:hover {
+    border-color: var(--accent);
+    color: var(--text);
+  }
+  .badge--category {
+    color: var(--beige);
+    border-color: color-mix(in srgb, var(--beige) 35%, transparent);
+    background: rgba(184, 173, 151, 0.06);
+  }
+  a.badge--category:hover {
+    color: var(--text);
+    border-color: var(--beige);
+  }
+  .badge--accent {
+    color: #fff;
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .badge--plain {
+    color: var(--text-faint);
+  }
+
+  /* Status colours */
+  .badge--status { background: var(--surface-2); }
+  .badge--status.is-unsolved,
+  .badge--status.is-cold {
+    color: var(--sepia);
+    border-color: color-mix(in srgb, var(--sepia) 45%, transparent);
+  }
+  .badge--status.is-solved {
+    color: #7bdca0;
+    border-color: rgba(123, 220, 160, 0.4);
+  }
+  .badge--status.is-ongoing {
+    color: var(--accent-hover);
+    border-color: var(--accent-line);
+  }
+</style>

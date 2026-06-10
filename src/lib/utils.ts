@@ -22,8 +22,8 @@ export function readingTimeFromText(text: string, override?: number): number {
   return Math.max(1, Math.round(words / 225));
 }
 
-/** Collapse the story collection id (which may be a file path) to a slug. */
-export function storySlug(id: string): string {
+/** Collapse a collection entry id (which may be a file path) to a slug. */
+export function caseSlug(id: string): string {
   return id.replace(/\.(md|mdx)$/i, '').replace(/^.*\//, '');
 }
 
