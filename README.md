@@ -30,33 +30,51 @@ RSS.
 > the user env var `NODE_OPTIONS=--use-system-ca`. Kinsta's build servers don't
 > need it.
 
-## Writing a new story
+## Writing a new case
 
-Add a Markdown file to `src/content/stories/`. The filename becomes the URL slug
-(`/stories/<filename>`). Frontmatter is validated against the schema in
-`src/content.config.ts`. Minimum required fields:
+Add a Markdown file to `src/content/cases/`. The filename becomes the URL slug
+(`/cases/<filename>`). Frontmatter is validated against the schema in
+`src/content.config.ts`. Every case follows the house **8-part template**:
+
+1. The Case in One Sentence (`oneSentence` frontmatter)
+2. Who Was Involved · 3. What Happened · 4. The Investigation ·
+5. The Breakthrough · 6. Where the Case Stands Today · 7. Why This Case Still
+   Matters (`##` headings, in order)
+8. Sources / Further Reading (`sources` frontmatter)
 
 ```markdown
 ---
-title: "Your headline (max 110 chars)"
-description: "One- to two-sentence factual summary used for SEO + AI citation."
+title: "Case Name"
+description: "One- to two-sentence factual, citable summary (SEO + AI)."
+oneSentence: "The single-sentence version of the case."
 pubDate: 2026-06-10
-category: "Cold Case"   # Cold Case | Trial | Investigation | Missing Persons | Forensics | Profile
+categories: ["Famous Cases", "Missing & Vanished"]  # first = primary
 location: "City, Country"
-caseYear: 1998
-caseStatus: "Unsolved"  # Solved | Unsolved | Cold | Ongoing
-tags: ["Cold Case", "USA"]
-featured: false
+caseYear: 1971
+caseStatus: "Unsolved"   # Solved | Unsolved | Cold | Ongoing
+tags: ["keyword"]
 sources:
   - title: "Source name"
-    url: "https://example.com/source"   # optional
-    publisher: "Publisher"              # optional
+    url: "https://example.com/source"   # only if confident & stable
+    publisher: "Publisher"
+placeholder: false
 ---
 
-Story body in Markdown...
+## Who Was Involved
+...
 ```
 
-Set `draft: true` to keep a story out of the build, sitemap, RSS, and llms.txt.
+- **Quality bar:** every case should meet the
+  [Flagship Article Quality Checklist](./docs/flagship-article-checklist.md).
+  The **D. B. Cooper** case (`src/content/cases/db-cooper.md`) is the reference
+  example.
+- Categories: the six are defined in `src/site.config.ts` (`CATEGORIES`); a case
+  can belong to several (cross-listed), and the first is primary.
+- Set `placeholder: true` to show the "scaffold" notice; `draft: true` keeps a
+  case out of the build, sitemap, RSS, and llms.txt entirely.
+
+To regenerate the placeholder set (skips files that already exist):
+`node scripts/generate-cases.mjs`
 
 ## Brand assets
 
