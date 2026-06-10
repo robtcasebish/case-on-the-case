@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, AUTHOR, absoluteUrl } from '../site.config';
+import { breadcrumbSchema } from '../lib/schema';
+
+const crumbs = breadcrumbSchema([
+  { name: 'Home', url: SITE.url },
+  { name: 'About', url: absoluteUrl('/about') },
+]);
+
+// AboutPage + Person/Org schema reinforces E-E-A-T for search + AI engines.
+const aboutSchema = {
+  '@type': 'AboutPage',
+  name: `About ${SITE.name}`,
+  url: absoluteUrl('/about'),
+  description: `Editorial standards, sourcing methodology, and corrections policy for ${SITE.name}.`,
+  mainEntity: {
+    '@type': 'Organization',
+    name: SITE.publisher,
+    url: SITE.url,
+    description: AUTHOR.bio,
+  },
+};
+---
+
+<BaseLayout
+  title="About & Editorial Standards"
+  description={`How ${SITE.name} researches, verifies, and sources every true crime story — our methodology, ethics, and corrections policy.`}
+  path="/about"
+  schemaNodes={[aboutSchema, crumbs]}
+>
+  <div class="container page prose">
+    <p class="kicker">About</p>
+    <h1>How we report</h1>
+    <p class="lede">{SITE.tagline}</p>
+
+    <p>
+      <strong>{SITE.name}</strong> covers true crime the way it deserves to be
+      covered: carefully, accurately, and with respect for the people whose lives
+      these cases touched. We are not in the business of speculation. Every story
+      we publish is built from the public record and contemporaneous reporting,
+      and every claim of fact is traceable to a source.
+    </p>
+
+    <h2>Our sourcing standard</h2>
+    <p>
+      We prioritize primary sources — court filings, police reports, official
+      records, and verified contemporaneous journalism. Each article ends with a
+      complete <strong>Sources</strong> list so any reader, researcher, or search
+      engine can verify what we report and where it came from.
+    </p>
+
+    <h2>Accuracy &amp; presumption of innocence</h2>
+    <p>
+      Where a case is unresolved or a person has not been convicted, we say so
+      plainly. Individuals are presumed innocent unless and until convicted in a
+      court of law, and we label case status — <em>solved</em>, <em>unsolved</em>,
+      <em>cold</em>, or <em>ongoing</em> — on every story.
+    </p>
+
+    <h2>Corrections</h2>
+    <p>
+      If we get something wrong, we fix it and note the change. To report an
+      error or share information about a case, contact us at
+      <a href={`mailto:editor@${SITE.domain}`}>editor@{SITE.domain}</a>.
+    </p>
+
+    <h2>Who writes these stories</h2>
+    <p>{AUTHOR.bio}</p>
+
+    <hr />
+    <p class="fineprint">
+      {SITE.name} is an independent publication. Stories are presented for
+      informational and educational purposes and do not constitute legal advice.
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .page { padding-block: 2.5rem 1rem; max-width: 760px; }
+  .page h1 { margin-top: 0.5rem; }
+  .lede {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    color: var(--text-muted);
+  }
+  .fineprint { color: var(--text-faint); font-size: 0.88rem; }
+</style>

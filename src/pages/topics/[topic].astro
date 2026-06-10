@@ -1,0 +1,86 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StoryCard from '../../components/StoryCard.astro';
+import { SITE, absoluteUrl } from '../../site.config';
+import { breadcrumbSchema, itemListSchema } from '../../lib/schema';
+import { readingTimeFromText, storySlug } from '../../lib/utils';
+
+const slugify = (t: string) => t.toLowerCase().replace(/\s+/g, '-');
+
+export async function getStaticPaths() {
+  const stories = await getCollection('stories', (s) => !s.data.draft);
+  const map = new Map<string, { label: string; items: typeof stories }>();
+  for (const s of stories) {
+    for (const t of s.data.tags) {
+      const slug = t.toLowerCase().replace(/\s+/g, '-');
+      if (!map.has(slug)) map.set(slug, { label: t, items: [] });
+      map.get(slug)!.items.push(s);
+    }
+  }
+  return [...map.entries()].map(([slug, { label, items }]) => ({
+    params: { topic: slug },
+    props: {
+      label,
+      items: items.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+    },
+  }));
+}
+
+const { label, items } = Astro.props;
+const path = `/topics/${slugify(label)}`;
+
+const listSchema = itemListSchema(
+  items.map((s) => ({ url: absoluteUrl(`/stories/${storySlug(s.id)}`), name: s.data.title })),
+  `${label} stories`,
+);
+const crumbs = breadcrumbSchema([
+  { name: 'Home', url: SITE.url },
+  { name: 'Topics', url: absoluteUrl('/topics') },
+  { name: label, url: absoluteUrl(path) },
+]);
+---
+
+<BaseLayout
+  title={`${label} — Stories`}
+  description={`True crime stories from ${SITE.name} tagged "${label}".`}
+  path={path}
+  schemaNodes={[listSchema, crumbs]}
+>
+  <div class="container page">
+    <header class="page__head">
+      <p class="kicker">Topic</p>
+      <h1>#{label}</h1>
+      <p class="page__lede">{items.length} {items.length === 1 ? 'story' : 'stories'}</p>
+    </header>
+
+    <div class="grid--cards">
+      {items.map((s) => (
+        <StoryCard
+          href={`/stories/${storySlug(s.id)}`}
+          title={s.data.title}
+          description={s.data.description}
+          category={s.data.category}
+          pubDate={s.data.pubDate}
+          location={s.data.location}
+          caseStatus={s.data.caseStatus}
+          readingTime={readingTimeFromText(s.body ?? '', s.data.readingTime)}
+          cover={s.data.cover}
+          coverAlt={s.data.coverAlt}
+        />
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page { padding-block: 2.5rem; }
+  .page__head { margin-bottom: 2rem; }
+  .page__head h1 { margin-top: 0.5rem; }
+  .page__lede { margin-top: 0.5rem; color: var(--text-muted); }
+  .grid--cards {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+</style>

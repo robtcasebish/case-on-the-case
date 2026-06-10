@@ -1,0 +1,14 @@
+---
+/**
+ * <JsonLd /> — renders a schema.org graph as a JSON-LD <script>.
+ * Pass the output of schema.ts builders (typically wrapped with graph(...)).
+ * set:html is safe here because the value is a server-built object we control.
+ */
+interface Props {
+  schema: object;
+}
+const { schema } = Astro.props;
+const json = JSON.stringify(schema);
+---
+
+<script type="application/ld+json" is:inline set:html={json} />

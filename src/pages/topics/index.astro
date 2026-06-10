@@ -1,0 +1,84 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE, absoluteUrl } from '../../site.config';
+import { breadcrumbSchema } from '../../lib/schema';
+
+const stories = await getCollection('stories', (s) => !s.data.draft);
+
+const counts = new Map<string, number>();
+for (const s of stories) {
+  for (const t of s.data.tags) counts.set(t, (counts.get(t) ?? 0) + 1);
+}
+const topics = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+const slugify = (t: string) => t.toLowerCase().replace(/\s+/g, '-');
+
+const crumbs = breadcrumbSchema([
+  { name: 'Home', url: SITE.url },
+  { name: 'Topics', url: absoluteUrl('/topics') },
+]);
+---
+
+<BaseLayout
+  title="Topics"
+  description={`Browse ${SITE.name} by topic — explore true crime stories grouped by theme, method, and place.`}
+  path="/topics"
+  schemaNodes={[crumbs]}
+>
+  <div class="container page">
+    <header class="page__head">
+      <p class="kicker">Browse</p>
+      <h1>Topics</h1>
+      <p class="page__lede">Explore cases by theme.</p>
+    </header>
+
+    {topics.length > 0 ? (
+      <ul class="topics">
+        {topics.map(([t, n]) => (
+          <li>
+            <a href={`/topics/${slugify(t)}`}>
+              <span class="topics__name">#{t}</span>
+              <span class="topics__count">{n}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="empty">No topics yet.</p>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .page { padding-block: 2.5rem; }
+  .page__head { margin-bottom: 2rem; }
+  .page__head h1 { margin-top: 0.5rem; }
+  .page__lede { margin-top: 0.5rem; color: var(--text-muted); }
+  .topics {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .topics a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    background: var(--surface);
+    text-decoration: none;
+    color: var(--text);
+  }
+  .topics a:hover { border-color: var(--accent); color: var(--text); }
+  .topics__count {
+    font-size: 0.78rem;
+    color: var(--text-faint);
+    background: var(--surface-2);
+    border-radius: 100px;
+    padding: 0.05rem 0.5rem;
+  }
+  .empty { color: var(--text-muted); }
+</style>

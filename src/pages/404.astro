@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="404 — Cold Trail"
+  description="The page you're looking for has gone cold."
+  path="/404"
+  noindex
+>
+  <section class="nf container">
+    <p class="kicker">Error 404</p>
+    <h1>The trail's gone cold.</h1>
+    <p class="nf__lede">
+      We couldn't find that page. It may have been moved, renamed, or never
+      existed. Let's get you back on the case.
+    </p>
+    <div class="nf__actions">
+      <a class="btn btn--accent" href="/">Back to home</a>
+      <a class="btn" href="/stories">Browse all stories</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf {
+    text-align: center;
+    padding-block: clamp(4rem, 12vw, 8rem);
+    max-width: 640px;
+  }
+  .nf__lede {
+    margin: 1rem auto 0;
+    color: var(--text-muted);
+    max-width: 46ch;
+  }
+  .nf__actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

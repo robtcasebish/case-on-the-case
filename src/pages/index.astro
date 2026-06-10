@@ -1,0 +1,142 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import StoryCard from '../components/StoryCard.astro';
+import { SITE, absoluteUrl } from '../site.config';
+import { itemListSchema } from '../lib/schema';
+import { readingTimeFromText, storySlug } from '../lib/utils';
+
+const stories = (await getCollection('stories', (s) => !s.data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const featured = stories.find((s) => s.data.featured) ?? stories[0];
+const rest = stories.filter((s) => s.id !== featured?.id).slice(0, 6);
+
+const listSchema = itemListSchema(
+  stories.slice(0, 10).map((s) => ({
+    url: absoluteUrl(`/stories/${storySlug(s.id)}`),
+    name: s.data.title,
+  })),
+  'Latest true crime stories',
+);
+---
+
+<BaseLayout
+  title={SITE.name}
+  description={SITE.description}
+  path="/"
+  schemaNodes={[listSchema]}
+>
+  <section class="hero container">
+    <p class="kicker">Investigative True Crime</p>
+    <h1 class="hero__title">Every case has a thread.<br />We follow it to the end.</h1>
+    <p class="hero__lede">{SITE.tagline}</p>
+    <div class="hero__actions">
+      <a class="btn btn--accent" href="/stories">Read the latest</a>
+      <a class="btn" href="/about">How we report</a>
+    </div>
+  </section>
+
+  {featured && (
+    <section class="container section">
+      <div class="grid">
+        <StoryCard
+          featured
+          href={`/stories/${storySlug(featured.id)}`}
+          title={featured.data.title}
+          description={featured.data.dek ?? featured.data.description}
+          category={featured.data.category}
+          pubDate={featured.data.pubDate}
+          location={featured.data.location}
+          caseStatus={featured.data.caseStatus}
+          readingTime={readingTimeFromText(featured.body ?? '', featured.data.readingTime)}
+          cover={featured.data.cover}
+          coverAlt={featured.data.coverAlt}
+        />
+      </div>
+    </section>
+  )}
+
+  {rest.length > 0 && (
+    <section class="container section">
+      <div class="section__head">
+        <h2>Latest stories</h2>
+        <a class="section__more" href="/stories">All stories →</a>
+      </div>
+      <div class="grid grid--cards">
+        {rest.map((s) => (
+          <StoryCard
+            href={`/stories/${storySlug(s.id)}`}
+            title={s.data.title}
+            description={s.data.description}
+            category={s.data.category}
+            pubDate={s.data.pubDate}
+            location={s.data.location}
+            caseStatus={s.data.caseStatus}
+            readingTime={readingTimeFromText(s.body ?? '', s.data.readingTime)}
+            cover={s.data.cover}
+            coverAlt={s.data.coverAlt}
+          />
+        ))}
+      </div>
+    </section>
+  )}
+
+  {stories.length === 0 && (
+    <section class="container section">
+      <p class="empty">No stories published yet — the first case file is being prepared.</p>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: clamp(3rem, 8vw, 6rem) 2rem;
+    text-align: center;
+  }
+  .hero__title {
+    margin-top: 0.75rem;
+  }
+  .hero__lede {
+    margin: 1.25rem auto 0;
+    max-width: 52ch;
+    color: var(--text-muted);
+    font-size: 1.15rem;
+  }
+  .hero__actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .section { padding-block: 1.5rem; }
+  .section__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .section__more {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+  .section__more:hover { color: var(--accent-hover); }
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+  }
+  .grid--cards {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  .empty {
+    color: var(--text-muted);
+    text-align: center;
+    padding: 3rem 0;
+  }
+</style>

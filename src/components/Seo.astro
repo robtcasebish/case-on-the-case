@@ -1,0 +1,92 @@
+---
+/**
+ * <Seo /> — renders the SEO/GEO-critical <head> tags for a page.
+ * Canonical URL, robots directives (explicitly welcoming AI crawlers),
+ * OpenGraph, and Twitter cards. JSON-LD is handled separately by <JsonLd />.
+ */
+import { SITE, SOCIAL, absoluteUrl } from '../site.config';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Site-root-relative path, e.g. "/stories/foo". Becomes the canonical URL. */
+  path: string;
+  /** og:type — 'website' for hubs, 'article' for stories. */
+  type?: 'website' | 'article';
+  /** Absolute image URL for social/article cards. */
+  image?: string;
+  imageAlt?: string;
+  publishedTime?: string; // ISO
+  modifiedTime?: string; // ISO
+  author?: string;
+  section?: string;
+  tags?: string[];
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  path,
+  type = 'website',
+  image,
+  imageAlt,
+  publishedTime,
+  modifiedTime,
+  author,
+  section,
+  tags = [],
+  noindex = false,
+} = Astro.props;
+
+const canonical = absoluteUrl(path);
+const ogImage = image ?? absoluteUrl('/og-default.png');
+const fullTitle =
+  title === SITE.name ? SITE.name : `${title} — ${SITE.name}`;
+const robots = noindex
+  ? 'noindex, nofollow'
+  : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content={robots} />
+
+{/* Explicitly welcome major AI / generative-engine crawlers (GEO) */}
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large" />
+
+{/* OpenGraph */}
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:locale" content={SITE.locale} />
+<meta property="og:type" content={type} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+{imageAlt && <meta property="og:image:alt" content={imageAlt} />}
+
+{type === 'article' && publishedTime && (
+  <meta property="article:published_time" content={publishedTime} />
+)}
+{type === 'article' && modifiedTime && (
+  <meta property="article:modified_time" content={modifiedTime} />
+)}
+{type === 'article' && author && (
+  <meta property="article:author" content={author} />
+)}
+{type === 'article' && section && (
+  <meta property="article:section" content={section} />
+)}
+{type === 'article' &&
+  tags.map((t) => <meta property="article:tag" content={t} />)}
+
+{/* Twitter */}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+{imageAlt && <meta name="twitter:image:alt" content={imageAlt} />}
+{SOCIAL.twitterHandle && (
+  <meta name="twitter:site" content={SOCIAL.twitterHandle} />
+)}
