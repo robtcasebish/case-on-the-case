@@ -1,100 +1,77 @@
-# Deploying Case on the Case to Kinsta
+# Deploying Case on the Case
 
-The site is a **static** Astro build, so the cheapest and fastest fit is
-**Kinsta Static Site Hosting** (free tier available), which deploys automatically
-from a Git repository. This is a one-time setup; after that, every `git push`
-publishes automatically.
+The site is a **static** Astro build. The source of truth lives on GitHub
+(`robtcasebish/case-on-the-case`), and the built site is published to a **Kinsta
+hosting environment** that serves files from a `public/` web root.
 
----
+> Note on the environment: this is a Kinsta *WordPress* hosting plan, but no
+> WordPress is actually used — we serve the built static site directly out of
+> `public/`. The original placeholder was saved to
+> `/www/caseonthecase_753/index.html.kinsta-placeholder.bak`.
 
-## One-time setup (~5 minutes)
+## How deploys work
 
-### 1. Put the code on GitHub
-
-You need a GitHub (or GitLab/Bitbucket) repo for Kinsta to watch.
-
-1. Create an **empty** repository at https://github.com/new
-   (e.g. `case-on-the-case`) — do **not** add a README/.gitignore there.
-2. Back in this project, connect and push (I can run these for you once you've
-   created the repo and authenticated, or run them yourself):
-
-   ```powershell
-   git remote add origin https://github.com/<your-username>/case-on-the-case.git
-   git branch -M main
-   git push -u origin main
-   ```
-
-   The first push will prompt you to authenticate with GitHub in your browser.
-
-### 2. Create the Static Site in MyKinsta
-
-1. Log in to https://my.kinsta.com
-2. Click **Add service → Static Site**.
-3. **Connect your Git provider** (GitHub) and authorize Kinsta, then select the
-   `case-on-the-case` repository and the `main` branch.
-4. Set the build settings:
-
-   | Setting              | Value           |
-   | :------------------- | :-------------- |
-   | **Build command**    | `npm run build` |
-   | **Publish directory**| `dist`          |
-   | **Node version**     | 22 (matches `.nvmrc`) |
-
-5. Click **Create**. Kinsta installs dependencies, runs the build, and publishes
-   `dist/`. First deploy takes ~1–2 minutes.
-
-### 3. Point the domain (caseonthecase.com)
-
-1. In the static site's **Domains** tab, add `caseonthecase.com` and
-   `www.caseonthecase.com`.
-2. Kinsta shows the DNS records to set. At your domain registrar, add them:
-   - Typically a `CNAME` (or `A`/`ALIAS`) for the apex/`www` as Kinsta specifies.
-3. Kinsta provisions a free SSL certificate automatically once DNS resolves
-   (can take from minutes up to a few hours to propagate).
-
-> The site's canonical URLs are already hard-coded to
-> `https://caseonthecase.com` in `src/site.config.ts`, so links, sitemap, and
-> structured data will be correct the moment the domain goes live.
-
----
-
-## Ongoing workflow
-
-To publish anything (new story, design change), just commit and push:
+Deployment is a single command, run from the project root on the dev machine:
 
 ```powershell
+.\deploy-kinsta.ps1
+```
+
+That script:
+1. Builds the site (`npm run build` → `dist/`)
+2. Packages `dist/` into a tarball
+3. Uploads it over SSH (**key auth**, no password) and extracts it into the
+   server's `public/` web root, replacing the previous build
+
+### Server / connection details
+
+| Item | Value |
+| :--- | :--- |
+| SSH host | `40.233.76.229` · port `12866` |
+| User | `caseonthecase` |
+| Web root | `/www/caseonthecase_753/public` |
+| Deploy key | `~/.ssh/kinsta_caseonthecase` (public half is in the server's `authorized_keys`) |
+| Host key | `SHA256:mo6n9LE97U+Y2wpB5WcTKu2R5tlWLzo9/fy+2O6NPoc` |
+| Temp URL | https://caseonthecase.kinsta.cloud/ |
+
+Because deploys use the SSH **key**, the SFTP/SSH **password** can be rotated in
+MyKinsta at any time without breaking deployment. (It should be rotated — it was
+shared during setup.)
+
+## Typical workflow
+
+```powershell
+# 1. Make changes (e.g. add a story in src/content/stories/)
+# 2. Commit to GitHub (source of truth)
 git add .
 git commit -m "Add story: <title>"
 git push
+
+# 3. Publish to the live server
+.\deploy-kinsta.ps1
 ```
 
-Kinsta detects the push, rebuilds, and deploys. No dashboard needed.
+## Going live on caseonthecase.com
 
----
+The site currently serves on the Kinsta temp domain. To switch to the real
+domain:
+
+1. In MyKinsta → this site → **Domains** → **Add domain**: add `caseonthecase.com`
+   and `www.caseonthecase.com`.
+2. Kinsta shows DNS records (A / CNAME). Add them at the registrar for
+   `caseonthecase.com`.
+3. Kinsta auto-provisions SSL once DNS resolves.
+
+Canonical URLs are already hard-coded to `https://caseonthecase.com` in
+`src/site.config.ts`, so SEO/structured data are correct the moment DNS flips.
 
 ## Post-launch SEO/GEO checklist
 
-Once the domain is live and SSL is active:
-
-- [ ] **Google Search Console** — verify the domain, submit
-      `https://caseonthecase.com/sitemap-index.xml`.
-- [ ] **Bing Webmaster Tools** — verify + submit the same sitemap (also feeds
-      ChatGPT/Copilot search).
-- [ ] Confirm `https://caseonthecase.com/robots.txt`, `/llms.txt`, and
-      `/rss.xml` all load.
-- [ ] Validate a story's structured data with Google's
-      [Rich Results Test](https://search.google.com/test/rich-results).
-- [ ] Run [PageSpeed Insights](https://pagespeed.web.dev/) — expect strong Core
-      Web Vitals out of the box.
-- [ ] (Optional) Add real social profiles to `SOCIAL` in `src/site.config.ts`
-      so they appear in `sameAs` schema.
-
----
-
-## Alternative: deploy without GitHub
-
-If you'd rather not use Git hosting, Kinsta Static Sites also support manual
-deploys, and the standard Kinsta **Application Hosting** can run the build too.
-Git-based is recommended because it makes every future update a one-line push.
-The built site is just the static `dist/` folder, so it can also be hosted on any
-static host (Cloudflare Pages, Netlify, etc.) if you ever migrate.
+- [ ] **Google Search Console** — verify domain, submit `/sitemap-index.xml`
+- [ ] **Bing Webmaster Tools** — verify + submit the same sitemap
+- [ ] Validate a story with Google's
+      [Rich Results Test](https://search.google.com/test/rich-results)
+- [ ] [PageSpeed Insights](https://pagespeed.web.dev/) sanity check
+- [ ] Add real social profiles to `SOCIAL` in `src/site.config.ts` (feeds
+      `sameAs` schema)
+- [ ] Rotate the Kinsta SFTP/SSH password
