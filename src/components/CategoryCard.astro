@@ -4,6 +4,7 @@
  * marginal numeral rather than a headline, and each section uses its own call to
  * action so the grid doesn't read as one repeated label.
  */
+import { Image } from 'astro:assets';
 interface Props {
   title: string;
   slug: string;
@@ -11,11 +12,17 @@ interface Props {
   code?: string;
   cta?: string;
   count?: number;
+  image?: ImageMetadata;
 }
-const { title, slug, blurb, code, cta = 'Explore the cases', count } = Astro.props;
+const { title, slug, blurb, code, cta = 'Explore the cases', count, image } = Astro.props;
 ---
 
-<a href={`/${slug}`} class="catcard" aria-label={`${title}, ${cta}`}>
+<a href={`/${slug}`} class:list={['catcard', { 'has-image': image }]} aria-label={`${title}, ${cta}`}>
+  {image && (
+    <span class="catcard__bg" aria-hidden="true">
+      <Image src={image} alt="" widths={[400, 700]} sizes="(max-width: 560px) 100vw, 360px" loading="lazy" class="catcard__bgimg" />
+    </span>
+  )}
   {code && <span class="catcard__num" aria-hidden="true">{code}</span>}
   <div class="catcard__head">
     <h3 class="catcard__title">{title}</h3>
@@ -30,6 +37,7 @@ const { title, slug, blurb, code, cta = 'Explore the cases', count } = Astro.pro
 <style>
   .catcard {
     position: relative;
+    isolation: isolate;
     display: flex;
     flex-direction: column;
     gap: 0.65rem;
@@ -44,7 +52,27 @@ const { title, slug, blurb, code, cta = 'Explore the cases', count } = Astro.pro
     overflow: hidden;
     transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
     height: 100%;
+    min-height: 13.5rem;
   }
+
+  /* Optional atmospheric background image, with a dark veil so the label,
+     blurb, and call to action stay fully readable. */
+  .catcard__bg { position: absolute; inset: 0; z-index: 0; }
+  .catcard__bgimg {
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
+    filter: saturate(0.72) contrast(1.04) brightness(0.62);
+    transition: transform 0.4s ease;
+  }
+  .catcard.has-image::before {
+    content: '';
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, rgba(11,11,13,0.62) 0%, rgba(11,11,13,0.8) 60%, rgba(11,11,13,0.9) 100%);
+  }
+  .catcard.has-image:hover .catcard__bgimg { transform: scale(1.04); }
+  .catcard.has-image .catcard__num,
+  .catcard.has-image .catcard__head,
+  .catcard.has-image .catcard__blurb,
+  .catcard.has-image .catcard__cta { position: relative; z-index: 2; }
   .catcard::after {
     /* a thin accent that wakes up on hover */
     content: '';
@@ -53,6 +81,7 @@ const { title, slug, blurb, code, cta = 'Explore the cases', count } = Astro.pro
     width: 3px;
     background: var(--accent);
     opacity: 0;
+    z-index: 3;
     transition: opacity 0.18s ease;
   }
   .catcard:hover {

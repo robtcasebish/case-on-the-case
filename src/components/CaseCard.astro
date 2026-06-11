@@ -2,6 +2,8 @@
 import { Image } from 'astro:assets';
 import Badge from './Badge.astro';
 import { categorySlug } from '../site.config';
+// Shared fallback artwork for case files still in research (no cover of their own).
+import fallbackImg from '../assets/fallbacks/research-in-progress.png';
 
 interface Props {
   href: string;
@@ -55,6 +57,8 @@ if (readingTime) meta.push(`${readingTime} min`);
       <div class="ccard__media">
         {cover ? (
           <Image src={cover} alt={coverAlt ?? ''} widths={[400, 800, 1200]} sizes={variant === 'featured' ? '(max-width: 800px) 100vw, 720px' : '(max-width: 600px) 100vw, 400px'} loading="lazy" class="ccard__img" />
+        ) : placeholder ? (
+          <Image src={fallbackImg} alt="" widths={[400, 800, 1200]} sizes="(max-width: 600px) 100vw, 400px" loading="lazy" class="ccard__img ccard__img--fallback" />
         ) : (
           <div class="ccard__placeholder" aria-hidden="true">
             <span class="ccard__filecode">{fileCode ?? 'CASE FILE'}</span>
@@ -120,6 +124,8 @@ if (readingTime) meta.push(`${readingTime} min`);
     transition: transform 0.4s ease;
   }
   .ccard:hover .ccard__img { transform: scale(1.04); }
+  /* Shared in-progress artwork sits a touch quieter than a case's own cover. */
+  .ccard__img--fallback { filter: saturate(0.6) contrast(1.04) brightness(0.74); }
   .ccard__placeholder {
     position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
     background:

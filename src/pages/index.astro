@@ -4,9 +4,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import FeaturedHero from '../components/FeaturedHero.astro';
 import CaseCard from '../components/CaseCard.astro';
 import CategoryCard from '../components/CategoryCard.astro';
+import { Image } from 'astro:assets';
 import { SITE, CATEGORIES, absoluteUrl, categoryByTitle } from '../site.config';
 import { itemListSchema } from '../lib/schema';
 import { readingTimeFromText, caseSlug } from '../lib/utils';
+
+// Editorial imagery, optimised through Astro's asset pipeline.
+import heroImg from '../assets/site/homepage-hero-case-files.png';
+import catSolved from '../assets/categories/solved-cold-cases.png';
+import catFamous from '../assets/categories/famous-cases.png';
+import catMissing from '../assets/categories/missing-vanished.png';
+import catEvidence from '../assets/categories/evidence-room.png';
+import catCitizen from '../assets/categories/citizen-sleuths.png';
+import catLaw from '../assets/categories/changed-the-law.png';
+
+const CATEGORY_IMAGES: Record<string, ImageMetadata> = {
+  'solved-cold-cases': catSolved,
+  'famous-cases': catFamous,
+  'missing-and-vanished': catMissing,
+  'the-evidence-room': catEvidence,
+  'citizen-sleuths': catCitizen,
+  'cases-that-changed-the-law': catLaw,
+};
 
 const all = (await getCollection('cases', (c) => !c.data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -45,10 +64,15 @@ const listSchema = itemListSchema(
 <BaseLayout title={SITE.name} description={SITE.description} path="/" schemaNodes={[listSchema]}>
   <!-- 1. HERO -->
   <section class="hero">
-    <div class="container">
-      <p class="hero__brandline">The independent true-crime archive</p>
-      <h1 class="hero__title">Case on the Case</h1>
-      <p class="hero__sub">{SITE.tagline}</p>
+    <div class="hero__masthead">
+      <div class="hero__bg" aria-hidden="true">
+        <Image src={heroImg} alt="" widths={[768, 1200, 1672]} sizes="100vw" loading="eager" fetchpriority="high" class="hero__bgimg" />
+      </div>
+      <div class="container hero__content">
+        <p class="hero__brandline">The independent true-crime archive</p>
+        <h1 class="hero__title">Case on the Case</h1>
+        <p class="hero__sub">{SITE.tagline}</p>
+      </div>
     </div>
 
     {featured && (
@@ -102,7 +126,7 @@ const listSchema = itemListSchema(
       <p class="section__intro">Six sections, one archive. Start wherever the case pulls you.</p>
       <div class="grid grid--cats">
         {CATEGORIES.map((c) => (
-          <CategoryCard title={c.title} slug={c.slug} blurb={c.blurb} code={c.code} cta={c.cta} count={counts[c.title]} />
+          <CategoryCard title={c.title} slug={c.slug} blurb={c.blurb} code={c.code} cta={c.cta} count={counts[c.title]} image={CATEGORY_IMAGES[c.slug]} />
         ))}
       </div>
     </div>
@@ -188,7 +212,29 @@ const listSchema = itemListSchema(
 </BaseLayout>
 
 <style>
-  .hero { padding-block: clamp(2.5rem, 6vw, 4.5rem) 0; }
+  .hero { padding-block: 0; }
+  /* Masthead sits over the cover image; a left-weighted dark gradient keeps the
+     wordmark and tagline fully legible while the cinematic image reads through. */
+  .hero__masthead {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-block: clamp(3rem, 9vw, 6.5rem);
+    border-bottom: 1px solid var(--border);
+  }
+  .hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .hero__bgimg {
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
+    filter: saturate(0.85) contrast(1.05) brightness(0.85);
+  }
+  .hero__masthead::after {
+    content: '';
+    position: absolute; inset: 0; z-index: 1;
+    background:
+      linear-gradient(90deg, rgba(11,11,13,0.95) 0%, rgba(11,11,13,0.82) 42%, rgba(11,11,13,0.48) 78%, rgba(11,11,13,0.35) 100%),
+      linear-gradient(180deg, rgba(11,11,13,0.25) 0%, rgba(11,11,13,0.55) 100%);
+  }
+  .hero__content { position: relative; z-index: 2; }
   .hero__brandline {
     font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.22em;
     text-transform: uppercase; color: var(--beige);

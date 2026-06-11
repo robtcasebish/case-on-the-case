@@ -3,6 +3,8 @@ title: "D. B. Cooper"
 description: "On the night before Thanksgiving in 1971, a calm, well-dressed man hijacked a jetliner over the Pacific Northwest, parachuted into the dark with $200,000, and vanished, the only unsolved skyjacking in U.S. history."
 oneSentence: "On the night before Thanksgiving in 1971, a quiet, well-dressed man hijacked a passenger jet over the Pacific Northwest, parachuted into the darkness with $200,000 in ransom, and was never identified."
 dek: "More than half a century later, the only unsolved skyjacking in American history is still exactly that, unsolved."
+cover: ../../assets/cases/db-cooper.png
+coverAlt: "Cinematic night scene of an airliner on a rain-slicked tarmac, with a parachute descending against a dark sky."
 pubDate: 2026-05-10
 updatedDate: 2026-06-10
 categories: ["Famous Cases", "Missing & Vanished"]
