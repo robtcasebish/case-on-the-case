@@ -13,14 +13,21 @@ location: "Fort Wayne, Indiana, USA"
 caseYear: 1988
 tags: ["DNA", "Genetic Genealogy", "Child Victim", "Solved", "Cold Case", "Indiana", "1988"]
 sources:
-  - title: "Investigation and 2018 arrest in the April Tinsley case"
-    publisher: "Indiana State Police / Fort Wayne Police Department"
-  - title: "Court proceedings: State of Indiana v. John D. Miller (guilty plea and sentencing, 2018)"
-    publisher: "Allen County, Indiana courts"
-  - title: "Forensic genetic genealogy analysis in the Tinsley case"
-    publisher: "Parabon NanoLabs"
-  - title: "Contemporaneous and anniversary reporting on the April Tinsley case (1988–2018)"
-    publisher: "The Journal Gazette / Associated Press"
+  - title: "Indiana man who taunted authorities pleads guilty to the 1988 murder of April Tinsley"
+    url: "https://www.nbcnews.com/news/us-news/indiana-man-who-taunted-police-pleads-guilty-1988-murder-april-n945341"
+    publisher: "NBC News"
+  - title: "Tinsley Killer Pleads Guilty In '88 Case"
+    url: "https://www.wfyi.org/news/articles/tinsley-killer-pleads-guilty-in-88-case"
+    publisher: "WFYI (NPR)"
+  - title: "Tinsley Killer Gets 80 Year Prison Sentence"
+    url: "https://www.wboi.org/news/2018-12-21/tinsley-killer-gets-80-year-prison-sentence"
+    publisher: "WBOI (NPR)"
+  - title: "Man pleads guilty after arrest in Indiana girl's cold case murder solved via DNA website"
+    url: "https://www.foxnews.com/us/man-pleads-guilty-after-arrest-in-indiana-girls-cold-case-murder-using-dna-website"
+    publisher: "Fox News"
+  - title: "Killer in 1988 abduction, murder dies seven years into his sentence"
+    url: "https://www.wboi.org/public-safety/2025-09-05/killer-in-1988-abduction-murder-dies-seven-years-into-his-sentence"
+    publisher: "WBOI (NPR)"
 ---
 
 ## Who Was Involved
@@ -88,7 +95,8 @@ The case is **solved and closed.** In **December 2018**, according to court
 records and reporting, **John D. Miller pleaded guilty to murder and child
 molestation** and was **sentenced to 80 years in prison.** He is the only person
 charged in April's death, and his conviction rests on his own plea and on the DNA
-evidence at the center of the case.
+evidence at the center of the case. Miller died in prison in 2025, about seven
+years into the sentence.
 
 For a case that spent three decades without an answer, the resolution was, by
 true-crime standards, swift once the genealogy work began, a fact that has only

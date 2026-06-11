@@ -13,16 +13,18 @@ location: "Chicago area, USA"
 caseYear: 1982
 tags: ["product tampering", "poisoning", "FDA", "consumer safety", "1980s", "unsolved"]
 sources:
-  - title: "Archival reporting on the 1982 Chicago Tylenol murders"
-    publisher: "Chicago Tribune"
-  - title: "Tamper-resistant packaging requirements for over-the-counter products (1982–1983)"
-    publisher: "U.S. Food and Drug Administration (FDA)"
-  - title: "Federal Anti-Tampering Act of 1983 (Public Law 98-127)"
-    publisher: "U.S. Congress"
-  - title: "The 1982 Tylenol recall and crisis response"
-    publisher: "Johnson & Johnson / McNeil Consumer Products historical materials"
-  - title: "Renewed investigation and 2009 case review"
-    publisher: "Federal Bureau of Investigation (FBI)"
+  - title: "How the Tylenol murders of 1982 changed the way we consume medication"
+    url: "https://www.pbs.org/newshour/health/tylenol-murders-1982"
+    publisher: "PBS NewsHour"
+  - title: "How the 1982 Tylenol Poisonings Nearly Canceled Halloween"
+    url: "https://www.history.com/articles/extra-strength-tylenol-poisonings-1982"
+    publisher: "HISTORY"
+  - title: "The Chicago Tylenol Murders"
+    url: "https://www.chicagohistory.org/tylenol-murders/"
+    publisher: "Chicago History Museum"
+  - title: "People, politics and poison: the Tylenol murders revisited forty years later"
+    url: "https://publichealth.uic.edu/news-stories/people-politics-and-poison-the-tylenol-murders-revisited-forty-years-later/"
+    publisher: "University of Illinois Chicago, School of Public Health"
 ---
 
 ## Who Was Involved

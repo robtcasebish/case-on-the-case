@@ -15,13 +15,18 @@ featured: true
 placeholder: false
 tags: ["skyjacking", "FBI", "unsolved", "1970s", "aviation"]
 sources:
-  - title: "D.B. Cooper Hijacking, Famous Cases & Criminals"
+  - title: "D.B. Cooper Hijacking (Famous Cases & Criminals)"
     url: "https://www.fbi.gov/history/famous-cases/db-cooper-hijacking"
-    publisher: "Federal Bureau of Investigation (FBI)"
-  - title: "D.B. Cooper Investigation Officially Suspended (July 2016)"
-    publisher: "Federal Bureau of Investigation (FBI)"
-  - title: "Contemporaneous reporting on the hijacking of Northwest Orient Flight 305 (1971)"
-    publisher: "Archival news coverage"
+    publisher: "Federal Bureau of Investigation"
+  - title: "Update on Investigation of 1971 Hijacking by D.B. Cooper (July 2016)"
+    url: "https://www.fbi.gov/contact-us/field-offices/seattle/news/press-releases/update-on-investigation-of-1971-hijacking-by-d.b.-cooper"
+    publisher: "Federal Bureau of Investigation, Seattle Field Office"
+  - title: "FBI Is Giving Up On Solving The Mystery Of D.B. Cooper"
+    url: "https://www.npr.org/sections/thetwo-way/2016/07/13/485839902/fbi-is-giving-up-on-solving-the-mystery-of-d-b-cooper"
+    publisher: "NPR"
+  - title: "Case closed: FBI no longer looking for D.B. Cooper"
+    url: "https://www.seattletimes.com/seattle-news/law-justice/case-closed-fbi-no-longer-looking-for-db-cooper/"
+    publisher: "The Seattle Times"
 ---
 
 ## Who Was Involved
