@@ -6,6 +6,12 @@ pubDate: 2026-03-17
 categories: ["Cases That Changed the Law"]
 caseYear: 1981
 placeholder: true
+# Retired duplicate. This 1981 "changed the law" subject is the Adam Walsh case,
+# already covered at /cases/adam-walsh (which carries the missing-children and
+# Adam Walsh Act legacy). draft:true removes it from every public listing and
+# from page generation; astro.config.mjs redirects this slug to /cases/adam-walsh.
+# TODO: delete this file once the redirect is confirmed in production.
+draft: true
 ---
 
 ## Who Was Involved
