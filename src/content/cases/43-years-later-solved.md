@@ -1,6 +1,8 @@
 ---
 title: "43 Years Later: Solved"
 description: "A case that stayed cold for forty-three years before it was finally closed."
+cover: ../../assets/cases/43-years-later-solved.png
+coverAlt: "An old 1981 calendar and investigation files on a desk, used as symbolic cover art for 43 Years Later: Solved."
 oneSentence: "A case that stayed cold for 43 years before investigators finally closed it."
 pubDate: 2026-05-22
 categories: ["Solved Cold Cases"]

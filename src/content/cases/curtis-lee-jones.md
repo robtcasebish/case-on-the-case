@@ -1,6 +1,8 @@
 ---
 title: "Curtis Lee Jones"
 description: "A cold case revisited and resolved years later."
+cover: ../../assets/cases/curtis-lee-jones.png
+coverAlt: "A rural road at sunset leading toward a small town, used as symbolic cover art for the Curtis Lee Jones case."
 oneSentence: "A name that stayed in an open file for years before the case finally closed."
 pubDate: 2026-06-03
 categories: ["Solved Cold Cases"]

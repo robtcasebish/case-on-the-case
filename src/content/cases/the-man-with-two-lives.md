@@ -1,6 +1,8 @@
 ---
 title: "The Man with Two Lives"
 description: "A man whose hidden double life unraveled a long-cold case."
+cover: ../../assets/cases/the-man-with-two-lives.png
+coverAlt: "Two shadowed identity documents on a map, used as symbolic cover art for The Man with Two Lives."
 oneSentence: "A hidden double life that, once exposed, unraveled a long-cold case."
 pubDate: 2026-05-28
 categories: ["Solved Cold Cases"]

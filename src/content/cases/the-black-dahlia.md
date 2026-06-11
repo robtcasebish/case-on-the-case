@@ -1,6 +1,8 @@
 ---
 title: "The Black Dahlia"
 description: "The 1947 Los Angeles murder that became one of the most enduring unsolved cases in American history."
+cover: ../../assets/cases/the-black-dahlia.png
+coverAlt: "A dark flower and rain-soaked noir city street, used as symbolic cover art for The Black Dahlia."
 oneSentence: "The 1947 Los Angeles murder of Elizabeth Short, one of the most infamous unsolved cases in American history."
 pubDate: 2026-05-13
 categories: ["Famous Cases"]

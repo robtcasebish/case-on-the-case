@@ -1,6 +1,8 @@
 ---
 title: "The Somerton Man / Tamam Shud"
 description: "The 1948 Tamam Shud case: an unidentified man on an Australian beach and a decades-long identity mystery."
+cover: ../../assets/cases/the-somerton-man.png
+coverAlt: "A dusk beach scene with a small paper note, used as symbolic cover art for the Somerton Man mystery."
 oneSentence: "A man found dead on an Australian beach in 1948, his identity a mystery for more than seventy years."
 pubDate: 2026-05-07
 categories: ["Famous Cases","Missing & Vanished"]

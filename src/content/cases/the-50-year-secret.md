@@ -1,6 +1,8 @@
 ---
 title: "The 50-Year Secret"
 description: "A secret kept for fifty years that finally cracked a cold case open."
+cover: ../../assets/cases/the-50-year-secret.png
+coverAlt: "A sealed envelope on a vintage desk, used as symbolic cover art for The 50-Year Secret."
 oneSentence: "A secret kept for half a century, and the cold case it finally cracked open."
 pubDate: 2026-05-31
 categories: ["Solved Cold Cases"]

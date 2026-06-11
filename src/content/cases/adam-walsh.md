@@ -1,6 +1,8 @@
 ---
 title: "Adam Walsh"
 description: "A 1981 case that helped launch the modern missing-children movement and lasting legal change."
+cover: ../../assets/cases/adam-walsh.png
+coverAlt: "An empty playground at misty twilight, used as symbolic cover art for the Adam Walsh case."
 oneSentence: "A 1981 abduction and murder that galvanized a national movement for missing children."
 pubDate: 2026-05-16
 categories: ["Famous Cases","Cases That Changed the Law"]

@@ -1,6 +1,8 @@
 ---
 title: "Sheri Jo Elliott"
 description: "A long-unsolved case revisited and ultimately resolved years later."
+cover: ../../assets/cases/sheri-jo-elliott.png
+coverAlt: "A sealed archival case folder on a vintage investigation desk, used as symbolic cover art for the Sheri Jo Elliott case."
 oneSentence: "A cold case that stayed open for years until investigators finally found the answer."
 pubDate: 2026-06-09
 categories: ["Solved Cold Cases"]

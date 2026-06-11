@@ -1,6 +1,8 @@
 ---
 title: "The Richmond Crown"
 description: "A cold case revisited and resolved years later."
+cover: ../../assets/cases/the-richmond-crown.png
+coverAlt: "A jeweled crown on dark velvet in an archive room, used as symbolic cover art for The Richmond Crown."
 oneSentence: "A cold case revisited and finally resolved years after it began."
 pubDate: 2026-05-25
 categories: ["Solved Cold Cases"]
