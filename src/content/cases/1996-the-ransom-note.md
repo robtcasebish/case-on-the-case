@@ -1,6 +1,12 @@
 ---
 title: "The Ransom Note: JonBenét Ramsey"
 description: "How a two-and-a-half-page handwritten ransom note became the most scrutinized piece of evidence in the unsolved 1996 killing of six-year-old JonBenét Ramsey in Boulder, Colorado."
+video:
+  title: "The Search for JonBenét's Killer (Full Episode)"
+  source: "CBS News / 48 Hours"
+  youtubeId: "07crEWbtYO4"
+  url: "https://www.youtube.com/watch?v=07crEWbtYO4"
+  note: "A CBS News 48 Hours episode on the continuing search and the DNA at the center of this unsolved case."
 cover: ../../assets/cases/1996-the-ransom-note.png
 coverAlt: "A large older home at night in winter with warm-lit windows and bare trees, used as symbolic cover art for the JonBenét Ramsey ransom note case."
 oneSentence: "The unusually long ransom note found on a Boulder staircase on December 26, 1996, anchors one of America's most contested unsolved cases, in which the Ramsey family was formally cleared by DNA in 2008."

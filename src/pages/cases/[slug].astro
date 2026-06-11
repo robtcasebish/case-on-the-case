@@ -198,6 +198,29 @@ const reviewing: [string, string][] = [
                 <p class="sources__empty">Sources are being finalised for this article.</p>
               )}
             </section>
+
+            {data.video && (
+              <section class="furtherviewing" aria-label="Further viewing">
+                <p class="sources__kicker">Further Viewing</p>
+                <h2>Further Viewing</h2>
+                <div class="video-embed">
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${data.video.youtubeId}?rel=0`}
+                    title={`Further viewing: ${data.video.title} (${data.video.source})`}
+                    loading="lazy"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+                <p class="furtherviewing__cite">
+                  <strong>{data.video.title}</strong>
+                  <span class="furtherviewing__source"> · {data.video.source}</span>
+                </p>
+                {data.video.note && <p class="furtherviewing__note">{data.video.note}</p>}
+                <p class="furtherviewing__disclaimer">Selected as supplementary viewing from an approved source. Case on the Case does not control third-party video content, and videos are supplementary, they do not replace the written sources above.</p>
+              </section>
+            )}
           </>
         )}
       </div>
@@ -433,6 +456,20 @@ const reviewing: [string, string][] = [
   .sources__list a:hover { color: var(--accent-hover); }
   .sources__pub { font-size: 0.85rem; color: var(--text-faint); }
   .sources__empty { margin-top: 0.9rem; color: var(--text-faint); font-style: italic; }
+
+  /* ---- Further viewing (approved-channel embed) --------------------------- */
+  .furtherviewing { margin-top: 2.75rem; padding-top: 1.6rem; border-top: 1px solid var(--border); }
+  .furtherviewing h2 { font-size: 1.4rem; }
+  .video-embed {
+    position: relative; aspect-ratio: 16 / 9; margin: 1.2rem 0 0.9rem;
+    border-radius: var(--radius-lg); overflow: hidden;
+    border: 1px solid var(--border-strong); background: #000;
+  }
+  .video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .furtherviewing__cite { font-size: 0.98rem; color: var(--text); }
+  .furtherviewing__source { color: var(--text-muted); }
+  .furtherviewing__note { margin-top: 0.45rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+  .furtherviewing__disclaimer { margin-top: 0.85rem; color: var(--text-faint); font-size: 0.82rem; font-style: italic; line-height: 1.55; }
 
   /* ---- Related ------------------------------------------------------------ */
   .related { margin-top: 3rem; padding-block: clamp(2rem, 5vw, 3.25rem); }

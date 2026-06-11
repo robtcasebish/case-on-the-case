@@ -1,6 +1,12 @@
 ---
 title: "D. B. Cooper"
 description: "On the night before Thanksgiving in 1971, a calm, well-dressed man hijacked a jetliner over the Pacific Northwest, parachuted into the dark with $200,000, and vanished, the only unsolved skyjacking in U.S. history."
+video:
+  title: "Declassified FBI files explore the 1971 D.B. Cooper hijacking"
+  source: "NBC News"
+  youtubeId: "g8N6RHHLGdA"
+  url: "https://www.youtube.com/watch?v=g8N6RHHLGdA"
+  note: "NBC News on the FBI's declassified files, background on the only unsolved hijacking in U.S. aviation history."
 oneSentence: "On the night before Thanksgiving in 1971, a quiet, well-dressed man hijacked a passenger jet over the Pacific Northwest, parachuted into the darkness with $200,000 in ransom, and was never identified."
 dek: "More than half a century later, the only unsolved skyjacking in American history is still exactly that, unsolved."
 cover: ../../assets/cases/db-cooper.png

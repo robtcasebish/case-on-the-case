@@ -1,6 +1,12 @@
 ---
 title: "The Tylenol Murders"
 description: "In 1982, seven people in the Chicago area died after taking Extra-Strength Tylenol capsules laced with cyanide. The killer was never identified, but the case rewrote how every sealed product is sold."
+video:
+  title: "Inside the Tylenol Murders: A Chicago Stories Documentary"
+  source: "WTTW / PBS (Chicago Stories)"
+  youtubeId: "HQBky1u29Ss"
+  url: "https://www.youtube.com/watch?v=HQBky1u29Ss"
+  note: "A public-television documentary on the 1982 poisonings and the consumer-safety changes that followed."
 oneSentence: "In the autumn of 1982, seven people around Chicago died after taking Tylenol capsules that someone had laced with cyanide, a crime that was never solved, but that changed the safety of every sealed product on the shelf."
 dek: "An unsolved poisoning that didn't just frighten a city: it rewrote consumer-safety law and the way the world packages everything it sells."
 cover: ../../assets/cases/tylenol-murders.png

@@ -36,6 +36,19 @@ const cases = defineCollection({
       cover: image().optional(),
       coverAlt: z.string().optional(),
 
+      // Optional single "Further Viewing" embed, only from an approved-channel
+      // whitelist (see docs). Rendered privacy-enhanced; omit when no suitable
+      // approved-source video exists.
+      video: z
+        .object({
+          title: z.string(),
+          source: z.string(),
+          youtubeId: z.string(),
+          url: z.string().url().optional(),
+          note: z.string().optional(),
+        })
+        .optional(),
+
       // One or more categories; the first is the primary (drives the badge + URL grouping).
       categories: z.array(z.enum(CATEGORY_ENUM)).min(1).default(['Famous Cases']),
 

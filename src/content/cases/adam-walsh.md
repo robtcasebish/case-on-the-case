@@ -1,6 +1,12 @@
 ---
 title: "Adam Walsh"
 description: "Six-year-old Adam Walsh was abducted in 1981 from a Florida department store. His parents turned grief into a national missing-children movement and a federal law that still bears his name."
+video:
+  title: "Cops: 1981 Walsh Murder Solved"
+  source: "CBS News"
+  youtubeId: "YVNz_wv-lDQ"
+  url: "https://www.youtube.com/watch?v=YVNz_wv-lDQ"
+  note: "A CBS News report on the 2008 decision to close the case, context for its unresolved legal status."
 cover: ../../assets/cases/adam-walsh.png
 coverAlt: "An empty playground at misty twilight, used as symbolic cover art for the Adam Walsh case."
 oneSentence: "Six-year-old Adam Walsh was abducted from a Florida Sears in 1981, and the case his parents refused to let fade reshaped how America searches for missing children and writes its laws."

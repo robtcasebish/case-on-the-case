@@ -1,6 +1,12 @@
 ---
 title: "Luka Magnotta"
 description: "How online animal-cruelty sleuths spent two years chasing the man who would murder Montreal student Jun Lin, and what their hunt did and did not accomplish."
+video:
+  title: "Hunting Luka Magnotta (the fifth estate)"
+  source: "CBC News (the fifth estate)"
+  youtubeId: "Vyb4fOBMWds"
+  url: "https://www.youtube.com/watch?v=Vyb4fOBMWds"
+  note: "CBC's the fifth estate traces the online hunt that surrounded the case, directly relevant to its citizen-sleuth questions."
 oneSentence: "Internet sleuths identified Luka Magnotta from cruelty videos and warned police long before he killed Concordia student Jun Lin in 2012, a case that tests the promise and peril of public online investigation."
 dek: "Citizen sleuths named a killer before the murder. It still took a Berlin café worker, not the internet, to catch him."
 pubDate: 2026-05-01
