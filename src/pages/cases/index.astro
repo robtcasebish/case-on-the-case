@@ -17,6 +17,25 @@ const counts = Object.fromEntries(
   CATEGORIES.map((c) => [c.title, all.filter((s) => s.data.categories.includes(c.title)).length]),
 );
 
+// Completed work leads; in-progress files sit in a quieter section below.
+const reported = all.filter((c) => !c.data.placeholder);
+const openFiles = all.filter((c) => c.data.placeholder);
+
+const cardProps = (s) => ({
+  href: `/cases/${caseSlug(s.id)}`,
+  title: s.data.title,
+  description: s.data.description,
+  category: s.data.categories[0],
+  status: s.data.caseStatus,
+  location: s.data.location,
+  year: s.data.caseYear,
+  readingTime: rt(s),
+  cover: s.data.cover,
+  coverAlt: s.data.coverAlt,
+  placeholder: s.data.placeholder,
+  fileCode: code(s),
+});
+
 const listSchema = itemListSchema(
   all.map((s) => ({ url: absoluteUrl(`/cases/${caseSlug(s.id)}`), name: s.data.title })),
   'All cases',
@@ -37,45 +56,59 @@ const crumbs = breadcrumbSchema([
     <header class="page__head">
       <p class="eyebrow">The complete archive</p>
       <h1>Every Case on File</h1>
-      <p class="page__lede">Browse the whole archive below, or start with a section.</p>
+      <p class="page__lede">{reported.length} reported in full, {openFiles.length} open files under review. Start with a finished case, or browse by section.</p>
     </header>
-
-    <div class="grid grid--cats cases__cats">
-      {CATEGORIES.map((c) => (
-        <CategoryCard title={c.title} slug={c.slug} blurb={c.blurb} code={c.code} cta={c.cta} count={counts[c.title]} />
-      ))}
-    </div>
   </div>
+
+  {reported.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">Reported in full</p>
+            <h2>Finished Cases</h2>
+          </div>
+          <span class="section__more">{reported.length} {reported.length === 1 ? 'file' : 'files'}</span>
+        </div>
+        <div class="grid grid--cards">
+          {reported.map((s) => <CaseCard {...cardProps(s)} />)}
+        </div>
+      </div>
+    </section>
+  )}
 
   <section class="section section--alt">
     <div class="container">
-      <div class="section__head"><h2>All Cases</h2><span class="section__more">{all.length} files</span></div>
-      {all.length > 0 ? (
-        <div class="grid grid--cards">
-          {all.map((s) => (
-            <CaseCard
-              href={`/cases/${caseSlug(s.id)}`}
-              title={s.data.title}
-              description={s.data.description}
-              category={s.data.categories[0]}
-              status={s.data.caseStatus}
-              location={s.data.location}
-              year={s.data.caseYear}
-              readingTime={rt(s)}
-              cover={s.data.cover}
-              coverAlt={s.data.coverAlt}
-              placeholder={s.data.placeholder}
-              fileCode={code(s)}
-            />
-          ))}
+      <div class="section__head">
+        <div>
+          <p class="eyebrow">Browse the index</p>
+          <h2>The Index</h2>
         </div>
-      ) : (
-        <p class="empty">No cases published yet, check back soon.</p>
-      )}
+        <span class="section__more">Six sections</span>
+      </div>
+      <div class="grid grid--cats">
+        {CATEGORIES.map((c) => (
+          <CategoryCard title={c.title} slug={c.slug} blurb={c.blurb} code={c.code} cta={c.cta} count={counts[c.title]} />
+        ))}
+      </div>
     </div>
   </section>
-</BaseLayout>
 
-<style>
-  .cases__cats { margin-bottom: 1rem; }
-</style>
+  {openFiles.length > 0 && (
+    <section class="section openfiles">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">Still under review</p>
+            <h2>Open Files</h2>
+          </div>
+          <span class="section__more">{openFiles.length} {openFiles.length === 1 ? 'file' : 'files'}</span>
+        </div>
+        <p class="section__intro">Case files we're assembling from public records and archived reporting. Each opens to what we're verifying before publication.</p>
+        <div class="grid grid--cards">
+          {openFiles.map((s) => <CaseCard {...cardProps(s)} />)}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

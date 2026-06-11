@@ -39,7 +39,8 @@ const slug = (c) => `/cases/${caseSlug(c.id)}`;
 const completed = all.filter((c) => !c.data.placeholder);
 const featured = all.find((c) => c.data.featured && !c.data.placeholder) ?? completed[0] ?? all[0];
 const flagships = completed.filter((c) => c.id !== featured?.id);
-const onDesk = all.filter((c) => c.id !== featured?.id).slice(0, 6);
+// Quieter, lower section: files still being assembled.
+const openFiles = all.filter((c) => c.data.placeholder).slice(0, 6);
 const counts = Object.fromEntries(
   CATEGORIES.map((c) => [c.title, all.filter((s) => s.data.categories.includes(c.title)).length]),
 );
@@ -132,20 +133,20 @@ const listSchema = itemListSchema(
     </div>
   </section>
 
-  <!-- 4. FROM THE CASE DESK, compact archive list -->
-  {onDesk.length > 0 && (
+  <!-- 4. OPEN FILES, quieter in-progress list, kept below the finished work -->
+  {openFiles.length > 0 && (
     <section class="section section--alt">
       <div class="container">
         <div class="section__head">
           <div>
-            <p class="eyebrow">Working file</p>
-            <h2>From the Case Desk</h2>
+            <p class="eyebrow">Still under review</p>
+            <h2>Open Files</h2>
           </div>
-          <a class="section__more" href="/cases">Open the archive →</a>
+          <a class="section__more" href="/cases">All open files →</a>
         </div>
-        <p class="section__intro">What's open on the desk right now, some cases filed and finished, others still in research.</p>
+        <p class="section__intro">Cases we're still assembling from public records and archived reporting. Each opens to what we're verifying before the full account goes up.</p>
         <div class="grid grid--list">
-          {onDesk.map((c) => <CaseCard {...card(c, 'compact')} />)}
+          {openFiles.map((c) => <CaseCard {...card(c, 'compact')} />)}
         </div>
       </div>
     </section>

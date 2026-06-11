@@ -1,10 +1,27 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CaseCard from '../components/CaseCard.astro';
 import { SITE, CATEGORIES, absoluteUrl, categoryByTitle } from '../site.config';
 import { breadcrumbSchema, itemListSchema } from '../lib/schema';
 import { readingTimeFromText, caseSlug } from '../lib/utils';
+
+import catSolved from '../assets/categories/solved-cold-cases.png';
+import catFamous from '../assets/categories/famous-cases.png';
+import catMissing from '../assets/categories/missing-vanished.png';
+import catEvidence from '../assets/categories/evidence-room.png';
+import catCitizen from '../assets/categories/citizen-sleuths.png';
+import catLaw from '../assets/categories/changed-the-law.png';
+
+const CATEGORY_IMAGES: Record<string, ImageMetadata> = {
+  'solved-cold-cases': catSolved,
+  'famous-cases': catFamous,
+  'missing-and-vanished': catMissing,
+  'the-evidence-room': catEvidence,
+  'citizen-sleuths': catCitizen,
+  'cases-that-changed-the-law': catLaw,
+};
 
 export async function getStaticPaths() {
   const all = await getCollection('cases', (c) => !c.data.draft);
@@ -23,6 +40,7 @@ export async function getStaticPaths() {
 const { cat, items } = Astro.props;
 const path = `/${cat.slug}`;
 const reported = items.filter((i) => !i.data.placeholder).length;
+const catImg = CATEGORY_IMAGES[cat.slug];
 
 const listSchema = itemListSchema(
   items.map((s) => ({ url: absoluteUrl(`/cases/${caseSlug(s.id)}`), name: s.data.title })),
@@ -41,8 +59,13 @@ const crumbs = breadcrumbSchema([
   path={path}
   schemaNodes={[listSchema, crumbs]}
 >
-  <section class="cathero">
-    <div class="container">
+  <section class:list={['cathero', { 'has-image': catImg }]}>
+    {catImg && (
+      <div class="cathero__bg" aria-hidden="true">
+        <Image src={catImg} alt="" widths={[800, 1280, 1600]} sizes="100vw" loading="eager" fetchpriority="high" class="cathero__bgimg" />
+      </div>
+    )}
+    <div class="container cathero__inner">
       <nav class="crumbs" aria-label="Breadcrumb">
         <a href="/">Home</a> <span aria-hidden="true">/</span>
         <a href="/cases">Cases</a> <span aria-hidden="true">/</span>
@@ -88,12 +111,29 @@ const crumbs = breadcrumbSchema([
 
 <style>
   .cathero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     padding-block: clamp(2.5rem, 5vw, 4rem) 1.5rem;
     border-bottom: 1px solid var(--border);
     background:
       radial-gradient(110% 80% at 0% -20%, rgba(193,18,31,0.09) 0%, transparent 55%),
       var(--bg-elevated);
   }
+  /* Cinematic category cover behind a left-weighted dark gradient. */
+  .cathero.has-image { padding-block: clamp(3.25rem, 7vw, 5.5rem) clamp(1.75rem, 3vw, 2.25rem); }
+  .cathero__bg { position: absolute; inset: 0; z-index: 0; }
+  .cathero__bgimg {
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
+    filter: saturate(0.8) contrast(1.05) brightness(0.78);
+  }
+  .cathero.has-image::after {
+    content: ''; position: absolute; inset: 0; z-index: 1;
+    background:
+      linear-gradient(90deg, rgba(11,11,13,0.95) 0%, rgba(11,11,13,0.82) 45%, rgba(11,11,13,0.5) 100%),
+      linear-gradient(180deg, rgba(11,11,13,0.2) 0%, rgba(11,11,13,0.72) 100%);
+  }
+  .cathero__inner { position: relative; z-index: 2; }
   .crumbs { font-size: 0.8rem; color: var(--text-faint); margin-bottom: 1.4rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
   .crumbs a { color: var(--text-muted); text-decoration: none; }
   .crumbs a:hover { color: var(--accent-hover); }
