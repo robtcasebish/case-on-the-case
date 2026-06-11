@@ -1,6 +1,12 @@
 ---
 title: "Green River Killer"
 description: "A long-running serial-murder investigation around Seattle and the Green River, beginning in 1982 and closed two decades later when DNA evidence identified the killer."
+video:
+  title: "The 20-Year Hunt for the Green River Killer (Cold Case Files)"
+  source: "A&E (Cold Case Files)"
+  youtubeId: "pTE5bKdqej0"
+  url: "https://www.youtube.com/watch?v=pTE5bKdqej0"
+  note: "A&E's Cold Case Files on the two-decade investigation and the DNA evidence that finally identified Gary Ridgway."
 cover: ../../assets/cases/green-river-killer.png
 coverAlt: "A foggy Pacific Northwest riverbank at dawn bordered by dense evergreen forest, used as symbolic cover art for the Green River Killer case."
 oneSentence: "For two decades, the murders of dozens of women near Seattle's Green River went unsolved, until DNA evidence finally gave the case a name and gave grieving families the truth."

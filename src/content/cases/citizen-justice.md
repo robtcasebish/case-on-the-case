@@ -1,6 +1,12 @@
 ---
 title: "The Night Stalker: When the Public Closed In"
 description: "How the public ended the Night Stalker's reign: a released mug shot, a recognized face, and East Los Angeles residents who chased down and held Richard Ramirez until police arrived on August 31, 1985."
+video:
+  title: "Arrest in the LA serial killings (From the Archives)"
+  source: "NBC Los Angeles (From the Archives)"
+  youtubeId: "PZwN0N7rQ5g"
+  url: "https://www.youtube.com/watch?v=PZwN0N7rQ5g"
+  note: "Archival NBC Los Angeles coverage of the 1985 arrest that ended the Night Stalker manhunt."
 cover: ../../assets/cases/citizen-justice.png
 coverAlt: "An empty Los Angeles street at first light with long shadows and low sun, used as symbolic cover art for the Night Stalker capture."
 oneSentence: "After his photograph blanketed California's newsstands and airwaves, the Night Stalker was recognized on the street and subdued by ordinary East Los Angeles residents on August 31, 1985, a rare case of citizens ending a serial murderer's spree."

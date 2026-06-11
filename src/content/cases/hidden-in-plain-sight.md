@@ -1,6 +1,12 @@
 ---
 title: "Hidden in Plain Sight: The Golden State Killer"
 description: "How investigators used investigative genetic genealogy and the GEDmatch database to identify the Golden State Killer, Joseph James DeAngelo, a former police officer hidden in plain sight for four decades."
+video:
+  title: "Police matched DNA from a public database to the Golden State Killer suspect"
+  source: "CBS News"
+  youtubeId: "0_sdV7QPlB4"
+  url: "https://www.youtube.com/watch?v=0_sdV7QPlB4"
+  note: "CBS News on how investigators used a public genealogy database to identify the suspect."
 cover: ../../assets/cases/hidden-in-plain-sight.png
 coverAlt: "A quiet California-style suburban street at night beneath a single streetlight, used as symbolic cover art for the Golden State Killer case."
 oneSentence: "For more than 40 years the Golden State Killer hid behind an ordinary life until, in 2018, investigators uploaded crime-scene DNA to a public genealogy database, built a family tree, and identified former police officer Joseph James DeAngelo."

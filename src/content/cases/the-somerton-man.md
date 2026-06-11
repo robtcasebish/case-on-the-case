@@ -1,6 +1,12 @@
 ---
 title: "The Somerton Man / Tamam Shud"
 description: "The 1948 Tamam Shud case: an unidentified man dead on an Adelaide beach, a cryptic scrap of poetry, and a seventy-year hunt for his name."
+video:
+  title: "Somerton Man identified as a Melbourne electrical engineer, researcher says"
+  source: "ABC News (Australia)"
+  youtubeId: "L3vvBg6k-yc"
+  url: "https://www.youtube.com/watch?v=L3vvBg6k-yc"
+  note: "ABC News (Australia) on the 2022 announcement that researchers had identified the man, consistent with this article noting the identification is not officially confirmed."
 cover: ../../assets/cases/the-somerton-man.png
 coverAlt: "A dusk beach scene with a small paper note, used as symbolic cover art for the Somerton Man mystery."
 oneSentence: "A well-dressed man found dead on a South Australian beach in 1948, carrying a scrap of paper reading Tamam Shud, stayed nameless for more than seventy years until DNA pointed to a forgotten Melbourne engineer."
