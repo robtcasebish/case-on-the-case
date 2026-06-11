@@ -1,6 +1,8 @@
 ---
 title: "Green River Killer"
 description: "A long-running serial-murder investigation around Seattle and the Green River, beginning in 1982 and closed two decades later when DNA evidence identified the killer."
+cover: ../../assets/cases/green-river-killer.png
+coverAlt: "A foggy Pacific Northwest riverbank at dawn bordered by dense evergreen forest, used as symbolic cover art for the Green River Killer case."
 oneSentence: "For two decades, the murders of dozens of women near Seattle's Green River went unsolved, until DNA evidence finally gave the case a name and gave grieving families the truth."
 dek: "Dozens of women lost near Seattle's Green River, a task force that refused to quit, and the DNA that finally closed a twenty-year case."
 pubDate: 2026-05-04

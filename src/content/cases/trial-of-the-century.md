@@ -1,6 +1,8 @@
 ---
 title: "The Lindbergh Kidnapping"
 description: "In 1932 the 20-month-old son of aviator Charles Lindbergh was taken from his crib near Hopewell, New Jersey. The case ended in a conviction still debated today and created federal kidnapping law."
+cover: ../../assets/cases/trial-of-the-century.png
+coverAlt: "A weathered wooden ladder leaning against a dark rural farmhouse at night, used as symbolic cover art for the Lindbergh kidnapping case."
 oneSentence: "The 1932 abduction and death of Charles Lindbergh Jr. became the era's most consuming criminal case, producing a contested conviction and the federal law that still governs kidnapping in America."
 dek: "A baby taken from a second-floor nursery, a ransom paid in marked gold, a five-week trial the press called the 'Trial of the Century,' and a verdict argued over to this day."
 pubDate: 2026-04-28

@@ -1,6 +1,8 @@
 ---
 title: "The Ransom Note: JonBenét Ramsey"
 description: "How a two-and-a-half-page handwritten ransom note became the most scrutinized piece of evidence in the unsolved 1996 killing of six-year-old JonBenét Ramsey in Boulder, Colorado."
+cover: ../../assets/cases/1996-the-ransom-note.png
+coverAlt: "A large older home at night in winter with warm-lit windows and bare trees, used as symbolic cover art for the JonBenét Ramsey ransom note case."
 oneSentence: "The unusually long ransom note found on a Boulder staircase on December 26, 1996, anchors one of America's most contested unsolved cases, in which the Ramsey family was formally cleared by DNA in 2008."
 dek: "An unusually long handwritten ransom note, a mishandled crime scene, and unidentified male DNA: inside the evidence that keeps the JonBenét Ramsey case open."
 pubDate: 2026-04-13

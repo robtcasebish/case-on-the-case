@@ -1,6 +1,8 @@
 ---
 title: "Jonelle Matthews"
 description: "Twelve-year-old Jonelle Matthews vanished from her Greeley, Colorado home in 1984. Her remains surfaced in 2019, and a former neighbor was convicted of her murder."
+cover: ../../assets/cases/jonelle-matthews.png
+coverAlt: "A quiet snow-dusted residential street at dusk with a single porch light glowing, used as symbolic cover art for the Jonelle Matthews case."
 oneSentence: "Jonelle Matthews disappeared from her Greeley home days before Christmas in 1984; nearly 35 years later her remains were found at a pipeline site, and a former neighbor was convicted of felony murder."
 dek: "A choir concert, an empty house, and 35 years of silence: how a Colorado cold case finally reached a courtroom."
 pubDate: 2026-04-25

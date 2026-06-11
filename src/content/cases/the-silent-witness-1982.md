@@ -1,6 +1,8 @@
 ---
 title: "The Silent Witness: Wayne Williams and the Fiber Evidence"
 description: "An evidence-led look at the Atlanta Child Murders and the 1982 trial of Wayne Williams, where rare textile fibers, including a distinctive 'English Olive' Luxaire carpet fiber, became the prosecution's silent witness."
+cover: ../../assets/cases/the-silent-witness-1982.png
+coverAlt: "A long bridge over a dark misty river at night with distant city lights, used as symbolic cover art for the Wayne Williams fiber evidence case."
 oneSentence: "Wayne Williams was convicted in 1982 of murdering two adults, Nathaniel Cater and Jimmy Ray Payne, on the strength of rare trace fibers, including a distinctive green 'English Olive' Luxaire carpet fiber that became the case's silent witness."
 dek: "How rare carpet, car, and bedroom fibers, the 'silent witness,' anchored the 1982 conviction of Wayne Williams, and why the wider Atlanta cases remain contested."
 pubDate: 2026-04-16
