@@ -1,6 +1,8 @@
 ---
 title: "Matthew Shepard"
 description: "The 1998 killing of University of Wyoming student Matthew Shepard near Laramie became a national catalyst for hate-crime law, culminating in the 2009 federal Matthew Shepard and James Byrd Jr. Hate Crimes Prevention Act."
+cover: ../../assets/cases/matthew-shepard.png
+coverAlt: "A weathered wooden fence on an open prairie under a wide sunset sky, used as symbolic cover art for the Matthew Shepard case."
 oneSentence: "Matthew Shepard, a 21-year-old University of Wyoming student, was attacked near Laramie in October 1998 and died days later, and the killing helped drive passage of the federal hate-crimes law that now bears his name."
 dek: "How the death of a 21-year-old student in Wyoming moved a nation, convicted two men, and reshaped American hate-crime law over the next eleven years."
 pubDate: 2026-06-05

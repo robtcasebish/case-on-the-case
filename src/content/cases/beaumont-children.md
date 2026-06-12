@@ -1,6 +1,8 @@
 ---
 title: "The Beaumont Children"
 description: "On Australia Day 1966, siblings Jane, Arnna, and Grant Beaumont vanished from Glenelg Beach near Adelaide and were never found. Six decades on, it remains one of Australia's most influential and haunting cold cases."
+cover: ../../assets/cases/beaumont-children.png
+coverAlt: "A quiet beach at sunset with a line of footprints in the sand near the water, used as symbolic cover art for the Beaumont children case."
 oneSentence: "Three young siblings vanished from a crowded Adelaide beach on Australia Day 1966, and despite one of the largest investigations in Australian history, the Beaumont children have never been found."
 dek: "The disappearance of three children from Glenelg Beach in 1966 changed how a nation watched over its young, and six decades of searches and digs have brought no answers."
 pubDate: 2026-05-22

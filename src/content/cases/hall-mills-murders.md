@@ -1,6 +1,8 @@
 ---
 title: "The Hall-Mills Murders"
 description: "In September 1922, Episcopal priest Edward Wheeler Hall and choir singer Eleanor Mills were found shot dead near New Brunswick, New Jersey. The case became a national press sensation; a 1926 trial ended in acquittals, and it was never solved."
+cover: ../../assets/cases/hall-mills-murders.png
+coverAlt: "A solitary tree in a misty field at dusk, used as symbolic cover art for the Hall-Mills murders."
 oneSentence: "The 1922 killings of Reverend Edward Wheeler Hall and Eleanor Mills became one of America's first true-crime media spectacles and remain officially unsolved."
 dek: "Two bodies beneath a crab apple tree, a forbidden romance, and a tabloid frenzy that helped invent modern true crime. A century on, the Hall-Mills case is still open."
 pubDate: 2026-05-16

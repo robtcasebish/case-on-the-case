@@ -1,6 +1,8 @@
 ---
 title: "The Boy in the Box"
 description: "How investigators, volunteers, and forensic genealogists spent 65 years restoring a name to Philadelphia's 'Boy in the Box,' identified in 2022 as Joseph Augustus Zarelli. His identity is now known; his murder is not."
+cover: ../../assets/cases/boy-in-the-box.png
+coverAlt: "An empty, weathered cardboard box on the floor of a misty forest, used as symbolic cover art for the Boy in the Box case."
 oneSentence: "For 65 years he was 'America's Unknown Child,' until DNA and genetic genealogy gave Philadelphia's Boy in the Box his name back: Joseph Augustus Zarelli."
 dek: "In 2022, Philadelphia police finally identified the boy found in a box in 1957. The breakthrough restored his name, but the question of who killed him remains open."
 pubDate: 2026-05-29

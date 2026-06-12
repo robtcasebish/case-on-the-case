@@ -1,6 +1,8 @@
 ---
 title: "Polly Klaas"
 description: "Twelve-year-old Polly Klaas was abducted at knifepoint from a Petaluma slumber party in 1993. Her case helped pass California's Three Strikes law and reshaped how the nation searches for missing children."
+cover: ../../assets/cases/polly-klaas.png
+coverAlt: "A dim hallway opening onto a child's bedroom, with candles glowing in an adjoining room, used as symbolic cover art for the Polly Klaas case."
 oneSentence: "The 1993 abduction and murder of 12-year-old Polly Klaas in Petaluma galvanized a national volunteer search and became the catalyst for California's Three Strikes law and a lasting child-safety movement."
 dek: "How a stolen night at a slumber party reshaped American sentencing law and the search for missing children."
 pubDate: 2026-06-02

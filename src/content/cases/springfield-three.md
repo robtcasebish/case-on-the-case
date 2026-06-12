@@ -1,6 +1,8 @@
 ---
 title: "The Springfield Three"
 description: "On June 7, 1992, three women vanished overnight from a home in Springfield, Missouri, leaving their cars, purses, and pets behind. Decades later, the disappearance of Sherrill Levitt, Suzie Streeter, and Stacy McCall remains unsolved."
+cover: ../../assets/cases/springfield-three.png
+coverAlt: "A suburban home at night with a warmly lit front entrance, used as symbolic cover art for the Springfield Three case."
 oneSentence: "Three women disappeared overnight from a Springfield, Missouri home in June 1992, leaving everything behind, and more than three decades later no trace of them has ever been found."
 dek: "They left behind their cars, their purses, and a barking dog. The Springfield Three vanished into an ordinary summer morning, and the answers never came."
 pubDate: 2026-05-20

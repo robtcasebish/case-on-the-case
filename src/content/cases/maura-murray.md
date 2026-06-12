@@ -1,6 +1,8 @@
 ---
 title: "Maura Murray"
 description: "Maura Murray, a 21-year-old UMass Amherst nursing student, crashed her car on Route 112 in Haverhill, New Hampshire on February 9, 2004, and vanished before police arrived. She has never been found, and her case became a defining early test of online sleuthing."
+cover: ../../assets/cases/maura-murray.png
+coverAlt: "A snow-dusted forest road curving into the dusk, used as symbolic cover art for the Maura Murray case."
 oneSentence: "A 21-year-old nursing student vanished after a car crash on a remote New Hampshire road in 2004, and her unsolved case became one of the internet's first true-crime obsessions."
 dek: "A 2004 crash on a remote New Hampshire road, a disappearance that has never been solved, and a case that exposed both the reach and the cruelty of online sleuthing."
 pubDate: 2026-05-18

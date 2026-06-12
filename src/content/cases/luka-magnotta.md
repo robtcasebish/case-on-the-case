@@ -1,6 +1,8 @@
 ---
 title: "Luka Magnotta"
 description: "How online animal-cruelty sleuths spent two years chasing the man who would murder Montreal student Jun Lin, and what their hunt did and did not accomplish."
+cover: ../../assets/cases/luka-magnotta.png
+coverAlt: "A dark desk workspace lit by screens showing network and link diagrams, used as symbolic cover art for the Luka Magnotta case."
 video:
   title: "Hunting Luka Magnotta (the fifth estate)"
   source: "CBC News (the fifth estate)"

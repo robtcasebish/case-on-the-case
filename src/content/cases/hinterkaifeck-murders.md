@@ -1,6 +1,8 @@
 ---
 title: "The Hinterkaifeck Murders"
 description: "In late March 1922, six people on the isolated Hinterkaifeck farmstead in Bavaria were killed with a mattock. Strange events preceded the crime, the killer apparently lingered for days, and the case remains unsolved a century later."
+cover: ../../assets/cases/hinterkaifeck-murders.png
+coverAlt: "A moonlit, snow-covered farmstead at night with footprints leading toward the house, used as symbolic cover art for the Hinterkaifeck murders."
 oneSentence: "Six members of one household were killed at the remote Hinterkaifeck farmstead in Bavaria in 1922, a case that, despite a century of investigation, has never been solved."
 dek: "A family and their new maid were killed at an isolated Bavarian farm in 1922. The eerie warnings beforehand and the killer's apparent calm afterward have haunted Germany ever since."
 pubDate: 2026-05-17

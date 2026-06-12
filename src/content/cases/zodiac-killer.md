@@ -1,6 +1,8 @@
 ---
 title: "The Zodiac Killer"
 description: "The Zodiac Killer murdered at least five people in Northern California in 1968 and 1969 and taunted newspapers with ciphers. One was cracked by a schoolteacher couple in 1969; another defeated experts until amateur codebreakers solved it in 2020. The case is still unsolved."
+cover: ../../assets/cases/zodiac-killer.png
+coverAlt: "A foggy coastal road at night marked with faint cipher-like symbols, used as symbolic cover art for the Zodiac Killer case."
 oneSentence: "An unidentified killer who called himself Zodiac murdered at least five people in Northern California in 1968 and 1969 and left four ciphers, one of which amateur codebreakers finally solved in 2020."
 dek: "He killed at least five people, taunted newspapers with coded messages, and was never identified. Decades later, citizen codebreakers cracked the cipher that defeated the professionals."
 pubDate: 2026-05-24

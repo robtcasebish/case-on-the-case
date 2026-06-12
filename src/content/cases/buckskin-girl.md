@@ -1,6 +1,8 @@
 ---
 title: "The Buckskin Girl"
 description: "In 1981 a young woman in a buckskin poncho was found murdered near Troy, Ohio, and went unnamed for 37 years. In 2018 the DNA Doe Project used investigative genetic genealogy to restore her name: Marcia Lenore King. Her killer is still unknown."
+cover: ../../assets/cases/buckskin-girl.png
+coverAlt: "A fringed buckskin garment resting on an aged map in soft light, used as symbolic cover art for the Buckskin Girl case."
 oneSentence: "The 'Buckskin Girl,' unidentified for 37 years after her 1981 murder near Troy, Ohio, was named in 2018 as Marcia Lenore King in what is widely cited as the first public identification by investigative genetic genealogy."
 dek: "She lay nameless for 37 years. A new science finally gave her back her name, even as the question of who killed her remains open."
 pubDate: 2026-05-14

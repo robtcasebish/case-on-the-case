@@ -1,6 +1,8 @@
 ---
 title: "Megan Kanka"
 description: "How the 1994 murder of seven-year-old Megan Kanka in Hamilton Township, New Jersey, by a twice-convicted neighbor led to Megan's Law and nationwide sex-offender community notification."
+cover: ../../assets/cases/megan-kanka.png
+coverAlt: "A suburban house at dusk with a single warmly lit doorway, used as symbolic cover art for the Megan Kanka case."
 oneSentence: "When seven-year-old Megan Kanka was killed in 1994 by a neighbor with prior sex-offense convictions her parents never knew about, her family turned grief into a law that reshaped how America tracks and discloses sex offenders."
 dek: "A neighborhood that did not know who lived across the street, a family that refused to stay silent, and a statute that now bears a child's name in all fifty states."
 pubDate: 2026-06-03

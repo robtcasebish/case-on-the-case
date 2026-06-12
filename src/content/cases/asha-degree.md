@@ -1,6 +1,8 @@
 ---
 title: "Asha Degree"
 description: "The 2000 disappearance of nine-year-old Asha Degree, who walked alone from her Shelby, North Carolina home into a rainstorm and vanished, and the forensic evidence that decades later reopened the case as a suspected homicide."
+cover: ../../assets/cases/asha-degree.png
+coverAlt: "A rain-slicked rural road at night beneath a single streetlight, used as symbolic cover art for the Asha Degree case."
 oneSentence: "Nine-year-old Asha Degree walked away from her Shelby, North Carolina home into a rainstorm in February 2000 and was never seen again; despite DNA links and named persons of interest decades later, no one has been charged."
 dek: "She left her bed before dawn on Valentine's Day 2000 and walked into the rain along Highway 18. Twenty-five years on, DNA evidence has reopened the search, but Asha Degree is still missing."
 pubDate: 2026-05-21

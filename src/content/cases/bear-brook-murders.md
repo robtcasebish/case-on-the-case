@@ -1,6 +1,8 @@
 ---
 title: "The Bear Brook Murders"
 description: "How investigative genetic genealogy and a citizen sleuth finally gave names to four victims found in barrels in New Hampshire's Bear Brook State Park, decades after their deaths."
+cover: ../../assets/cases/bear-brook-murders.png
+coverAlt: "A misty evergreen forest at dawn, used as symbolic cover art for the Bear Brook murders."
 oneSentence: "For nearly forty years, four people murdered and hidden in barrels in Bear Brook State Park had no names; genetic genealogy and a determined volunteer slowly gave each of them back."
 dek: "Four victims, two barrels, decades of silence: how genetic genealogy and a citizen sleuth restored the identities of the Allenstown Four and exposed a serial killer who lived behind borrowed names."
 pubDate: 2026-05-30

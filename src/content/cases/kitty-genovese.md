@@ -1,6 +1,8 @@
 ---
 title: "Kitty Genovese"
 description: "The 1964 murder of Catherine 'Kitty' Genovese in Queens and the disputed '38 witnesses' narrative that gave rise to bystander-effect research, examined against the later corrections by The New York Times and scholars."
+cover: ../../assets/cases/kitty-genovese.png
+coverAlt: "A dark city apartment building at night with scattered lit windows above an empty wet street, used as symbolic cover art for the Kitty Genovese case."
 oneSentence: "Catherine 'Kitty' Genovese was murdered in Queens in 1964, and a New York Times story claiming 38 indifferent witnesses reshaped psychology and policing before being substantially corrected as exaggerated."
 dek: "How the killing of a 28-year-old woman in Kew Gardens became a parable of urban apathy, and how later reporting dismantled the myth while honoring the victim."
 pubDate: 2026-06-04

@@ -1,6 +1,8 @@
 ---
 title: "Laci Peterson"
 description: "In December 2002, Laci Peterson, eight months pregnant, vanished from Modesto, California. The recovery of Laci and her unborn son, Conner, and the conviction of her husband helped shape the federal Unborn Victims of Violence Act, known as Laci and Conner's Law."
+cover: ../../assets/cases/laci-peterson.png
+coverAlt: "A fog-shrouded bay bridge at dawn seen from a rocky shore, used as symbolic cover art for the Laci Peterson case."
 oneSentence: "The disappearance of a pregnant Modesto woman and her unborn son became a landmark double-homicide case that lent its name to a federal law recognizing an unborn child as a separate victim of violent crime."
 dek: "How the loss of Laci Peterson and her unborn son, Conner, reshaped federal law and became Laci and Conner's Law."
 pubDate: 2026-05-26
