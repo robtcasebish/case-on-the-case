@@ -1,6 +1,8 @@
 ---
 title: "Colin Pitchfork: The First DNA Conviction"
 description: "How the 1983 murder of Lynda Mann and the 1986 murder of Dawn Ashworth in Leicestershire became the first case ever solved by DNA fingerprinting, clearing an innocent man and convicting Colin Pitchfork."
+cover: ../../assets/cases/colin-pitchfork.png
+coverAlt: "A sealed archival case folder on a vintage investigation desk, used as symbolic cover art for the Colin Pitchfork case."
 oneSentence: "In Leicestershire, the murders of Lynda Mann and Dawn Ashworth produced two firsts in legal history: DNA evidence that cleared an innocent suspect, and DNA evidence that secured the world's first murder conviction."
 dek: "The first case solved by DNA fingerprinting both exonerated an innocent man who had falsely confessed and convicted the man who killed Lynda Mann and Dawn Ashworth."
 pubDate: 2026-05-27

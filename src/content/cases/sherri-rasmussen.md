@@ -1,6 +1,8 @@
 ---
 title: "Sherri Rasmussen"
 description: "In 1986, nursing director Sherri Rasmussen was murdered in her Los Angeles condominium, and police wrote it off as a botched burglary. More than two decades later, a preserved swab of DNA identified the killer as a serving LAPD detective."
+cover: ../../assets/cases/sherri-rasmussen.png
+coverAlt: "A wax-sealed envelope resting on a vintage desk, used as symbolic cover art for the Sherri Rasmussen case."
 oneSentence: "When Sherri Rasmussen was killed in her Los Angeles condominium in 1986, detectives blamed burglars and dismissed her family's suspicions; a swab of saliva, frozen for decades, eventually named a fellow officer."
 dek: "A nursing director murdered in her own home, a family ignored for twenty years, and a forgotten vial of evidence that finally named one of the LAPD's own."
 pubDate: 2026-05-28

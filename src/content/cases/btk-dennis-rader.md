@@ -1,6 +1,8 @@
 ---
 title: "BTK: Dennis Rader and the Floppy Disk"
 description: "How investigators identified the Wichita serial killer who called himself BTK after a floppy disk he mailed in 2005 revealed hidden metadata pointing to a man named Dennis and a local church, ending a manhunt that spanned three decades."
+cover: ../../assets/cases/btk-dennis-rader.png
+coverAlt: "Two shadowed identity documents laid over a map, used as symbolic cover art for the BTK case."
 oneSentence: "A serial killer taunted Wichita for thirty years, until a floppy disk he believed was untraceable carried hidden metadata that led investigators straight to Dennis Rader."
 dek: "The clue that finally identified the BTK killer was not a fingerprint or a witness, but a few lines of digital metadata he did not know he was leaving behind."
 pubDate: 2026-06-06

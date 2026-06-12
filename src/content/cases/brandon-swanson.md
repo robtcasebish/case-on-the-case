@@ -1,6 +1,8 @@
 ---
 title: "Brandon Swanson"
 description: "Brandon Swanson, a 19-year-old Minnesota college student, vanished on May 14, 2008, after his car went off a rural road and his late-night phone call to his parents cut off mid-sentence. He was never found, and his case led Minnesota to enact Brandon's Law."
+cover: ../../assets/cases/brandon-swanson.png
+coverAlt: "A rural road at dusk leading toward a distant town, used as symbolic cover art for the Brandon Swanson case."
 oneSentence: "When 19-year-old Brandon Swanson's late-night call to his parents cut off in the dark near Marshall, Minnesota, a search began that never found him, but it did change how the state treats every missing-person report."
 dek: "A 19-year-old's car ended up in a rural ditch on a May night in 2008. He started walking, his phone went silent, and he was never seen again. The law that followed now protects missing adults across Minnesota."
 pubDate: 2026-05-23

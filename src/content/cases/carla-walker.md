@@ -1,6 +1,8 @@
 ---
 title: "Carla Walker"
 description: "In 1974, 17-year-old Carla Walker was abducted from a Fort Worth bowling-alley parking lot and murdered. The case went cold for 46 years until forensic-grade genome sequencing by the Texas lab Othram identified Glen Samuel McCurley, who pleaded guilty in 2021."
+cover: ../../assets/cases/carla-walker.png
+coverAlt: "An old calendar and investigation files on a worn desk, used as symbolic cover art for the Carla Walker cold case."
 oneSentence: "A 46-year-old Fort Worth cold case was solved when forensic-grade genome sequencing of degraded evidence identified Carla Walker's killer, who pleaded guilty to capital murder in 2021."
 dek: "How advanced DNA sequencing of preserved 1974 evidence finally named the man who abducted and murdered 17-year-old Carla Walker."
 pubDate: 2026-05-15
