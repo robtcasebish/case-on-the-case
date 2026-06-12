@@ -7,12 +7,21 @@ const crumbs = breadcrumbSchema([
   { name: 'Home', url: SITE.url },
   { name: 'About', url: absoluteUrl('/about') },
 ]);
+const personSchema = {
+  '@type': 'Person',
+  name: AUTHOR.name,
+  url: absoluteUrl('/about'),
+  description: AUTHOR.bio,
+  ...(AUTHOR.sameAs.length ? { sameAs: [...AUTHOR.sameAs] } : {}),
+  ...(AUTHOR.knowsAbout.length ? { knowsAbout: [...AUTHOR.knowsAbout] } : {}),
+  worksFor: { '@type': 'Organization', name: SITE.publisher, url: SITE.url },
+};
 const aboutSchema = {
   '@type': 'AboutPage',
   name: `About ${SITE.name}`,
   url: absoluteUrl('/about'),
   description: `Editorial standards, sourcing methodology, and corrections policy for ${SITE.name}.`,
-  mainEntity: { '@type': 'Organization', name: SITE.publisher, url: SITE.url, description: AUTHOR.bio },
+  mainEntity: { '@type': 'Organization', name: SITE.publisher, url: SITE.url, description: SITE.description },
 };
 ---
 
@@ -20,7 +29,7 @@ const aboutSchema = {
   title="About & Editorial Standards"
   description={`How ${SITE.name} researches, verifies, and tells true crime stories, our methodology, ethics, and corrections policy.`}
   path="/about"
-  schemaNodes={[aboutSchema, crumbs]}
+  schemaNodes={[aboutSchema, personSchema, crumbs]}
 >
   <div class="container page prose about">
     <p class="kicker">About</p>
@@ -43,6 +52,11 @@ const aboutSchema = {
       reports, official records, and verified journalism, and each case ends with
       a <strong>Sources &amp; Further Reading</strong> list.
     </p>
+    <p>
+      Research and drafting are assisted by AI tools under Rob's editorial
+      direction. Every case is reviewed and verified against primary sources
+      before publication, and responsibility for what appears here is human.
+    </p>
 
     <h2>Our standards</h2>
     <ul>
@@ -60,7 +74,12 @@ const aboutSchema = {
     </p>
 
     <h2>Who writes these stories</h2>
+    <p class="byline">By <strong>{AUTHOR.name}</strong>, founder and lead researcher</p>
     <p>{AUTHOR.bio}</p>
+    <p>
+      You can read more about Rob at
+      <a href={AUTHOR.sameAs[0]} rel="me">{AUTHOR.sameAs[0].replace('https://', '')}</a>.
+    </p>
 
     <hr />
     <p class="fineprint">
@@ -74,5 +93,6 @@ const aboutSchema = {
   .about { max-width: 760px; padding-block: 2.5rem 1rem; }
   .about h1 { margin-top: 0.5rem; }
   .lede { font-family: var(--font-serif); font-size: 1.3rem; color: var(--text-muted); }
+  .byline { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.4rem; }
   .fineprint { color: var(--text-faint); font-size: 0.88rem; }
 </style>

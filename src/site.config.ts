@@ -22,9 +22,18 @@ export const SITE = {
 } as const;
 
 export const AUTHOR = {
-  name: 'The Case on the Case Editorial Team',
-  bio: 'The Case on the Case editorial team researches and verifies every case against primary sources, court records, police filings, and contemporaneous reporting, and revisits each story with care and respect for the people involved.',
+  name: 'Rob T. Case',
+  bio: 'Rob T. Case is the founder and lead researcher of Case on the Case. He has been independently researching unsolved cases since 2021, beginning with the disappearance of the Sodder children, and brings a background in data and research to reconstructing timelines and tracing overlooked leads. Earlier, he spent several years in licensed private security, close protection, and private investigation in Ontario, hands-on work built on observation, documentation, and carefully following evidence. He is not, and has never been, a police officer. Case on the Case applies that same research discipline to the public record, with rigorous sourcing and respect for the people involved at its center.',
   url: 'https://caseonthecase.com/about',
+  sameAs: ['https://robtcase.com'],
+  knowsAbout: [
+    'Cold cases',
+    'True crime research',
+    'Missing persons cases',
+    'Forensic genetic genealogy',
+    'Private investigation',
+    'Open-source research',
+  ],
 } as const;
 
 export const SOCIAL = {

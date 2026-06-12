@@ -31,7 +31,7 @@ const cases = defineCollection({
 
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
-      author: z.string().default('The Case on the Case Editorial Team'),
+      author: z.string().default('Rob T. Case'),
 
       cover: image().optional(),
       coverAlt: z.string().optional(),

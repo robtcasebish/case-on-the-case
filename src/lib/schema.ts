@@ -62,6 +62,8 @@ export interface ArticleSchemaInput {
 
 export function articleSchema(a: ArticleSchemaInput) {
   const author = a.authorName ?? AUTHOR.name;
+  // Attach the named author's identity/expertise only when it's the house author.
+  const isHouseAuthor = author === AUTHOR.name;
   return {
     '@type': 'NewsArticle',
     headline: a.headline.slice(0, 110),
@@ -73,9 +75,12 @@ export function articleSchema(a: ArticleSchemaInput) {
     inLanguage: SITE.language,
     ...(a.image ? { image: [a.image] } : {}),
     author: {
-      '@type': 'Organization',
+      '@type': 'Person',
       name: author,
       url: AUTHOR.url,
+      ...(isHouseAuthor && AUTHOR.bio ? { description: AUTHOR.bio } : {}),
+      ...(isHouseAuthor && AUTHOR.sameAs.length ? { sameAs: [...AUTHOR.sameAs] } : {}),
+      ...(isHouseAuthor && AUTHOR.knowsAbout.length ? { knowsAbout: [...AUTHOR.knowsAbout] } : {}),
     },
     publisher: { '@id': ORG_ID },
     isAccessibleForFree: true,
