@@ -1,6 +1,12 @@
 ---
 title: "Megan Kanka"
 description: "How the 1994 murder of seven-year-old Megan Kanka in Hamilton Township, New Jersey, by a twice-convicted neighbor led to Megan's Law and nationwide sex-offender community notification."
+video:
+  title: "Megan Kanka's murder and the legacy of Megan's Law"
+  source: "CBS News Philadelphia"
+  youtubeId: "X6QHLpHID3k"
+  url: "https://www.youtube.com/watch?v=X6QHLpHID3k"
+  note: "A CBS News Philadelphia feature, with Megan's parents, on the 1994 case that led to Megan's Law."
 cover: ../../assets/cases/megan-kanka.png
 coverAlt: "A suburban house at dusk with a single warmly lit doorway, used as symbolic cover art for the Megan Kanka case."
 oneSentence: "When seven-year-old Megan Kanka was killed in 1994 by a neighbor with prior sex-offense convictions her parents never knew about, her family turned grief into a law that reshaped how America tracks and discloses sex offenders."

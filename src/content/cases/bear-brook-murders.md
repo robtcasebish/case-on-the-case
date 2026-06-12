@@ -1,6 +1,12 @@
 ---
 title: "The Bear Brook Murders"
 description: "How investigative genetic genealogy and a citizen sleuth finally gave names to four victims found in barrels in New Hampshire's Bear Brook State Park, decades after their deaths."
+video:
+  title: "Officials announce a Bear Brook victim identification"
+  source: "WMUR-TV (ABC affiliate)"
+  youtubeId: "VPjRetfCcRk"
+  url: "https://www.youtube.com/watch?v=VPjRetfCcRk"
+  note: "New Hampshire ABC-affiliate coverage of the news conference announcing a Bear Brook victim identification."
 cover: ../../assets/cases/bear-brook-murders.png
 coverAlt: "A misty evergreen forest at dawn, used as symbolic cover art for the Bear Brook murders."
 oneSentence: "For nearly forty years, four people murdered and hidden in barrels in Bear Brook State Park had no names; genetic genealogy and a determined volunteer slowly gave each of them back."

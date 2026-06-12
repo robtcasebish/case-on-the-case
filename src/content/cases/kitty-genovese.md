@@ -1,6 +1,12 @@
 ---
 title: "Kitty Genovese"
 description: "The 1964 murder of Catherine 'Kitty' Genovese in Queens and the disputed '38 witnesses' narrative that gave rise to bystander-effect research, examined against the later corrections by The New York Times and scholars."
+video:
+  title: "The Witness (Independent Lens trailer)"
+  source: "PBS (Independent Lens)"
+  youtubeId: "1oQNDwXYM50"
+  url: "https://www.youtube.com/watch?v=1oQNDwXYM50"
+  note: "The PBS Independent Lens documentary in which Kitty Genovese's brother reexamines the case and the 38-witnesses media myth."
 cover: ../../assets/cases/kitty-genovese.png
 coverAlt: "A dark city apartment building at night with scattered lit windows above an empty wet street, used as symbolic cover art for the Kitty Genovese case."
 oneSentence: "Catherine 'Kitty' Genovese was murdered in Queens in 1964, and a New York Times story claiming 38 indifferent witnesses reshaped psychology and policing before being substantially corrected as exaggerated."

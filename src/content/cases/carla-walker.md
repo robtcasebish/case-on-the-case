@@ -1,6 +1,12 @@
 ---
 title: "Carla Walker"
 description: "In 1974, 17-year-old Carla Walker was abducted from a Fort Worth bowling-alley parking lot and murdered. The case went cold for 46 years until forensic-grade genome sequencing by the Texas lab Othram identified Glen Samuel McCurley, who pleaded guilty in 2021."
+video:
+  title: "Dateline: After the Dance (episode trailer)"
+  source: "Dateline NBC"
+  youtubeId: "A2X-S5K7fAM"
+  url: "https://www.youtube.com/watch?v=A2X-S5K7fAM"
+  note: "Dateline NBC's preview of its episode on the 1974 case solved in 2020 through advanced DNA testing."
 cover: ../../assets/cases/carla-walker.png
 coverAlt: "An old calendar and investigation files on a worn desk, used as symbolic cover art for the Carla Walker cold case."
 oneSentence: "A 46-year-old Fort Worth cold case was solved when forensic-grade genome sequencing of degraded evidence identified Carla Walker's killer, who pleaded guilty to capital murder in 2021."

@@ -1,6 +1,12 @@
 ---
 title: "Matthew Shepard"
 description: "The 1998 killing of University of Wyoming student Matthew Shepard near Laramie became a national catalyst for hate-crime law, culminating in the 2009 federal Matthew Shepard and James Byrd Jr. Hate Crimes Prevention Act."
+video:
+  title: "20 years after Matthew Shepard's murder, his parents' activism continues"
+  source: "NBC / Sunday TODAY"
+  youtubeId: "ykwkWF3eutk"
+  url: "https://www.youtube.com/watch?v=ykwkWF3eutk"
+  note: "An NBC retrospective centering Dennis and Judy Shepard and the advocacy behind the federal hate-crimes law."
 cover: ../../assets/cases/matthew-shepard.png
 coverAlt: "A weathered wooden fence on an open prairie under a wide sunset sky, used as symbolic cover art for the Matthew Shepard case."
 oneSentence: "Matthew Shepard, a 21-year-old University of Wyoming student, was attacked near Laramie in October 1998 and died days later, and the killing helped drive passage of the federal hate-crimes law that now bears his name."

@@ -1,6 +1,12 @@
 ---
 title: "Sherri Rasmussen"
 description: "In 1986, nursing director Sherri Rasmussen was murdered in her Los Angeles condominium, and police wrote it off as a botched burglary. More than two decades later, a preserved swab of DNA identified the killer as a serving LAPD detective."
+video:
+  title: "Dateline: Detective Story (episode trailer)"
+  source: "Dateline NBC"
+  youtubeId: "4Q-YeG3rbGs"
+  url: "https://www.youtube.com/watch?v=4Q-YeG3rbGs"
+  note: "Dateline NBC's preview of its investigation into the 1986 cold case solved when the killer proved to be an LAPD detective."
 cover: ../../assets/cases/sherri-rasmussen.png
 coverAlt: "A wax-sealed envelope resting on a vintage desk, used as symbolic cover art for the Sherri Rasmussen case."
 oneSentence: "When Sherri Rasmussen was killed in her Los Angeles condominium in 1986, detectives blamed burglars and dismissed her family's suspicions; a swab of saliva, frozen for decades, eventually named a fellow officer."

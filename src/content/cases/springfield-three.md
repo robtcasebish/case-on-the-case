@@ -1,6 +1,12 @@
 ---
 title: "The Springfield Three"
 description: "On June 7, 1992, three women vanished overnight from a home in Springfield, Missouri, leaving their cars, purses, and pets behind. Decades later, the disappearance of Sherrill Levitt, Suzie Streeter, and Stacy McCall remains unsolved."
+video:
+  title: "Springfield cold-case investigator on the three missing women"
+  source: "KY3 News (NBC affiliate)"
+  youtubeId: "oTIEpmBkRAo"
+  url: "https://www.youtube.com/watch?v=oTIEpmBkRAo"
+  note: "A local NBC-affiliate report in which a cold-case investigator discusses the still-unsolved 1992 disappearance."
 cover: ../../assets/cases/springfield-three.png
 coverAlt: "A suburban home at night with a warmly lit front entrance, used as symbolic cover art for the Springfield Three case."
 oneSentence: "Three women disappeared overnight from a Springfield, Missouri home in June 1992, leaving everything behind, and more than three decades later no trace of them has ever been found."

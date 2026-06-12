@@ -1,6 +1,12 @@
 ---
 title: "The Black Dahlia"
 description: "In January 1947, 22-year-old Elizabeth Short was found murdered in Los Angeles. The press named her the Black Dahlia, and the case became one of America's most famous unsolved crimes."
+video:
+  title: "The search for the Black Dahlia's killer (From the Archives)"
+  source: "NBC Los Angeles (From the Archives)"
+  youtubeId: "7m0YhEJg6yc"
+  url: "https://www.youtube.com/watch?v=7m0YhEJg6yc"
+  note: "An archival report from NBC's Los Angeles station revisiting the 1947 unsolved killing of Elizabeth Short."
 cover: ../../assets/cases/the-black-dahlia.png
 coverAlt: "A dark flower and rain-soaked noir city street, used as symbolic cover art for The Black Dahlia."
 oneSentence: "The 1947 Los Angeles murder of Elizabeth Short, a 22-year-old aspiring actress the press named the Black Dahlia, remains one of the most famous unsolved cases in American history."

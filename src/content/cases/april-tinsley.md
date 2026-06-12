@@ -1,6 +1,12 @@
 ---
 title: "April Tinsley"
 description: "Eight-year-old April Tinsley was abducted and killed in Fort Wayne, Indiana, in 1988. Her case stayed cold for thirty years, until forensic genetic genealogy finally identified her killer in 2018."
+video:
+  title: "DNA leads to an arrest in a decades-old Indiana murder"
+  source: "NBC News"
+  youtubeId: "fCscBF5lmdU"
+  url: "https://www.youtube.com/watch?v=fCscBF5lmdU"
+  note: "NBC News on the 2018 genetic-genealogy breakthrough that identified a suspect 30 years after April Tinsley was killed."
 cover: ../../assets/cases/april-tinsley.png
 coverAlt: "A quiet residential street at dusk, used as symbolic cover art for the April Tinsley case."
 oneSentence: "Eight-year-old April Tinsley was taken and killed in Fort Wayne, Indiana, in 1988, and for thirty years her case went unanswered, until forensic genetic genealogy gave her family a name in 2018."
