@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, AUTHOR, absoluteUrl } from '../site.config';
+import { breadcrumbSchema } from '../lib/schema';
+
+const updated = 'June 11, 2026';
+const crumbs = breadcrumbSchema([
+  { name: 'Home', url: SITE.url },
+  { name: 'Editorial Policy', url: absoluteUrl('/editorial-policy') },
+]);
+const pageSchema = {
+  '@type': 'WebPage',
+  name: `Editorial Policy & Corrections, ${SITE.name}`,
+  url: absoluteUrl('/editorial-policy'),
+  description: `${SITE.name}'s editorial standards, sourcing, image policy, AI-assistance disclosure, and corrections process.`,
+};
+---
+
+<BaseLayout
+  title="Editorial Policy & Corrections"
+  description={`How ${SITE.name} researches, sources, and verifies true crime, our standards, image policy, AI-assistance disclosure, and corrections process.`}
+  path="/editorial-policy"
+  schemaNodes={[pageSchema, crumbs]}
+>
+  <div class="container page prose legal">
+    <p class="kicker">Editorial</p>
+    <h1>Editorial Policy &amp; Corrections</h1>
+    <p class="lede">
+      {SITE.name} revisits true crime with curiosity, care, and respect. This page
+      explains how we work, and how to tell us when we get something wrong.
+    </p>
+
+    <h2>Mission and standards</h2>
+    <p>
+      We tell true-crime stories from the public record, accurately and without
+      sensationalism. We do not glorify offenders, dwell on gore, or treat real
+      tragedy as spectacle. Every story is written to keep the victims and the
+      people who never stopped looking at its center.
+    </p>
+
+    <h2>Where our information comes from</h2>
+    <p>
+      We prioritize sources roughly in this order, and we cite them:
+    </p>
+    <ul>
+      <li>official records, court documents, and law-enforcement statements;</li>
+      <li>missing-person and victim-advocacy organizations;</li>
+      <li>credible, established news outlets;</li>
+      <li>documentaries from reputable broadcasters;</li>
+      <li>books and long-form reporting, where appropriate.</li>
+    </ul>
+    <p>
+      Each article ends with a <strong>Sources &amp; Further Reading</strong> list
+      so you can check our work.
+    </p>
+
+    <h2>What we will not do</h2>
+    <ul>
+      <li><strong>No invented facts.</strong> Every factual claim is traceable to a source.</li>
+      <li><strong>No unsupported speculation.</strong> Theories are clearly labeled as theories, not stated as fact.</li>
+      <li>
+        <strong>No fake evidence.</strong> We do not create or publish fabricated
+        documents, fake crime-scene photographs, or AI-generated, documentary-style
+        "evidence" presented as if it were real.
+      </li>
+    </ul>
+
+    <h2>About our cover images</h2>
+    <p>
+      The cover images on this site are <strong>atmospheric, symbolic artwork</strong>
+      created to set a tone. They are not real evidence, locations, victims,
+      suspects, or crime-scene photographs, and should never be read as such,
+      unless a caption explicitly states an image is a genuine, sourced photograph.
+    </p>
+
+    <h2>Presumption of innocence</h2>
+    <p>
+      Unless someone has been convicted or has admitted responsibility, we do not
+      treat them as guilty, and neither should readers. Where a case is unresolved
+      or charges are unproven, we say so plainly and label case status.
+    </p>
+
+    <h2>Victims, families, minors, and vulnerable people</h2>
+    <p>
+      We write with respect for victims and their families, and we avoid graphic,
+      exploitative, or gratuitous detail. We take particular care with cases
+      involving children and other vulnerable people, including only what is
+      necessary to tell the story responsibly and leaving out detail that would
+      serve only to shock.
+    </p>
+
+    <h2>How we use AI</h2>
+    <p>
+      AI tools may assist with drafting, research organization, summarization,
+      formatting, and generating the symbolic cover artwork. Human editorial
+      direction, source-checking, review, and final responsibility remain with
+      {AUTHOR.name}. AI is a tool here, not the author of record.
+    </p>
+
+    <h2>Corrections</h2>
+    <p>
+      We want to get it right, and to fix it when we do not. To report an error,
+      email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> with:
+    </p>
+    <ul>
+      <li>the article title or link;</li>
+      <li>the specific statement you believe is inaccurate;</li>
+      <li>and, where possible, a source that supports the correction.</li>
+    </ul>
+    <p>
+      We review every correction request against the available record. Where a
+      material correction is warranted, we update the article and, for significant
+      changes, note that it was updated.
+    </p>
+
+    <h2>Removal and context requests</h2>
+    <p>
+      We understand these stories touch real lives. If you are connected to a case
+      and have a concern about an article, contact us and we will review it
+      respectfully. Please note that not all information drawn from the public
+      record will be removed, but we will consider context, accuracy, fairness,
+      and sensitivity in good faith.
+    </p>
+
+    <hr />
+    <p class="legal__updated">Last updated: {updated}</p>
+    <p class="fineprint">
+      See also our <a href="/terms">Terms of Use</a> and
+      <a href="/privacy">Privacy Policy</a>.
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .legal { max-width: 760px; padding-block: 2.5rem 1rem; }
+  .legal h1 { margin-top: 0.5rem; }
+  .legal .lede { font-family: var(--font-serif); font-size: 1.25rem; color: var(--text-muted); }
+  .legal__updated { color: var(--text-muted); font-size: 0.9rem; font-weight: 600; }
+  .fineprint { color: var(--text-faint); font-size: 0.88rem; }
+</style>

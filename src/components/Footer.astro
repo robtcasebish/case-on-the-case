@@ -43,6 +43,12 @@ const year = SITE.foundingYear;
   </div>
 
   <div class="container site-footer__legal">
+    <nav class="site-footer__policies" aria-label="Policies">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Use</a>
+      <a href="/editorial-policy">Editorial Policy</a>
+      <a href="/contact">Contact &amp; Requests</a>
+    </nav>
     <p class="site-footer__copy">© {year} {SITE.name}. Independent &amp; reader-supported.</p>
     <p class="site-footer__note">
       Reported from public records and primary sources. Where a case is unresolved
@@ -110,6 +116,11 @@ const year = SITE.foundingYear;
   }
   .site-footer__copy { color: var(--text-muted); font-weight: 600; }
   .site-footer__note { max-width: 82ch; line-height: 1.6; }
+  .site-footer__policies {
+    display: flex; flex-wrap: wrap; gap: 0.75rem 1.4rem; margin-bottom: 0.4rem;
+  }
+  .site-footer__policies a { color: var(--text-muted); text-decoration: none; }
+  .site-footer__policies a:hover { color: var(--accent-hover); }
 
   @media (max-width: 680px) {
     .site-footer__top { grid-template-columns: 1fr 1fr; }

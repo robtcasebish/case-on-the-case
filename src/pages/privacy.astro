@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, absoluteUrl } from '../site.config';
+import { breadcrumbSchema } from '../lib/schema';
+
+const updated = 'June 11, 2026';
+const crumbs = breadcrumbSchema([
+  { name: 'Home', url: SITE.url },
+  { name: 'Privacy Policy', url: absoluteUrl('/privacy') },
+]);
+const pageSchema = {
+  '@type': 'WebPage',
+  name: `Privacy Policy, ${SITE.name}`,
+  url: absoluteUrl('/privacy'),
+  description: `How ${SITE.name} handles personal information, server logs, embedded media, and privacy requests.`,
+};
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description={`How ${SITE.name} collects, uses, and protects personal information, in plain English. Operated from British Columbia, Canada.`}
+  path="/privacy"
+  schemaNodes={[pageSchema, crumbs]}
+>
+  <div class="container page prose legal">
+    <p class="kicker">Legal</p>
+    <h1>Privacy Policy</h1>
+    <p class="lede">
+      This policy explains, in plain English, what personal information
+      {' '}{SITE.name} collects, why, and the choices you have. We try to collect
+      as little as possible.
+    </p>
+
+    <h2>Who operates this site</h2>
+    <p>
+      {SITE.name} is an independent true-crime publication operated by Rob T. Case
+      from British Columbia, Canada. For any privacy question or request, email
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+    </p>
+
+    <h2>What we collect</h2>
+    <ul>
+      <li>
+        <strong>Information you send us.</strong> If you contact us or use the
+        <a href="/submit">Submit a Case</a> form, you choose what to share, this
+        typically includes your name (if you give it), your email address (if you
+        provide one), and the content of your message. The submission form opens
+        your own email application addressed to us; we receive whatever you send.
+      </li>
+      <li>
+        <strong>Server logs and technical data.</strong> Like virtually all
+        websites, our hosting provider automatically records standard technical
+        information when a page loads, such as IP address, browser and device
+        type, the referring page, and timestamps. This is used to operate and
+        secure the site.
+      </li>
+      <li>
+        <strong>Analytics.</strong> We do not currently run any third-party
+        analytics or advertising trackers on this site. If we add analytics in
+        the future, we will update this policy and describe what is collected.
+      </li>
+      <li>
+        <strong>Embedded video.</strong> Some articles include optional
+        "Further Viewing" videos embedded from YouTube using its
+        privacy-enhanced (youtube-nocookie.com) mode. These do not load YouTube
+        cookies until you choose to play a video. If you play one, Google/YouTube
+        may collect data and set cookies or local storage under their own privacy
+        terms.
+      </li>
+    </ul>
+
+    <h2>Why we use it</h2>
+    <ul>
+      <li>To respond to your messages.</li>
+      <li>To review case suggestions and corrections.</li>
+      <li>To operate, secure, maintain, and improve the website.</li>
+      <li>To understand aggregate, non-identifying readership patterns.</li>
+    </ul>
+
+    <h2>Cookies</h2>
+    <p>
+      {SITE.name} does not set first-party tracking or advertising cookies, and we
+      run no analytics cookies at this time. The only cookies or local storage
+      that may be set come from an embedded YouTube video, and only if you
+      interact with it. You can block or clear cookies in your browser settings.
+    </p>
+
+    <h2>Third-party services</h2>
+    <p>
+      We rely on a small number of third-party services to run the site: our
+      hosting provider (Kinsta), embedded video from YouTube (Google), and the
+      email service used for our contact address. These providers process data
+      under their own privacy policies, which we do not control. We encourage you
+      to review their terms.
+    </p>
+
+    <h2>How information is shared</h2>
+    <ul>
+      <li>We do not sell your personal information. Ever.</li>
+      <li>
+        We share information only with the service providers above, and only as
+        needed to operate the site.
+      </li>
+      <li>
+        We may disclose information where required by law, or where we believe in
+        good faith it is necessary to comply with a legal obligation or to protect
+        the safety of any person.
+      </li>
+    </ul>
+
+    <h2>How long we keep it</h2>
+    <p>
+      We keep messages, submissions, and corrections only as long as reasonably
+      needed for the purpose you contacted us, after which they are deleted or
+      retained in a minimal, archived form. Server logs are retained for a limited
+      period by our host for security and operational purposes.
+    </p>
+
+    <h2>Your rights</h2>
+    <p>
+      You may request access to, correction of, or deletion of personal
+      information you have submitted to us, where applicable. Email
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a> and we will respond within
+      a reasonable time. We may need to confirm your identity before acting on a
+      request.
+    </p>
+
+    <h2>Jurisdiction</h2>
+    <p>
+      This site is operated from British Columbia, Canada. We aim to handle
+      personal information consistently with Canadian privacy principles,
+      including the federal <em>Personal Information Protection and Electronic
+      Documents Act</em> (PIPEDA) and British Columbia's <em>Personal Information
+      Protection Act</em> (PIPA). If you are outside Canada, please be aware your
+      information is handled in Canada and by the service providers noted above.
+    </p>
+
+    <h2>Changes</h2>
+    <p>
+      We may update this policy as the site evolves. Material changes will be
+      reflected here with a revised date below.
+    </p>
+
+    <hr />
+    <p class="legal__updated">Last updated: {updated}</p>
+    <p class="fineprint">
+      This policy is provided for transparency and is not legal advice.
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .legal { max-width: 760px; padding-block: 2.5rem 1rem; }
+  .legal h1 { margin-top: 0.5rem; }
+  .legal .lede { font-family: var(--font-serif); font-size: 1.25rem; color: var(--text-muted); }
+  .legal__updated { color: var(--text-muted); font-size: 0.9rem; font-weight: 600; }
+  .fineprint { color: var(--text-faint); font-size: 0.88rem; }
+</style>

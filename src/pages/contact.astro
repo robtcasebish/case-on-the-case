@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, absoluteUrl } from '../site.config';
+import { breadcrumbSchema } from '../lib/schema';
+
+const updated = 'June 11, 2026';
+const crumbs = breadcrumbSchema([
+  { name: 'Home', url: SITE.url },
+  { name: 'Contact & Requests', url: absoluteUrl('/contact') },
+]);
+const pageSchema = {
+  '@type': 'ContactPage',
+  name: `Contact & Requests, ${SITE.name}`,
+  url: absoluteUrl('/contact'),
+  description: `How to reach ${SITE.name} for general contact, corrections, case suggestions, privacy requests, and removal or context concerns.`,
+};
+---
+
+<BaseLayout
+  title="Contact & Requests"
+  description={`How to reach ${SITE.name}: general contact, corrections, case suggestions, privacy requests, and removal or context concerns.`}
+  path="/contact"
+  schemaNodes={[pageSchema, crumbs]}
+>
+  <div class="container page prose legal">
+    <p class="kicker">The Desk</p>
+    <h1>Contact &amp; Requests</h1>
+    <p class="lede">
+      One inbox handles everything below. Email
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a> and tell us which of these
+      it concerns, it helps us route your message.
+    </p>
+
+    <h2>General contact</h2>
+    <p>
+      Questions, feedback, or anything that does not fit the categories below.
+      Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+    </p>
+
+    <h2>Corrections</h2>
+    <p>
+      Spotted an error? Please include the article title or link, the specific
+      statement you believe is wrong, and a supporting source if you have one. See
+      our <a href="/editorial-policy">Editorial Policy</a> for how corrections are
+      reviewed.
+    </p>
+
+    <h2>Case suggestions</h2>
+    <p>
+      Have a case we should cover? The
+      <a href="/submit">Submit a Case</a> form is the easiest way, or email us
+      directly. Names, place, and approximate year, plus links to coverage, help
+      most.
+    </p>
+
+    <h2>Privacy requests</h2>
+    <p>
+      To access, correct, or delete personal information you have submitted to us,
+      email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. See our
+      <a href="/privacy">Privacy Policy</a> for details. We may need to confirm
+      your identity before acting on a request.
+    </p>
+
+    <h2>Removal and context concerns</h2>
+    <p>
+      If you are connected to a case and have a concern about an article, contact
+      us and we will review it respectfully. Not all public-record information
+      will be removed, but we consider accuracy, fairness, context, and
+      sensitivity in good faith.
+    </p>
+
+    <hr />
+    <p class="legal__updated">Last updated: {updated}</p>
+    <p class="fineprint">
+      We read every message and respond within a reasonable time, though we cannot
+      guarantee coverage of every case suggested.
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .legal { max-width: 760px; padding-block: 2.5rem 1rem; }
+  .legal h1 { margin-top: 0.5rem; }
+  .legal .lede { font-family: var(--font-serif); font-size: 1.25rem; color: var(--text-muted); }
+  .legal__updated { color: var(--text-muted); font-size: 0.9rem; font-weight: 600; }
+  .fineprint { color: var(--text-faint); font-size: 0.88rem; }
+</style>
