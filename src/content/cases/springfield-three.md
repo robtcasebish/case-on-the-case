@@ -71,7 +71,7 @@ What remains is a case that has resisted resolution for more than three decades.
 
 ## Where the Case Stands Today
 
-As of mid-2026, the disappearance of Sherrill Levitt, Suzie Streeter, and Stacy McCall remains unsolved, marking 34 years since they vanished. The Springfield Police Department still carries the matter on its official rolls as a missing-persons case, even though Levitt and Streeter were declared legally dead years ago. "Few new leads have emerged in recent years," the department acknowledges, "but the push for information continues."
+As of mid-2026, the disappearance of Sherrill Levitt, Suzie Streeter, and Stacy McCall remains unsolved, marking 34 years since they vanished. The Springfield Police Department still carries the matter on its official rolls as a [missing-persons case](/missing-and-vanished), even though Levitt and Streeter were declared legally dead years ago. "Few new leads have emerged in recent years," the department acknowledges, "but the push for information continues."
 
 A reward fund of roughly $43,000 remains available for information leading to the location of the women and the prosecution of anyone responsible. Police continue to accept tips, and the case is periodically revisited by local news outlets each June. The investigative file stays open. What it lacks is the one thing it has always lacked: a credible answer.
 

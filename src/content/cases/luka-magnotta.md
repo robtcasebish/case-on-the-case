@@ -56,7 +56,7 @@ This article does not describe the video or the injuries in detail. The facts th
 
 ## The Investigation
 
-The official investigation moved fast once Lin's remains were found, but a parallel, unofficial investigation had been running for nearly two years. Beginning in December 2010, a loose network of internet users had been trying to identify the person in a series of videos showing the killing of kittens. They organized on Facebook, in groups dedicated to finding the unknown "kitten killer," and they pooled an unusual range of skills: IT workers, hobbyist investigators, and filmmakers among them.
+The official investigation moved fast once Lin's remains were found, but a parallel, unofficial investigation had been running for nearly two years. Beginning in December 2010, a [loose network of internet users](/citizen-sleuths) had been trying to identify the person in a series of videos showing the killing of kittens. They organized on Facebook, in groups dedicated to finding the unknown "kitten killer," and they pooled an unusual range of skills: IT workers, hobbyist investigators, and filmmakers among them.
 
 Their methods were genuinely resourceful. Members studied the videos frame by frame, analyzing a distinctive bedspread, a vacuum model, the style of electrical outlets, and metadata attached to related images. Within weeks they had a name, Luka Magnotta, and a location in Toronto. In January 2011 they brought their findings to the Ontario SPCA and Toronto police, including photo analysis and an address. Police confirmed Magnotta had lived there but had moved on, and the trail went cold.
 
@@ -66,7 +66,7 @@ The group's work was also imperfect in a way that should not be glossed over. At
 
 ## The Breakthrough
 
-The arrest, when it came, did not come from forensic software or a crowdsourced map. On June 4, 2012, Magnotta walked into an internet café in Berlin and sat down at a computer, reportedly reading coverage of the manhunt for himself. A café worker recognized him from a newspaper photograph and alerted police. When officers questioned him, Magnotta first gave a false name, then gave up the act, telling them in effect, "You got me. I am the man you are looking for."
+The arrest, when it came, did not come from forensic software or a crowdsourced map. On June 4, 2012, Magnotta walked into an internet café in Berlin and sat down at a computer, reportedly reading coverage of the manhunt for himself. A café worker [recognized him from a newspaper photograph](/cases/citizen-justice) and alerted police. When officers questioned him, Magnotta first gave a false name, then gave up the act, telling them in effect, "You got me. I am the man you are looking for."
 
 It is worth sitting with that. After two years of digital sleuthing, an Interpol notice, and an international search, the decisive moment was a person looking up from a counter and recognizing a face. The online investigation shaped the context: it had built a record, attached a name to the cruelty videos, and helped focus attention on Magnotta once the murder made headlines. But the capture itself was a human recognition in a physical room. The internet hunt and the arrest were related, not identical, and honesty about the difference is the whole point of this case.
 

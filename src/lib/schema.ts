@@ -41,14 +41,6 @@ export function websiteSchema() {
     description: SITE.description,
     inLanguage: SITE.language,
     publisher: { '@id': ORG_ID },
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${SITE.url}/search?q={search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
-    },
   };
 }
 
@@ -142,6 +134,23 @@ export function itemListSchema(items: CollectionItem[], name: string) {
       position: i + 1,
       url: it.url,
       name: it.name,
+    })),
+  };
+}
+
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
+/** FAQPage, only emit when the same Q&A is visible on the page. */
+export function faqSchema(items: FaqItem[]) {
+  return {
+    '@type': 'FAQPage',
+    mainEntity: items.map((it) => ({
+      '@type': 'Question',
+      name: it.q,
+      acceptedAnswer: { '@type': 'Answer', text: it.a },
     })),
   };
 }

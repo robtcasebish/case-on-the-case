@@ -63,7 +63,7 @@ When he was reburied in 1998 at Ivy Hill Cemetery, the Vidocq Society helped cov
 
 ## The Breakthrough
 
-What finally closed the distance was forensic genetic genealogy, the same family of techniques that has reopened cold cases across the country in recent years. But this case tested the method to its limits.
+What finally closed the distance was [forensic genetic genealogy](/cases/bear-brook-murders), the same family of techniques that has reopened [cold cases](/solved-cold-cases) across the country in recent years. But this case tested the method to its limits.
 
 The DNA recovered in 1998 had not been enough. In 2019, Philadelphia police exhumed the boy's remains a second time to gather more genetic material for modern testing. Even then, the sample was severely degraded. Dr. Colleen Fitzpatrick, the forensic genealogist brought in to lead the work, later compared the task to piecing together a puzzle and described the genetic material as reduced to little tiny pieces. She and her colleagues spent years simply making the DNA usable.
 

@@ -79,7 +79,7 @@ On August 21, 2020, a Sacramento County judge sentenced DeAngelo to life in pris
 
 This case matters first because of the people at its center: victims who waited decades, and survivors who described living for years without a sense of safety. The resolution did not undo the harm, but it ended the most agonizing uncertainty, the question of who.
 
-It matters, second, as a landmark in forensic science. DeAngelo's identification was the first widely publicized arrest obtained through investigative genetic genealogy, and it opened a method that has since helped identify suspects in well over a hundred cold cases. The technique works precisely because it does not rely on the offender ever being in a criminal database; it relies on relatives, common ancestors, and patient tree-building.
+It matters, second, as a [landmark in forensic science](/the-evidence-room). DeAngelo's identification was the first widely publicized arrest obtained through investigative genetic genealogy, and it opened a method that has since helped identify suspects in well over a hundred [cold cases](/cases/bear-brook-murders). The technique works precisely because it does not rely on the offender ever being in a criminal database; it relies on relatives, common ancestors, and patient tree-building.
 
 That same power is why the case also matters as an ethical question. Using public genealogy databases to find criminal suspects raises real privacy concerns, and in the years since, the U.S. Department of Justice issued policy guidance and several consumer DNA companies restricted law-enforcement access. The reasonable debate over those limits is itself part of the case's legacy.
 

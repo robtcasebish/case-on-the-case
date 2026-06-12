@@ -74,13 +74,13 @@ That attention cut both ways. It kept a cold case visible for two decades and dr
 
 ## Where the Case Stands Today
 
-The case remains open and unsolved. On February 9, 2024, the twentieth anniversary of the disappearance, the New Hampshire Cold Case Unit released an FBI-produced age-progression photograph showing how Maura might look as an adult two decades on. Attorney General John Formella said authorities were continuing to work with local, state, and federal partners, including the FBI, to identify resources to try to advance the case, and expressed hope that the anniversary would bring renewed attention. Officials stressed that the photo's release reflected standard practice in missing-person investigations, not a change in the case or any new information.
+The case remains open and unsolved. On February 9, 2024, the twentieth anniversary of the disappearance, the New Hampshire Cold Case Unit released an FBI-produced age-progression photograph showing how Maura might look as an adult two decades on. Attorney General John Formella said authorities were continuing to work with local, state, and federal partners, including the FBI, to identify resources to try to advance the case, and expressed hope that the anniversary would bring renewed attention. Officials stressed that the photo's release reflected standard practice in [missing-person investigations](/missing-and-vanished), not a change in the case or any new information.
 
 More than twenty years on, Maura has never been found, and no one has been charged. The New Hampshire Cold Case Unit continues to ask anyone with information to come forward.
 
 ## Why This Case Still Matters
 
-Maura Murray's disappearance endures partly because it is genuinely unresolved and partly because of what it revealed about how the public treats unresolved cases. It is, in many ways, a parable about online sleuthing, capturing both the promise and the harm in a single story.
+Maura Murray's disappearance endures partly because it is genuinely unresolved and partly because of what it revealed about how the public treats unresolved cases. It is, in many ways, a parable about [online sleuthing](/citizen-sleuths), capturing both the promise and the harm in a single story.
 
 The promise is real. Sustained public interest can keep a cold case alive, generate tips, and pressure institutions not to forget. Maura's family has acknowledged that awareness and engagement are part of how such cases get solved. But the harm has been just as real and far better documented than any theory about that night. Julie Murray has described relatives wrongly insinuated to be involved, her sister reduced to caricature, and a family's tragedy distorted and monetized in the name of entertainment. She has called the attention a double-edged sword, helpful in keeping the case active yet corrosive when it fills gaps in fact with invention.
 

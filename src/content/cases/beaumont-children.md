@@ -38,7 +38,7 @@ sources:
 
 At the centre of this story are three children. Jane Beaumont was nine years old, careful and capable in the way eldest children often are. Her sister Arnna was seven. Their brother Grant was four. They lived with their parents, Jim and Nancy Beaumont, in the Adelaide seaside suburbs, within easy reach of Glenelg Beach, a stretch of sand the children knew well and loved. On hot summer days they would make the short bus trip down to the water, a small and ordinary freedom of the era.
 
-That freedom is part of what makes the case so enduring. In 1966, sending children off to the beach on their own was unremarkable. They were trusted, familiar with the route, and expected back by lunchtime. The people who would come to matter most in the investigation were strangers glimpsed in passing: a tall man with fair to light-brown hair seen in the children's company, and the ordinary witnesses, a shopkeeper, a postman, a bus driver, whose fragments of memory became the spine of one of Australia's largest missing-persons inquiries.
+That freedom is part of what makes the case so enduring. In 1966, sending children off to the beach on their own was unremarkable. They were trusted, familiar with the route, and expected back by lunchtime. The people who would come to matter most in the investigation were strangers glimpsed in passing: a tall man with fair to light-brown hair seen in the children's company, and the ordinary witnesses, a shopkeeper, a postman, a bus driver, whose fragments of memory became the spine of one of Australia's largest [missing-persons inquiries](/missing-and-vanished).
 
 ## What Happened
 

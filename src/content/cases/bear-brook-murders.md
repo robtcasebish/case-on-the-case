@@ -80,6 +80,6 @@ The resolution opened a new line of inquiry rather than closing the matter entir
 
 ## Why This Case Still Matters
 
-Bear Brook is often cited as a milestone in forensic history, and with reason. It sits among the earliest cases in which investigative genetic genealogy was used to crack an identity that conventional methods could not, helping to establish a technique that has since reshaped how cold cases across the country are approached. The science is real, and its impact has been substantial.
+Bear Brook is often cited as a milestone in forensic history, and with reason. It sits among the earliest cases in which [investigative genetic genealogy](/cases/hidden-in-plain-sight) was used to crack an identity that conventional methods could not, helping to establish a technique that has since reshaped how [cold cases](/solved-cold-cases) across the country are approached. The science is real, and its impact has been substantial.
 
 But the more lasting lesson of Bear Brook is quieter. For nearly forty years, four human beings lay in the records as unknowns, their absence unmarked by anyone able to name them. What changed that was a combination of patient public servants, new science, and ordinary people like Becky Heath who refused to let the question go. The case is a reminder that identification is itself a form of justice, that giving the dead their names back is meaningful even when no courtroom remains to enter. Marlyse Honeychurch, Marie Vaughn, Sarah McWaters, and Rea Rasmussen were unknown for a long time. They are not unknown now.

@@ -127,7 +127,7 @@ the autumn of 1982. **Tamper-evident packaging**, now so ordinary it is invisibl
 exists because of these deaths.
 
 The consequences ran wider still. The case drove the **FDA's packaging rules** and
-the **Federal Anti-Tampering Act**, reshaping consumer-safety law. It became the
+the **Federal Anti-Tampering Act**, [reshaping consumer-safety law](/cases-that-changed-the-law). It became the
 textbook example of corporate **crisis response**, cited for decades in how a
 company should put public safety ahead of its brand. And it left a quieter mark on
 the public mind: a loss of the easy assumption that a sealed product from a

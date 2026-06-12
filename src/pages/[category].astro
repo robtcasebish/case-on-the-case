@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CaseCard from '../components/CaseCard.astro';
 import { SITE, CATEGORIES, absoluteUrl, categoryByTitle } from '../site.config';
-import { breadcrumbSchema, itemListSchema } from '../lib/schema';
+import { breadcrumbSchema, itemListSchema, faqSchema } from '../lib/schema';
 import { readingTimeFromText, caseSlug } from '../lib/utils';
 
 import catSolved from '../assets/categories/solved-cold-cases.png';
@@ -42,6 +42,39 @@ const path = `/${cat.slug}`;
 const reported = items.filter((i) => !i.data.placeholder).length;
 const catImg = CATEGORY_IMAGES[cat.slug];
 
+// Short, factual reader Q&A per section (also emitted as FAQPage schema).
+const FURTHER_VIEWING_FAQ = {
+  q: 'Why do some articles include a Further Viewing video and others do not?',
+  a: 'Where a credible documentary or news segment from a trusted source genuinely adds context, we embed one as optional further viewing. When no suitable, respectful source exists, we leave the article without a video rather than add one for its own sake.',
+};
+const CATEGORY_FAQ: Record<string, { q: string; a: string }[]> = {
+  'solved-cold-cases': [
+    { q: 'What is a solved cold case?', a: 'A cold case is a crime that went unsolved for years, often decades, after the original investigation stalled. We file a case here once it has been resolved, usually through a conviction, a guilty plea, or a confirmed identification, frequently with the help of modern DNA and forensic genetic genealogy.' },
+    { q: 'How does Case on the Case decide a cold case is solved?', a: 'We rely on the public record: convictions, guilty pleas, official law-enforcement determinations, or confirmed identifications reported by credible sources. Where a case is only partly resolved, such as an identity restored but a killing still open, we say so plainly.' },
+  ],
+  'famous-cases': [
+    { q: "What makes a case 'famous' here?", a: 'Cases that entered the wider culture and are recognized well beyond the communities they touched. We revisit them past the headlines, focused on the documented record rather than the myth.' },
+    FURTHER_VIEWING_FAQ,
+  ],
+  'missing-and-vanished': [
+    { q: 'How does Case on the Case handle unsolved disappearances?', a: 'We report what the public record establishes and clearly mark what remains unknown. We lead with the missing person, avoid speculation, and preserve the presumption of innocence for anyone who has not been convicted.' },
+    FURTHER_VIEWING_FAQ,
+  ],
+  'the-evidence-room': [
+    { q: 'What makes a case part of The Evidence Room?', a: 'These are cases where a specific piece of evidence, a fiber, a fingerprint, a preserved DNA sample, or a digital trail, became the turning point. The focus is on the forensic work and on what the evidence could, and could not, prove.' },
+    FURTHER_VIEWING_FAQ,
+  ],
+  'citizen-sleuths': [
+    { q: 'What does Case on the Case mean by Citizen Sleuths?', a: 'Cases where members of the public, online communities, or amateur investigators played a meaningful role, whether by identifying a suspect, restoring a victim\'s name, or keeping a cold case visible. We also note the real limits and risks of public investigation.' },
+    FURTHER_VIEWING_FAQ,
+  ],
+  'cases-that-changed-the-law': [
+    { q: 'What kinds of cases changed the law?', a: 'Cases whose aftermath produced new legislation or lasting policy, from sex-offender registries and missing-children systems to consumer-safety rules and hate-crime statutes. We trace the line from the case to the law it shaped.' },
+    FURTHER_VIEWING_FAQ,
+  ],
+};
+const faqs = CATEGORY_FAQ[cat.slug] ?? [];
+
 const listSchema = itemListSchema(
   items.map((s) => ({ url: absoluteUrl(`/cases/${caseSlug(s.id)}`), name: s.data.title })),
   cat.title,
@@ -51,13 +84,14 @@ const crumbs = breadcrumbSchema([
   { name: 'Cases', url: absoluteUrl('/cases') },
   { name: cat.title, url: absoluteUrl(path) },
 ]);
+const schemaNodes = faqs.length ? [listSchema, crumbs, faqSchema(faqs)] : [listSchema, crumbs];
 ---
 
 <BaseLayout
   title={cat.title}
   description={`${cat.blurb}, true crime case files from ${SITE.name}.`}
   path={path}
-  schemaNodes={[listSchema, crumbs]}
+  schemaNodes={schemaNodes}
 >
   <section class:list={['cathero', { 'has-image': catImg }]}>
     {catImg && (
@@ -76,7 +110,7 @@ const crumbs = breadcrumbSchema([
       <p class="cathero__tagline">{cat.tagline}</p>
       <p class="cathero__blurb">{cat.blurb}</p>
       <p class="cathero__count">
-        {items.length} {items.length === 1 ? 'case' : 'cases'} on file{reported > 0 ? ` · ${reported} reported in full` : ''}
+        {reported} {reported === 1 ? 'case' : 'cases'} reported in full{items.length > reported ? `, ${items.length - reported} in progress` : ''}
       </p>
     </div>
   </section>
@@ -107,6 +141,27 @@ const crumbs = breadcrumbSchema([
       )}
     </div>
   </section>
+
+  {faqs.length > 0 && (
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">About this section</p>
+            <h2>Questions, answered</h2>
+          </div>
+        </div>
+        <dl class="catfaq">
+          {faqs.map((f) => (
+            <div class="catfaq__item">
+              <dt>{f.q}</dt>
+              <dd>{f.a}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+  )}
 </BaseLayout>
 
 <style>
@@ -145,4 +200,12 @@ const crumbs = breadcrumbSchema([
   .cathero__tagline { margin-top: 0.75rem; font-family: var(--font-serif); font-style: italic; font-size: 1.3rem; color: var(--text-muted); }
   .cathero__blurb { margin-top: 1rem; color: var(--text-muted); max-width: 64ch; }
   .cathero__count { margin-top: 1.1rem; font-size: 0.82rem; color: var(--text-faint); }
+
+  /* Section Q&A (also emitted as FAQPage schema) */
+  .catfaq { display: grid; gap: 1.4rem; max-width: 70ch; margin: 0; }
+  .catfaq__item dt {
+    font-family: var(--font-serif); font-weight: 700;
+    font-size: 1.12rem; color: var(--text); margin-bottom: 0.4rem;
+  }
+  .catfaq__item dd { margin: 0; color: var(--text-muted); line-height: 1.65; }
 </style>

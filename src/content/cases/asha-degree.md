@@ -48,7 +48,7 @@ In the hours that followed, a small number of motorists reported seeing a child 
 
 ## The Investigation
 
-The Degree case became one of North Carolina's most enduring missing-child investigations, drawing in the Cleveland County Sheriff's Office, the North Carolina State Bureau of Investigation, and the FBI. For years the central, agonizing question was why a cautious child would leave her bed in the middle of the night, and the absence of an answer kept the case open and active long after many would have gone cold by default.
+The Degree case became one of North Carolina's most enduring [missing-child investigations](/missing-and-vanished), drawing in the Cleveland County Sheriff's Office, the North Carolina State Bureau of Investigation, and the FBI. For years the central, agonizing question was why a cautious child would leave her bed in the middle of the night, and the absence of an answer kept the case open and active long after many would have gone cold by default.
 
 Investigators returned to the file repeatedly, re-interviewing witnesses and re-examining evidence. A reward was offered for information leading to an arrest and conviction, growing over the years; by the 25th and 26th anniversaries it had reached as much as $100,000. The FBI publicized the case on its major anniversaries and asked the public for help, releasing details about items connected to Asha in the hope that someone would recognize them. For more than two decades, the investigation pressed forward largely on the strength of a single recovered piece of physical evidence and the determination not to let the case fade.
 
